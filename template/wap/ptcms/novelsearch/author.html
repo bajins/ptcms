@@ -1,52 +1,53 @@
-
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <title>{$tkd.title|parseTpl}</title>
     <meta name="keywords" content="{$tkd.keywords|parseTpl}">
     <meta name="description" content="{$tkd.description|parseTpl}">
-    <meta name="applicable-device" content="mobile"/>
+    <meta name="applicable-device" content="mobile" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta http-equiv="Cache-Control" content="no-transform" />
     <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
     <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+
 <body>
-<header class="ptm-bar ptm-bar-nav  ptm-fix">
-    <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
-        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
-    </a>
-    <div class="ptm-title">{$author.name} 作品大全</div>
-    <a class="ptm-pull-right" href="{link=user.index.index}">
-        <span class="ptm-iconfont  fa fa-user"></span>
-    </a>
-</header>
-<section class="ptm-content pt-infopage" style="margin-top:60px;background: #fff">
-    <ul class="pt-card pt-card-2">
-        {block method="authorlist" name="list" author=$author.name}
-        {loop=list}
-        <li>
-            <div class="pt-cover">
-                <a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
-            </div>
-            <div class="pt-novel">
-                <div class="pt-num ptm-pull-right"><span style="color:orange">{$loop.data.allvisit}</span>人看过</div>
-                <div class="pt-name"><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></div>
-                <div class="pt-info"><a href="{$loop.author.url}">{$loop.author.name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{$loop.category.url}">{$loop.category.name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{$loop.novel.isover|default="连载","完结"}</div>
-                <div class="pt-desc ptm-text-cut2">{$loop.novel.intro}</div>
-            </div>
-        </li>
-        {/loop}
-    </ul>
-</section>
-<div class="ptm-clear"></div>
-<div class="ptm-line-x"></div>
-<div class="footer">
-    <p>本站系基于互联网搜索引擎技术为您提供信息检索服务。</p>
-    <p>Copyright ©2014 </p>
-</div>
+    <header class="ptm-bar ptm-bar-nav  ptm-fix">
+        <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+            <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+        </a>
+        <div class="ptm-title">{$author.name} 作品大全</div>
+        <a class="ptm-pull-right" href="{link=user.index.index}">
+            <span class="ptm-iconfont  fa fa-user"></span>
+        </a>
+    </header>
+    <section class="ptm-content pt-infopage" style="margin-top:60px;background: #fff">
+        <ul class="pt-card pt-card-2">
+            {block method="authorlist" name="list" author=$author.name} {loop=list}
+            <li>
+                <div class="pt-cover">
+                    <a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+                </div>
+                <div class="pt-novel">
+                    <div class="pt-num ptm-pull-right"><span style="color:orange">{$loop.data.allvisit}</span>人看过</div>
+                    <div class="pt-name"><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></div>
+                    <div class="pt-info"><a href="{$loop.author.url}">{$loop.author.name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{$loop.category.url}">{$loop.category.name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{$loop.novel.isover|default="连载","完结"}</div>
+                    <div class="pt-desc ptm-text-cut2">{$loop.novel.intro}</div>
+                </div>
+            </li>
+            {/loop}
+        </ul>
+    </section>
+    <div class="ptm-clear"></div>
+    <div class="ptm-line-x"></div>
+    <div class="footer">
+        <p>本站系基于互联网搜索引擎技术为您提供信息检索服务。</p>
+        <p>Copyright ©2019 </p>
+    </div>
 </body>
+
 </html>
