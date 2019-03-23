@@ -1,0 +1,34 @@
+<div class="pt-set-wrap">
+    <div class="alert alert-danger alert-dismissable ">
+        <p>如果您升级过,请不要重复执行,否则可能会造成程序异常</p>
+        <p>该升级程序只是对数据库进行升级,模板需要您手动操作</p>
+    </div>
+    <div class="pt-set-box">
+        <form action="__SELF__" method="post" enctype="multipart/form-data" class="vform">
+            <div class="pt-set-content">
+                <div class="pt-set-info ">
+                    <div class="line"><b>数据库升级配置：</b>
+                        <div class="pt-set-area">
+                            <label><input type="checkbox" name="d1" value="1" checked/>升级数据库至2.0.2版本</label>
+                            <label><input type="checkbox" name="d2" value="1" />把数据表转换为mysiam</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>目录参数：</b>
+                        <label><input name="dir" type="text" value="/dir/{novelkey}/[{sitekey}/]" class="input-text w450"  /></label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-tab-button">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b> </b>
+                        <input class="btn btn-success" type="submit" value=" 升级数据库 " />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

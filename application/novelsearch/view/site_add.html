@@ -1,0 +1,84 @@
+<div class="pt-set-wrap">
+    <h4 class="pt-msg-title"><b class="f-fl">添加站点</b></h4>
+    <div class="pt-set-box">
+        <form action="__SELF__" method="post" enctype="multipart/form-data" class="vform">
+            <div class="pt-set-content">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>站点名称：</b>
+                        <label><input name="name" type="text" value="" class="input-text w450" datatype="*" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>站点地址：</b>
+                        <label><input name="url" type="text" value="" class="input-text w450" datatype="url"/></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>站点key：</b>
+                        <label><input name="key" type="text" value="" class="input-text w450"  datatype="/^\w+$/" errormsg="只能输入字母数字"/></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>站点权重：</b>
+                        <label><input name="weight" type="text" value="" class="input-text w450"  datatype="n"/></label>
+                        <span class="Validform_checktip">数值越大，越容易展示，最大100</span>
+                    </div>
+                </div>
+
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>ip控制：</b>
+                        <label>
+                            <input name="ip" type="text" value="0" class="input-text w450" datatype="n"/>
+                            <span class="Validform_checktip">控制这个站点每天最多访问ip，0为不限制</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>站点样式：</b>
+                        <label><input name="style" type="text" value="" class="input-text w450" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>站点描述：</b>
+                        <label><input name="desc" type="text" value="" class="input-text w450" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line"><b>是否原创：</b>
+                        <label>
+                            <input name="isoriginal" type="radio" value="1"  />原创站点
+                        </label>
+                        <label>
+                            <input name="isoriginal" type="radio" value='0' checked/>转载站点
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line"><b>站点状态：</b>
+                        <label>
+                            <input name="status" type="radio" value="1" checked />正常
+                        </label>
+                        <label>
+                            <input name="status" type="radio" value='0' />禁用
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-tab-button">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b></b>
+                        <input class="btn btn-success" type="submit" value=" 添加站点 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

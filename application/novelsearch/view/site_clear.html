@@ -1,0 +1,39 @@
+<div class="pt-set-wrap">
+    <h4 class="pt-msg-title"><b class="f-fl">清空站点</b></h4>
+    <div class="pt-set-box">
+        <form action="__SELF__" method="post" enctype="multipart/form-data" class="vform">
+            <div class="pt-set-content">
+                <div class="pt-set-info rule">
+                    <div class="line">
+                        <b>站点选择：</b>
+                        <label>
+                            <select class="input-box w450" name="siteid">
+                                {loop=sitelist}
+                                <option value="{$loop.id}">{$loop.name}</option>
+                                {/loop}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info rule rule1">
+                    <div class="line"><b>规则配置：</b>
+                        <div class="pt-set-area">
+                            <label><input type="checkbox" name="log"  value="1"/>清空采集日志(已采章节不会再次入库)</label>
+                            <label><input type="checkbox" name="all"  value="1"/>清空所有章节</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-tab-button">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b></b>
+                        <input class="btn btn-success" type="submit" value=" 开始处理 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/simditor.html"}
+

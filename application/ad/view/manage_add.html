@@ -1,0 +1,74 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">添加广告</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>广告名称：</b>
+                        <label><input name = "name" type = "text" value = "" class = "input-text w450" datatype = "*" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>广告标识：</b>
+                        <label><input name = "key" type = "text" value = "" class = "input-text w450"  datatype="/^[a-zA-Z0-9]+$/" placeholder="只可以输入英文和数字" errormsg="只可以输入英文和数字" ajaxurl = "__URL__/ajax/id/0" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>广告代码：</b>
+                        <label><textarea name = "code" class="input-box w450" style="height:150px"></textarea></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>广告宽：</b>
+                        <label><input name = "width" type = "text" value = "" class = "input-text w450"/></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>广告高：</b>
+                        <label><input name = "height" type = "text" value = "" class = "input-text w450" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>广告描述：</b>
+                        <label><textarea name = "intro" class="input-box w450"></textarea></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line"><b>广告类型：</b>
+                        <label>
+                            <input name = "type" type = "radio" value = "1" checked/>html代码
+                        </label>
+                        <label>
+                            <input name = "type" type = "radio" value = "2"  />js代码
+                        </label>
+                    </div>
+                </div>
+
+                <div class = "pt-set-info">
+                    <div class = "line"><b>广告状态：</b>
+                        <label>
+                            <input name = "status" type = "radio" value = "1" checked />正常
+                        </label>
+                        <label>
+                            <input name = "status" type = "radio" value = '0' />禁用
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input class = "btn btn-success" type = "submit" value = " 添加广告 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

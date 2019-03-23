@@ -1,0 +1,3 @@
+<?php
+ class infoController extends UserController { public function pwdAction() { if (IS_POST) { if (empty($_POST['password'])) { $this->error('请输入旧密码'); } if (empty($_POST['newpassword'])) { $this->error('请输入新密码'); } if ($_POST['newpassword'] != $_POST['repassword']) { $this->error('新密码两次输入不一致'); } $zym_5 = M('user')->checkinfo($this->userinfo['name'], $_POST['password']); if ($zym_5) { $zym_6['id'] = $this->userinfo['id']; $zym_6['salt'] = substr(md5(NOW_TIME), 0, 6); $zym_6['password'] = md5(md5($_POST['newpassword']) . $zym_6['salt']); M('user')->edit($zym_6); $this->success('修改成功', U('user.mark.index')); } $this->error('旧密码输入有误'); exit; } $this->view->userpagesign='pwd'; $this->display('pwd'); } }
+?>

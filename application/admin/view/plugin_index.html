@@ -1,0 +1,59 @@
+<div class = "pt-table-wrap" ng-app = "ptcms">
+    <h4 class = "pt-msg-title"><b class = "f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class = "pt-list" ng-controller = "showlist">
+        <form method = "post" action = "__URL__/multi" id = "showtable">
+            <input type = "hidden" name = "method" />
+            <div class = "pt-list-header">
+                <div class = "pt-list-operate f-fl">
+                </div>
+                <div class = "f-fr">
+                    <input ng-model = 'keyword' class = "input-text w160" type = "text" onkeypress = "if(event.keyCode==13) {return false;}" />
+                    <input type = "button" class = "btn btn-default btn-sm" value = "搜索" />
+                </div>
+                <div class = "f-clear"></div>
+            </div>
+            <table class = "pt-list-table">
+                <thead>
+                <tr>
+                    <th class = "f-tal" style = "width:150px">模块名称</th>
+                    <th class = "f-tal">模块信息</th>
+                    <th class = "w-word5">模块作者</th>
+                    <th class = "w-word5">模块版本</th>
+                    <th class = "w-word3">状态</th>
+                    <th class = "operate w-operate2">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat = "loop in lists | filter:keyword">
+                    <td class = "f-tal">{{loop.name}}</td>
+                    <td class = "f-tal">{{loop.desc}}</td>
+                    <td>{{loop.author}}</td>
+                    <td>{{loop.version}}</td>
+                    <td>
+                        <span class = "label label-warning" ng-if = "loop.setup==0">未安装</span>
+                        <span class = "label label-success" ng-if = "loop.setup==1">已安装</span>
+                    </td>
+                    <td class = "operate">
+                        <a ng-if = "loop.setup==0" ng-href = "{{loop.url_install}}"><i class = "icon icon-save"></i>安装</a>
+                        <a ng-if = "loop.setup==1" onclick = "uninstall(this)" data-url = "{{loop.url_uninstall}}"><i class = "icon icon-open"></i>卸载</a>
+                        <a ng-href = "{{loop.url_config}}"><i class = "icon icon-edit"></i>设置</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class = "pt-list-footer">
+                <div class = "pt-list-operate f-fl"></div>
+                <div class = "f-clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/public_indexjs.html"}
+<script type = "text/javascript">
+    function uninstall(o) {
+        var url = $(o).data('url');
+        if (confirm('您是否要卸载该插件')) {
+            window.location.href = url ;
+        }
+    }
+</script>

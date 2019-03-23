@@ -1,0 +1,77 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>{$tkd.title|parseTpl}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTpl}">
+    <meta name="description" content="{$tkd.description|parseTpl}">
+    <meta name="applicable-device" content="mobile"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="javascript:window.history.back()">
+        <span class="ptm-iconfont ptm-icon-left"></span>
+    </a>
+    <div class="ptm-title">搜索结果</div>
+    <a class="ptm-pull-right" href="{link=novelsearch.index.index}">
+        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+    </a>
+</header>
+<section class="ptm-content pt-infopage" style="margin-top:60px;background: #fff">
+    {if count($resultlist)}
+    <div class="baseinfo">
+        <img src="{$resultlist.0.novel.cover}" alt="{$resultlist.0.novel.name}">
+        <div class="pt-novel">
+            <h1 class="pt-name"><a href="{$resultlist.0.url.info}">{$resultlist.0.novel.name}</a></h1>
+            <div class="pt-info">作者:<a href="{$resultlist.0.author.url}">{$resultlist.0.author.name}</a></div>
+            <div class="pt-info">分类:<a href="{$resultlist.0.category.url}">{$resultlist.0.category.name}</a></div>
+            <div class="pt-info">来源:{$resultlist.0.source.sitehost}</div>
+            <div class="pt-info">更新:{$resultlist.0.last.time|cntime}</div>
+        </div>
+    </div>
+    <div class="twobutton ptm-clearfix">
+        <div class="ptm-col-xs-6">
+            <a class="ptm-btn ptm-btn-primary ptm-btn-block" href="{$resultlist.0.url.first}">开始阅读</a>
+        </div>
+        <div class="ptm-col-xs-6">
+            <a class="ptm-btn ptm-btn-warning ptm-btn-block" href="{$resultlist.0.url.addmark}">加入书架</a>
+        </div>
+    </div>
+    <div class="lastchapter">
+        <a href="{$resultlist.0.last.url}" class="ptm-text-cut">{$resultlist.0.last.name}</a>
+    </div>
+    <div class="twobutton" >
+        <a class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined" href="{$resultlist.0.url.dir}">全部目录</a>
+    </div>
+    <div class="ptm-line-x" style="margin:10px 0;"></div>
+    <ul class="pt-card pt-card-2">
+        {section loop=resultlist offset=1}
+        {if $i.order>1}
+        <li>
+            <div class="pt-cover">
+                <a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+            </div>
+            <div class="pt-novel">
+                <div class="pt-num ptm-pull-right"><span style="color:orange">{$loop.data.allvisit}</span>人看过</div>
+                <div class="pt-name"><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></div>
+                <div class="pt-info"><a href="{$loop.author.url}">{$loop.author.name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{$loop.category.url}">{$loop.category.name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{$loop.novel.isover|default="连载","完结"}</div>
+                <div class="pt-desc ptm-text-cut2">{$loop.novel.intro}</div>
+            </div>
+        </li>
+        {/if}
+        {/section}
+    </ul>
+    {else}
+    没搜到你要查找的内容,换个关键词试试吧!
+    {/if}
+</section>
+{include file="../common/footer"}
+</body>
+</html>

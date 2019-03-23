@@ -1,0 +1,75 @@
+<div class = "pt-table-wrap" ng-app = "ptcms">
+    <h4 class = "pt-msg-title"><b class = "f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class = "pt-list" ng-controller = "showlist">
+        <form method = "post" action = "__URL__/multi" id="showtable">
+            <input type = "hidden" name = "method" />
+            <div class = "pt-list-header">
+                <div class = "pt-list-operate f-fl">
+                    <a class = "btn btn-success btn-sm" href = '__URL__/add'>添加</a>
+                    <input type = "submit" class = "btn btn-primary btn-sm btn-checkbox" value = "禁用" name = "forbidden">
+                    <input type = "submit" class = "btn btn-primary btn-sm btn-checkbox" value = "恢复" name = "recover">
+                    <input type = "submit" class = "btn btn-danger btn-sm btn-checkbox" value = "删除" name = "mdel">
+                </div>
+                <div class = "f-fr">
+                    <select class = "input-box searchtype">
+                        <option value = "key">配置key</option>
+                        <option value = "title">配置名</option>
+                    </select>
+                    <input class = "input-text w160 searchkey" type = "text" onkeypress="if(event.keyCode==13) {event.preventDefault();$(this).next().click();}"/>
+                    <input type = "button" class = "btn btn-default btn-sm" value = "搜索" ng-click="getlist()"/>
+                </div>
+                <div class = "f-clear"></div>
+            </div>
+            <table class = "pt-list-table">
+                <thead>
+                <tr>
+                    <th class = "w-checkbox"><input type = "checkbox" class = "checkall" data = "id[]" ></th>
+                    <th>配置名称</th>
+                    <th class = "w-word5">配置Key</th>
+                    <th class = "w-word5">配置分组</th>
+                    <th class = "w-word5">创建人</th>
+                    <th class = "w-time">创建时间</th>
+                    <th class = "w-word5">修改人</th>
+                    <th class = "w-time">修改时间</th>
+                    <th class = "operate w-operate2">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat = "loop in lists">
+                    <td><input type = "checkbox" name = "id[]" value = "{{loop.id}}"></td>
+                    <td class="f-tal">{{loop.title}}</td>
+                    <td>{{loop.key}}</td>
+                    <td>{{loop.groupname}}</td>
+                    <td>{{loop.create_username}}</td>
+                    <td>{{loop.create_time}}</td>
+                    <td>{{loop.update_username}}</td>
+                    <td>{{loop.update_time}}</td>
+                    <td class = "operate">
+                        <a ng-href = "{{loop.url_edit}}"><i class = "icon icon-edit"></i>编辑</a>
+                        <a href = "javascript:;" ng-click = "del(loop.id,$index)"><i class = "icon icon-trash"></i>删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class = "pt-list-footer">
+                <div class = "pt-list-operate f-fl">
+                </div>
+                <div class = "pt-page f-fr">
+                    <div class="f-fr">
+                        <input class = "input-text pageinput"  value="{{page}}" type = "text" style="width:40px;margin:0 5px;text-align: center"/>
+                        <input type = "button" class = "btn btn-default btn-sm" value = "跳转" ng-click="gopage('input')"/>
+                    </div>
+                    <div class="f-fr">
+                        <i>{{totalnum}} 条记录 {{page}}/{{pagenum}} 页</i>
+                        <a href="javascript:;" ng-click="gopage('1')"><<</a>
+                        <a href="javascript:;" ng-click="gopage('-1')"><</a>
+                        <a href="javascript:;" ng-click="gopage('+1')">></a>
+                        <a href="javascript:;" ng-click="gopage(pagenum)">>></a>
+                    </div>
+                </div>
+                <div class = "f-clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/public_indexjs.html"}

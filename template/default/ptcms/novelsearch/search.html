@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>{$tkd.title|parseTPL}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTPL}" />
+    <meta name="description" content="{$tkd.description|parsetpl}" />
+    {include file="../common/head"}
+</head>
+<body>
+{include file="../common/header"}
+<section class="w-all">
+    <nav class="mt20">
+        <ul class="clearfix">
+            <li><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}首页"><i class="pticon pticon-home pticon-lg"></i> {$pt.config.sitename}首页</a><i class="pticon pticon-angle-right icon"></i></li>
+            <li><a href="__SELF__" title="搜索 “{$searchkey}” 结果">搜索 “{$searchkey}” 结果</a></li>
+        </ul>
+    </nav>
+    <div class="container clearfix mt20">
+        <div class="w-left">
+            <div class="card">
+                <div class="header line">
+                    <h2>搜索 “<strong class="num">{$searchkey}</strong>” 结果</h2>
+                </div>
+                <div class="body">
+                    <ul class="librarylist">
+                        {loop=resultlist}
+                        <li>
+                            <div class="pt-ll-l">
+                                <a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}" /></a>
+                            </div>
+                            <div class="pt-ll-r">
+                                <p class="info">
+                                    <span>《<a href="{$loop.url.info}" class="novelname" title="{$loop.novel.name}">{$loop.novel.name}</a>》</span>
+                                    <span>作者：<a href="{$loop.author.url}" title="{$loop.author.name} 作品列表">{$loop.author.name}</a></span>
+                                    <span>分类：<a href="{$loop.category.url}" title="{$loop.category.name}小说">{$loop.category.name}</a></span>
+                                </p>
+                                <p class="intro">
+                                    {$loop.novel.intro}
+                                </p>
+                                <p class="last">
+                                    最新章节：<a href="{$loop.last.url}" title="{$loop.novel.name} {$loop.last.name}" target="_blank">{$loop.last.name}</a>({$loop.last.time|date="m-d H:i"})
+                                </p>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                        {/loop}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="w-right">
+
+            <div class="card pt-tab">
+                <div class="header tab pt-tab-nav">
+                    <ul class="clearfix">
+                        <li class="active">本月热门</li>
+                        <li>本周热门</li>
+                    </ul>
+                </div>
+                <div class="body pt-tab-con">
+                    <ul class="rightlist">
+                        {block method="novellist" name="list" sort="monthvisit" num=15}
+                        {section loop=$list}
+                        <li><i {if $i.order<4}class="first"{/if}>{$i.order}</i><span><a href="{$loop.author.url}" title="{$loop.author.name} 作品大全">{$loop.author.name}</a></span><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></li>
+                        {/section}
+                    </ul>
+                    <ul class="rightlist none">
+                        {block method="novellist" name="list" sort="weekvisit" num=15}
+                        {section loop=$list}
+                        <li><i {if $i.order<4}class="first"{/if}>{$i.order}</i><span><a href="{$loop.author.url}" title="{$loop.author.name} 作品大全">{$loop.author.name}</a></span><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></li>
+                        {/section}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

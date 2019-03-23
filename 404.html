@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{$sitename} - Power By Ptcms</title>
+    <style type="text/css">
+        * { margin: 0; padding: 0; }
+        body { font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #9B9B9B; background: #F3F3F3; }
+        a { color: #428BCA; text-decoration: none; font-size: 20px; }
+        .main { width: 500px; background: #fff; margin: 150px auto; -webkit-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, .3); box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, .3); padding: 30px 50px 50px 50px; }
+        h1 { font-size: 36px; padding-bottom: 20px; }
+        h1 span { font-size: 60px; padding-right: 15px; color: #333 }
+        p { line-height: 2em; }
+        input, button { padding: 15px 10px; border: 0px; background: #e3e3e3; border-radius: 0px; color: #999; outline: 0; font-size: 16px; }
+        input { width: 300px; }
+        button { background: #0090FF; color: #fff; cursor: pointer; width: 80px; overflow: hidden; }
+        .form-group { margin-top: 10px; }
+    </style>
+</head>
+<body>
+<div class="main"><h1><span>404</span>页面未找到</h1>
+    <p>很抱歉!这个页面已经找不到了.</p>
+    <p>你可以返回首页 <a href="{$siteurl}">{$siteurl}</a></p>
+    <form action="{$siteurl}/index.php" method="get">
+        <input type="hidden" name="m" value="novelsearch" />
+        <input type="hidden" name="c" value="search" />
+        <input type="hidden" name="a" value="index" />
+        <div class="form-group">
+            <input type="text" name='key' class="form-control" onMouseOut="if(this.value=='')this.value='请输入关键字...';" onClick="if(this.value=='请输入关键字...')this.value=''" value="请输入关键字...">
+            <button class="btn btn-primary" type="submit">搜索</button>
+        </div>
+    </form>
+</div>
+<div style="display:none">
+    <script language="javascript" type="text/javascript" src="/public/ptcms/tongji.js"></script>
+</div>
+</body>
+</html>

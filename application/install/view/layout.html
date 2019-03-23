@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="zh-CN">
+    <meta charset="UTF-8" />
+    <title>{$pt.proname} 安装程序</title>
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/global.css" />
+</head>
+<body>
+<div class="ptcms-install-patch">
+    <h1>{$pt.proname}</h1>
+    <ol class="path">
+        {section loop=$steplist}
+        {if $step==$i.index}
+        <li class="current"><span>{$i.order}</span>{$loop}</li>
+        {else}
+        <li><span>{$i.order}</span>{$loop}</li>
+        {/if}
+        {/section}
+    </ol>
+</div>
+<div class="container">
+    <div class="colgroup">
+        <div class="col-mb-12 col-tb-8 col-tb-offset-2">
+            <div class="column-14 start-06 ptcms-install">
+                __CONTENT__
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ptcms-foot" role="contentinfo">
+    <div class="copyright">
+        <a href="http://www.ptcms.com" class="i-logo-s">PTCMS</a>
+        <p>由 <a href="http://www.ptcms.com/product/ptframework">PT Framework</a> 强力驱动, 程序版本 {$pt.proversion}</p>
+    </div>
+    <nav class="resource">
+        <a href="http://www.ptcms.com/course">帮助文档</a> &bull;
+        <a href="http://www.ptcms.com/bbs">支持论坛</a> &bull;
+        <a href="http://www.ptcms.com/case">案例演示</a> &bull;
+        <a href="http://www.ptcms.com/download">资源下载</a>
+    </nav>
+</div>
+<div style="display: none">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "http://js.users.51.la/17312305.js";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</div>
+</body>
+</html>

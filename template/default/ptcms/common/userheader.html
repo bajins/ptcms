@@ -1,0 +1,20 @@
+<div class="header clearfix {if !IS_LOGIN}none{/if}">
+    <div class="avatar " onmouseover="$(this).addClass('hover');" onmouseout="$(this).removeClass('hover')">
+        <img src="/public/image/noavatar_big.gif" width="110" height="110">
+        <a href="#" target="_blank" class="modify">修改头像</a>
+    </div>
+    <ul class="info ">
+        <li>
+            <strong class="name">{$userinfo.name}</strong>
+            <a href="{link=user.info.pwd}"><i class="pticon pticon-pencil pticon-lg" style="margin-right:5px;"></i>修改密码</a>
+        </li>
+        <li>
+            <div class="item-l"><span class="space"><span class="vam">注册时间：</span>{$userinfo.reg_time|date="Y-m-d H:i:s"}</span></div>
+            <div class="item-l"><span class="space"><span class="vam">注册IP：</span>{$userinfo.reg_ip}</span></div>
+        </li>
+        <li class="last">
+            <div class="item-l"><span class="space"><span class="vam">登陆时间：</span>{$userinfo.login_time|date="Y-m-d H:i:s"}</span></div>
+            <div class="item-l"><span class="space"><span class="vam">登陆IP：</span>{$userinfo.login_ip}</span></div>
+        </li>
+    </ul>
+</div>

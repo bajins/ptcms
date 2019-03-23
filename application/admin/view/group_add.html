@@ -1,0 +1,63 @@
+<div class="pt-set-wrap">
+    <h4 class="pt-msg-title"><b class="f-fl">添加用户组</b></h4>
+    <div class="pt-set-box">
+        <form action="__SELF__" method="post" enctype="multipart/form-data" class="vform">
+            <div class="pt-tab">
+                <div class="pt-tab-nav">
+                    <a href="#" class="current"><span>基本信息</span></a>
+                    <a href="#"><span>访问权限</span></a>
+                </div>
+                <div class="pt-tab-content">
+                    <div class="pt-tab-item">
+                        <div class="pt-set-content">
+                            <div class="pt-set-info">
+                                <div class="line">
+                                    <b>用户组名称：</b>
+                                    <label><input name="name" type="text" value="" class="input-text w450" datatype="s1-10" errormsg="用户组名称至少1个字符,最多10个字符！" /></label>
+                                </div>
+                            </div>
+                            <div class="pt-set-info">
+                                <div class="line">
+                                    <b>用户组备注：</b>
+                                    <label><textarea name="intro" class="input-box w450"></textarea></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-tab-item">
+                        <div class="pt-set-content">
+                            <label style="margin-bottom:15px;display: block"><input type="checkbox" class="checkall" data="node[]">全选</label>
+                            {section loop=menu}
+                            <h4 class="pt-msg-title" style="margin-bottom: 20px;"><b class="f-fl">{$loop.name}</b></h4>
+                            {section loop=loop.sons item=submenu}
+                            <div class="pt-set-info">
+                                <div class="auth">
+                                    <b class="f-fl">{$submenu.name}：</b>
+                                    <div class="f-fl">
+                                        {section loop=submenu.sons item=submenulist name=k}
+                                        {if !$k.first && $submenulist.level==3}<br />{/if}
+                                        <label>
+                                            <input name="node[]" type="checkbox" value="{$submenulist.id}" />{$submenulist.name}
+                                        </label>
+                                        {/section}
+                                    </div>
+                                    <div class="f-clear"></div>
+                                </div>
+                            </div>
+                            {/section}
+                            {/section}
+                        </div>
+                    </div>
+                    <div class="pt-tab-button">
+                        <div class="pt-set-info">
+                            <div class="line">
+                                <b></b>
+                                <input class="btn btn-success" type="submit" value=" 添加用户组 " />&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

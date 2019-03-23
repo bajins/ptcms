@@ -1,0 +1,37 @@
+<div class = "pt-table-wrap" ng-app = "ptcms">
+    <h4 class = "pt-msg-title"><b class = "f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class = "pt-list" ng-controller = "showlist">
+        <form method = "post" action = "__SELF__" id="showtable">
+            <table class = "pt-list-table" style="width:600px">
+                <thead>
+                <tr>
+                    <th style = "width:50px">站点ID</th>
+                    <th style = "width:150px">站点名称</th>
+                    <th class = "w-word4">入库书数量</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop=$list}
+                <tr>
+                    <td>{$loop.siteid}</td>
+                    <td>{$loop.sitename}</td>
+                    <td>{$loop.num}</td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+            <div class = "pt-list-footer">
+                <div class = "pt-list-operate f-fl"></div>
+                <div class = "f-clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type = "text/javascript" src = "__PUBLIC__/plugin/datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('input.date').on('click', function () {
+            WdatePicker({skin: 'ext', dateFmt: 'yyyyMMdd', el: this})
+        });
+    })
+</script>

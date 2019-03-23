@@ -1,0 +1,49 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">网站图片上传</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>网站logo：</b>
+                        <div style="display:inline-block">
+                            <input name = "logo" type = "text" value = "{$pt.config.logo}" class = "input-text w450 uploadfile" />
+                            <input type = "file" class="uploadfile f-dn" name="logofile" accept="image/*"/>
+                            <button class = "btn btn-primary btn-sm uploadfile" type="button" data-type="image">上传图片</button>
+                        </div>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>水印图片：</b>
+                        <div style="display:inline-block">
+                            <input name = "water_image" type = "text" value = "{$pt.config.water_image}" class = "input-text w450 uploadfile" />
+                            <input type = "file" class="uploadfile f-dn" name="imgfile" accept="image/*"/>
+                            <button class = "btn btn-primary btn-sm uploadfile" type="button" data-type="image">上传图片</button>
+                        </div>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>网站ICO：</b>
+                        <div style="display:inline-block">
+                            <input name = "ico" type = "text" value = "/favicon.ico" class = "input-text w450 uploadfile" />
+                            <input type = "file" class="uploadfile f-dn" name="icofile"/>
+                            <button class = "btn btn-primary btn-sm uploadfile" type="button" data-type="image">上传图标</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input class = "btn btn-success" type = "submit" value = " 保存 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/simditor.html"}
+

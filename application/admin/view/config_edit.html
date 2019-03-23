@@ -1,0 +1,121 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">修改配置项</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>配置名称：</b>
+                        <label><input name = "title" type = "text" value = "{$info.title}" class = "input-text w450" placeholder="" datatype="*"/></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>配置Key：</b>
+                        <label><input name = "key" type = "text" value = "{$info.key}" class = "input-text w450"  datatype="/^\w+$/" placeholder="只可以输入英文和数字" errormsg="只可以输入英文和数字" ajaxurl = "__URL__/ajax/id/{$info.id}"/></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>配置说明：</b>
+                        <label><textarea name = "intro" class="input-box w450">{$info.intro}</textarea></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info ">
+                    <div class = "line">
+                        <b>配置值：</b>
+                        <label><textarea name = "value" class="input-box w450">{$info.value}</textarea></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>配置类型：</b>
+                        <label>
+                            <select class = "input-box w450" name = "type">
+                                <option value = "num" >数字</option>
+                                <option value = "text" >字符</option>
+                                <option value = "textarea" >文本</option>
+                                <option value = "radio" >单选</option>
+                                <option value = "checkbox" >复选</option>
+                                <option value = "select" >下拉</option>
+                                <option value = "array" >数组</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>配置分组：</b>
+                        <label>
+                            <select class = "input-box w450" name = "group">
+                                {loop=$grouplist}
+                                <option value = "{$key}" >{$loop}</option>
+                                {/loop}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class = "pt-set-info f-dn config-extra">
+                    <div class = "line">
+                        <b>配置选项：</b>
+                        <label><textarea name = "extra" class="input-box w450" style="height:100px" placeholder="选项值:说明文案，用换行分隔">{$info.extra}</textarea></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>排序序号：</b>
+                        <label><input name = "ordernum" type = "text" value = "{$info.ordernum}" class = "input-text w450" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line"><b>配置级别：</b>
+                        <label>
+                            <input name = "level" type = "radio" value = "1" />主配置
+                        </label>
+                        <label>
+                            <input name = "level" type = "radio" value = '0' />辅助配置
+                        </label>
+                        <span class="Validform_checktip ">主配置导出到配置文件，辅助配置不生成到文件</span>
+                    </div>
+                </div>
+
+                <div class = "pt-set-info">
+                    <div class = "line"><b>配置状态：</b>
+                        <label>
+                            <input name = "status" type = "radio" value = "1"  />正常
+                        </label>
+                        <label>
+                            <input name = "status" type = "radio" value = '0' />禁用
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input type = "hidden" name = "id" value="{$info.id}" />
+                        <input class = "btn btn-success" type = "submit" value = " 修改配置项 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type = "text/javascript">
+    $(function(){
+        $('select[name=type]').on('change',function(){
+            var v=$(this).find('option:selected').val();
+            if (v=='radio' || v=='checkbox'|| v=='select'){
+                $('.config-extra').show();
+            }else{
+                $('.config-extra').hide();
+            }
+        })
+        $('input[name=status][value={$info.status}]').attr('checked','checked');
+        $('input[name=level][value={$info.level}]').attr('checked','checked');
+        $('select[name=group] option[value={$info.group}]').attr('selected','selected');
+        $('select[name=type] option[value={$info.type}]').attr('selected','selected');
+        {if $info.type=='radio' || $info.type=='checkbox'|| $info.type=='select'}$('.config-extra').show();{/if}
+    })
+</script>

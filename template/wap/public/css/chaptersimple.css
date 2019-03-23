@@ -1,0 +1,16 @@
+.theme-default .pt-reader, body .theme-default .theme-bg { background: url(../image/default.png) #e9dabe; color: #2e343f }
+.pt-menu { color: #fff; top: 0; left: 0; z-index: 20; -webkit-box-pack: center; -webkit-box-align: center }
+.pt-menu a, .pt-menu a:hover { color: #fff }
+.pt-menu .header { left: 0; right: 0; z-index: 30; height: 44px; line-height: 44px; position: absolute; background: rgba(36, 36, 36, 1); -webkit-box-shadow: 0 0 1px #000; display: -webkit-box }
+.pt-menu .header { top: 0 }
+.pt-menu .button { display: -webkit-box }
+.pt-menu .header .back { -webkit-box-flex: 1; padding-left: 5px }
+.pt-menu .header i { font-size: 20px }
+.pt-menu .header .button { width: 40px; padding-left: 5px; -webkit-box-pack: center; -webkit-box-align: center }
+.pt-reader { width: 100%;  }
+.pt-reader .body { font-size: 16px; padding: 40px 0 15px; line-height: 1.8 }
+.pt-reader .body .content .title { font-weight: 700; text-align: center; padding: 15px 10px 10px; font-size: 18px; text-indent: 0 }
+.pt-reader .body .content { padding: 10px; padding-top: 0 }
+.pt-reader .body .content p { text-indent: 2em }
+.chaptercontent p{margin-top:0.5em}
+/*.pt-reader.about .body { position: absolute; top: 0; left: 0; overflow-x: hidden }*/

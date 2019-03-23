@@ -1,0 +1,58 @@
+<div class="pt-set-wrap">
+    <h4 class="pt-msg-title"><b class="f-fl">书号采集</b></h4>
+    <div class="pt-set-box">
+        <form action="__SELF__" method="get" enctype="multipart/form-data" class="vform">
+            <input type="hidden" name="m" value="rule">
+            <input type="hidden" name="c" value="collect">
+            <input type="hidden" name="a" value="id">
+            <div class="pt-set-content">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>选用规则：</b>
+                        <label>
+                            <select class="input-box w450" name="id">
+                                <option value="">请选择规则</option>
+                                {loop=list}
+                                <option value="{$loop.id}" {if $ruleid==$loop.id}selected{/if}>{$loop.name}</option>
+                                {/loop}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>起始书号：</b>
+                        <label><input name="startid" type="text" value="" class="input-text w450" datatype="*" placeholder="请输入起始书号"/></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>截止书号：</b>
+                        <label><input name="endid" type="text" value="" class="input-text w450" placeholder="单本采集不需要填写"/></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>分页采集数量：</b>
+                        <label><input name="limit" type="text" class="input-text w450" value="100"/></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>分批采集间隔时间：</b>
+                        <label><input name="interval" type="text" class="input-text w450" value="10"/></label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-tab-button">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b></b>
+                        <input class="btn btn-success" type="submit" value=" 开始采集 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/plugin/datepicker/WdatePicker.js"></script>

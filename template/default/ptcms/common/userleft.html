@@ -1,0 +1,9 @@
+
+<li{if $userpagesign=='mark'} class="cur"{/if}><a href="{link=user.mark.index}">云 书 架<i class="pticon pticon-arrow-right"></i></a></li>
+<li{if $userpagesign=='history'} class="cur"{/if}><a href="{link=user.history.index}">浏览历史<i class="pticon pticon-arrow-right"></i></a></li>
+<li{if $userpagesign=='habbit'} class="cur"{/if} style="display:none"><a href="{link=user.habbit.index}">阅读习惯<i class="pticon pticon-arrow-right"></i></a></li>
+{if C('oauth_power')}
+<li{if $userpagesign=='third'} class="cur"{/if}><a href="{link=user.third.index}">账户绑定<i class="pticon pticon-arrow-right"></i></a></li>
+{/if}
+<li{if $userpagesign=='pwd'} class="cur"{/if}><a href="{link=user.info.pwd}">修改密码<i class="pticon pticon-arrow-right"></i></a></li>
+<li><a href="{link=user.public.logout}">退出登陆<i class="pticon pticon-arrow-right"></i></a></li>

@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>{$tkd.title|parseTPL}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTPL}" />
+    <meta name="description" content="{$tkd.description|parsetpl}" />
+    <meta property="og:type" content="novel"/>
+    <meta property="og:title" content="{$novel.name}"/>
+    <meta property="og:description" content="{$novel.intro|nl2br}"/>
+    <meta property="og:image" content="{if strpos($novel.cover,'http://')===0}{$novel.cover}{else}{$pt.config.siteurl}{$novel.cover}{/if}"/>
+    <meta property="og:novel:category" content="{$category.name}"/>
+    <meta property="og:novel:author" content="{$author.name}"/>
+    <meta property="og:novel:book_name" content="{$novel.name}"/>
+    <meta property="og:novel:read_url" content="{$pt.config.siteurl}{$url.info}"/>
+    <meta property="og:url" content="{$pt.config.siteurl}{$url.first}"/>
+    <meta property="og:novel:status" content="{if $novel.isover}完结{else} 连载中{/if}"/>
+    <meta property="og:novel:update_time" content="{$last.time|date='Y-m-d H:i:s'}"/>
+    <meta property="og:novel:latest_chapter_name" content="{$last.name}"/>
+    <meta property="og:novel:latest_chapter_url" content="{$pt.config.siteurl}{$last.url}"/>
+    {include file="../common/head"}
+	<link rel="stylesheet" href="{$pt.config.resurl}__TMPL__/css/font-awesome.min.css">
+</head>
+<body>
+{include file="../common/header"}
+<section class="w-all">
+    <nav class="mt20">
+        <ul class="clearfix">
+            <li><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}首页"><i class="pticon pticon-home pticon-lg"></i> {$pt.config.sitename}首页</a><i class="pticon pticon-angle-right icon"></i></li>
+            <li><a href="{$category.url}" target="{$category.name}小说">{$category.name}小说</a><i class="pticon pticon-angle-right icon"></i></li>
+            <li><a href="{$url.info}" title="{$novel.name}">{$novel.name}</a></li>
+        </ul>
+    </nav>
+    <div class="container clearfix mt20">
+        <div class="w-left">
+            <div class="card">
+                <div class="header line">
+                    <h1>{$novel.name}</h1>
+                </div>
+                <div class="body novel">
+                    <div class="novelinfo">
+                        <div class="novelinfo-l">
+                            <ul>
+                                <li>作者：<a href="{$author.url}" title="{$author.name} 作品大全">{$author.name}</a></li>
+                                <li>分类：<a href="{$category.url}" title="{$category.name}小说">{$category.name}</a></li>
+                                <li>点击：{$data.allvisit}</li>
+                                <li>收藏：{$data.marknum}</li>
+                                <li>来源：{$source.sitename}</li>
+                                <li>最新：<a href="{$last.url}" title="{$novel.name} {$last.name}" target="_blank">{$last.name}</a></li>
+                                <li>更新：{$last.time|date="Y-m-d H:i:s"}</li>
+                            </ul>
+                        </div>
+                        <div class="novelinfo-r">
+                            <a href="{$url.info}"><img src="{$novel.cover}" alt="{$novel.name}"></a>
+                        </div>
+                    </div>
+                    <div style="margin:10px auto 0;width:640px;height:60px;border:2px dashed #ccc;line-height:60px;text-align:center;font-size:30px">
+                        640*60广告位
+                    </div>
+                    <div class="operate">
+                        <a href="{$url.first}" class="btn btn-primary" target="_blank"><i class="pticon pticon-leanpub "></i> 开始阅读</a>
+                        <a href="{$url.chapterlist}" class="btn btn-info"><i class="pticon pticon-list "></i> 更新列表</a>
+                        <a href="{$url.addmark}" class="btn btn-success" target="_blank"><i class="pticon pticon-bookmark "></i> 收藏</a>
+                        <a href="javascript:$.pt.gopos('.commentarea');" class="btn btn-default"><i class="pticon pticon-comments "></i> 评论</a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="card mt20">
+                <div class="header line">
+                    <h3>{$novel.name} 内容简介</h3>
+                </div>
+                <div class="body novelintro " style="height:171px;overflow-y:auto">
+                    {$novel.intro|showintro}
+					<br/>
+				各位书友要是觉得《{$novel.name}》还不错的话请不要忘记向您QQ群和微博里的朋友推荐哦！{$novel.name}最新章节,{$novel.name}全文阅读.
+                </div>
+            </div>
+        </div>
+        <div class="w-right">
+            <div class="card pt-tab">
+                <div class="header tab pt-tab-nav">
+                    <ul class="clearfix">
+                        <li class="active">本月热门</li>
+                        <li>本周热门</li>
+                    </ul>
+                </div>
+                <div class="body pt-tab-con">
+                    <ul class="rightlist">
+                        {block method="novellist" name="list" sort="monthvisit" num=12}
+                        {section loop=$list}
+                        <li><i {if $i.order<4}class="first"{/if}>{$i.order}</i><span><a href="{$loop.author.url}" title="{$loop.author.name} 作品大全">{$loop.author.name}</a></span><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></li>
+                        {/section}
+                    </ul>
+                    <ul class="rightlist none">
+                        {block method="novellist" name="list" sort="weekvisit" num=12}
+                        {section loop=$list}
+                        <li><i {if $i.order<4}class="first"{/if}>{$i.order}</i><span><a href="{$loop.author.url}" title="{$loop.author.name} 作品大全">{$loop.author.name}</a></span><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></li>
+                        {/section}
+                    </ul>
+                </div>
+            </div>
+            <div class="card mt20">
+                <div class="header line">
+                    <h3>{$novel.name} 站点列表</h3>
+                </div>
+                <div class="body ">
+                    <ul class="rightlist">
+                        {block method="dirlist" name=dirlist novelid=$novel.id}
+                        {section loop="dirlist"}
+                        <li><i>{$i.order}</i><a href="{$loop.url_dir}" title="{$novel.name} {$loop.sitename}">{$loop.sitename}</a></li>
+                        {/section}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="card infotab mt20">
+            <div class="header  line">
+                <h2>{$author.name} 作品集</h2>
+            </div>
+            <div class="body pt-tab-con">
+                <ul class="coverlist clearfix">
+                    {block method="authorlist" name="list" author=$author.name}
+                    {section loop=$list}
+                    <li>
+                        <span class="cover"><a href="{$loop.url.info}" title="{$loop.novel.name}" target="_blank"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a></span>
+                        <span class="name cut"><a href="{$loop.url.info}" title="{$loop.novel.name}" target="_blank">{$loop.novel.name}</a></span>
+                    </li>
+                    {/section}
+                </ul>
+
+            </div>
+        </div>	
+    <div class="card mt20">
+        <div class="header line">
+            <h2>{$novel.name} 最新章节</h2>
+        </div>
+        <div class="body ">
+            <ul class="dirlist clearfix">
+                {block method="chapterlist" name=list novelid=$novel.id sort=desc num=16}
+                {section loop="list"}
+                <li><a href="{$loop.url_read}" title="{$novel.name} {$loop.name} {$loop.time|date='Y-m-d H:i:s'}" target="_blank">{$loop.name}</a></li>
+                {/section}
+            </ul>
+        </div>
+    </div>
+    <div class="card mt20 fulldir">
+        <div class="header line">
+            <h2>{$novel.name} 章节目录</h2>
+        </div>
+        <div class="body ">
+            <ul class="dirlist clearfix">
+                {block method="chapterlist" name=list novelid=$novel.id}
+                {section loop="list"}
+               <li class="hide"><a href="{$loop.url_read}" title="{$novel.name} {$loop.name}" target="_blank">{$loop.name}</a></li>
+                {/section}
+            </ul>
+        </div>
+    </div>
+    <div class="card mt20 commentarea">
+        <div class="header line">
+            <h3>{$novel.name} 书友评论</h3>
+        </div>
+        <div class="body ">
+<!--PC版-->
+<div id="SOHUCS" sid="{$pt.config.siteurl}{$url.info}"></div>
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: '{$pt.config.tplconfig.appid}',
+conf: '{$pt.config.tplconfig.conf}'
+});
+</script>
+        </div>
+    </div>
+    <div class="seofooter">
+        <p>
+            <a href="{$url.info}" title="{$novel.name}">《{$novel.name}》</a>是由<a href="{$author.url}">{$author.name}</a>倾情撰写的小说！<a href="{$url.info}" title="{$novel.name}">《{$novel.name}》</a>为热心网友免费发布在<a href="{$pt.config.siteurl}">{$pt.config.sitename}</a>供大家免费阅读。
+        </p>
+        <p>欢迎进入<a href="{$url.info}" title="{$novel.name}">《{$novel.name}》</a>txt下载和<a href="{$url.info}" title="{$novel.name}">《{$novel.name}》</a>全文阅读。谢谢您一直对<a href="{$pt.config.siteurl}">{$pt.config.sitename}</a>
+            <a href="{$category.url}">{$category.name}小说</a>的关注和支持！
+        </p>
+    </div>
+</section>
+{include file="../common/footer"}
+<script type="text/javascript" src="{$pt.config.resurl}__TMPL__/script/layer.js"></script>
+<script type="text/javascript" src="{$pt.config.resurl}__TMPL__/script/jquery.raty.js"></script>
+<script type="text/javascript">
+    $(function(){$(".g-star").raty({scoreName:"star",score:"{$data.starval}",click:function(v){layer.confirm("您对《{$novel.name}》评分"+v+"分,请确认操作!",{btn:["确定","放弃"]},function(index){$.get("{link=user.star.add}",{novelid:"{$novel.id}",star:v},function(res){if(res.status==1){layer.alert("评分成功",{icon:6})}else{if(res.code==-1){layer.alert(res.info,{icon:5},function(){window.location.href=res.data})}else{layer.alert(res.info,{icon:5})}}},"json");layer.close(index)})}});var length=$(".fulldir .dirlist li").length;if(length>30){var len=Math.ceil(length/4);$(".fulldir .dirlist li:lt(16)").removeClass("hide");$(".fulldir .dirlist li:gt("+(4*(len-5)-1)+")").removeClass("hide");$(".fulldir .dirlist li").eq(15).after('<li class="fulltip">···················· 查看全部'+length+"章节 ····················</li>")}else{$(".fulldir .dirlist li").removeClass("hide")}$(".loading").remove();$(".fulltip").on("click",function(){$(this).remove();$(".fulldir .dirlist li").removeClass("hide")});$(".commentlist a").on("click",function(){var param={id:$(this).parent().data("id")},$num=$(this).find("span"),url;if($(this).hasClass("up")){url="{link=novelsearch.comment.good}"}else{if($(this).hasClass("down")){url="{link=novelsearch.comment.bad}"}else{return true}}$.post(url,param,function(res){if(res.status==1){layer.alert(res.info,{icon:6},function(i){$num.text(parseInt($num.text())+1);layer.close(i)})}else{layer.alert(res.info,{icon:5})}},"json")})});
+    ;(function(){var ua=navigator.userAgent.toLowerCase();if(/ipad/i.test(ua)||/iphone/i.test(ua)||/windows mobile/i.test(ua)||/android/i.test(ua)){var u="<?=ltrim($_SERVER['REQUEST_URI'],'/')?>";setTimeout(function(){window.location.href="https://m.kuaiyankanshu.net/"+u},300)}})();
+</script>
+</body>
+</html>

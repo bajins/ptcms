@@ -1,0 +1,102 @@
+
+<header>
+    <div class="ann">
+        {$pt.config.tplconfig.ann}
+    </div>
+    <div class="banner ">
+        <div class="w-all">
+            <ul class="fl">
+                {if IS_LOGIN}
+                <li>您好，<a href="javascript:void(0)">{$userinfo.name}</a></li>
+                <li><a href="{link=user.mark.index}">我的书架</a></li>
+                <li><a href="{link='user.public.logout'}">退出登陆</a></li>
+                {else}
+                <li><a href="{link=user.public.login}">登陆账号</a></li>
+                <li><a href="{link=user.public.register}">免费注册</a></li>
+                {/if}
+            </ul>
+            <ul class="fr">
+                <li><i class="pticon pticon-mobile pticon-lg"></i><a href="{$pt.config.wap_domain}" target="_blank" title="{$pt.config.sitename}手机版">手机快眼</a></li>
+                <li><i class="pticon pticon-home pticon-lg"></i><a href="javascript:$.pt.setHome('{$pt.config.siteurl}');">设为首页</a></li>
+                <li><i class="pticon pticon-star pticon-lg"></i><a href="javascript:$.pt.addFav();">加入收藏</a></li>
+                <li><i class="pticon pticon-desktop"></i><a href="{link=novelsearch.index.desktop}" target="_blank">桌面快捷</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="logosearch w-all ">
+        <div class="logo fl"><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}"><img src="__TMPL__/image/logo.png" alt="{$pt.config.sitename}" /></a></div>
+        <form class="searchbox fl" action="{link='novelsearch.search.result'}">
+            <div class="dropmenu">
+                <span class="tri"></span>
+                <ul class="dropmenu-item">
+                    <li data-type="novelname">书名</li>
+                    <li data-type="author">作者</li>
+                </ul>
+            </div>
+            <input name="searchtype" type="hidden" value="novelname"/>
+            <label class="fl"><input type="text" name="searchkey" id="" class="text"/></label>
+            <input type="submit" value="搜索" class="searchbtn"/>
+        </form>
+        <div class="operate fl">
+            {if IS_LOGIN}
+            <a class="operate-item" href="{link=user.public.logout}">
+                <i class="pticon pticon-sign-out"></i>
+                <b>退出登陆</b>
+            </a>
+            <a class="operate-item" href="{link=user.habbit.index}">
+                <i class="pticon pticon-cog"></i>
+                <b>阅读习惯</b>
+            </a>
+            <a class="operate-item" href="{link=user.mark.index}">
+                <i class="pticon pticon-book"></i>
+                <b>我的书架</b>
+                {if $userinfo.marknum}<s class="badge">{$userinfo.marknum}</s>{/if}
+            </a>
+            <a class="operate-item" href="{link=user.third.index}">
+                <i class="pticon pticon-user"></i>
+                <b>账户绑定</b>
+            </a>
+            {else}
+            <a class="operate-item" title="看过的书" href="{link=user.history.index}">
+                <i class="pticon pticon-history"></i>
+                <b>看过的书</b>
+            </a>
+            <a class="operate-item" title="QQ登陆" href="{link=user.public.thirdlogin type=qq}">
+                <i class="pticon pticon-qq"></i>
+                <b>QQ登陆</b>
+            </a>
+            <a class="operate-item" title="微博登陆" href="{link=user.public.thirdlogin type=weibo}">
+                <i class="pticon pticon-weibo"></i>
+                <b>微博登陆</b>
+            </a>
+            <a class="operate-item" title="用户登陆" href="{link=user.public.login}">
+                <i class="pticon pticon-user"></i>
+                <b>用户登陆</b>
+            </a>
+            {/if}
+        </div>
+    </div>
+    <nav class="w-all">
+        <ul class="clearfix">
+            <li><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}首页">首页</a></li>
+            <li><a href="{link='novelsearch.index.category'}" title="小说分类">小说分类</a></li>
+            <li><a href="{link='novelsearch.index.top'}" title="排行榜单">排行榜单</a></li>
+			<li><a href="{link='novelsearch.list.top' type='allvisit'}" title="总点击榜">总点击榜</a></li>
+			<li><a href="{link='novelsearch.list.top' type='monthvisit'}" title="月点击榜">月点击榜</a></li>
+			<li><a href="{link='novelsearch.list.top' type='weekvisit'}" title="周点击榜">周点击榜</a></li>
+            <li><a href="{link='novelsearch.list.top' type='lastupdate'}" title="最近更新">最近更新</a></li>
+            <li><a href="{link='novelsearch.list.over'}" title="全本小说">全本小说</a></li>
+        </ul>
+    </nav>
+<div class="card mb20" style="width: 978px;margin: 0 auto;">
+            <div class="body novelselectlist">
+                <p>
+                        {block method="categorylist" name="list" pid=0}
+                        {section loop="list"}
+                        <a href="{$loop.url}" title="{$loop.name}">{$loop.name}</a>&nbsp;&nbsp;
+                        {/section}
+                </p>
+            </div>
+        </div>	
+</header>

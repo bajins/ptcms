@@ -1,0 +1,63 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">广告预览</b></h4>
+    <div style="border:1px dashed #ccc;height:auto;;margin:20px 0;padding:20px;">
+        <script type="text/javascript" src="{$pt.PT_DIR}/public/{$pt.config.addir}/{$info.key}.js"></script>
+    </div>
+    <h4 class = "pt-msg-title"><b class = "f-fl">广告信息</b></h4>
+    <div class = "pt-set-box">
+        <div class = "pt-set-content">
+            <div class = "pt-set-info">
+                <div class = "auth">
+                    <b>广告名称：</b>
+                    {$info.name}
+                </div>
+            </div>
+            <div class = "pt-set-info">
+                <div class = "auth">
+                    <b>广告描述：</b>
+                    {$info.intro}
+                </div>
+            </div>
+            <div class = "pt-set-info">
+                <div class = "auth">
+                    <b>广告尺寸：</b>
+                    {$info.width}*{$info.height}
+                </div>
+            </div>
+            <div class = "pt-set-info">
+                <div class = "auth"><b>模版语法：</b>
+                    <input name = "tplcode" type = "text" value = "{$pt.getad.{$info.key}}" class = "input-text" style = "width:500px" />
+                </div>
+            </div>
+            <div class = "pt-set-info">
+                <div class = "auth"><b>Js直接调用：</b>
+                    <input name = "jscode" type = "text" value = '<script type="text/javascript" src="{$pt.PT_DIR}/public/{$pt.config.addir}/{$info.key}.js"></script>' class = "input-text" style = "width:500px" />
+                </div>
+            </div>
+            <div class = "pt-set-info">
+                <div class = "auth">
+                    <b></b>
+                    <span class = "btn btn-primary copybtn tplcode">复制模版标签</span>
+                    <span class = "btn btn-primary copybtn jscode">复制JS语句</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type = "text/javascript" src = "__PUBLIC__/plugin/zclip/zclip.min.js"></script>
+<script type = "text/javascript">
+    $('.copybtn').zclip({
+        'path': '__PUBLIC__/plugin/zclip/zclip.swf',
+        'afterCopy': function () {
+            alert('复制成功');
+        },
+        'copy': function () {
+            console.log($(this).is('.tplcode'));
+            if ($(this).is('.tplcode')) {
+                return $('input[name=tplcode]').val();
+            } else {
+                return $('input[name=jscode]').val();
+            }
+        }
+    });
+</script>

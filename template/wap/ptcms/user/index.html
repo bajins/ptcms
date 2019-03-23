@@ -1,0 +1,81 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>用户中心 - {$pt.config.sitename}</title>
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="ptm-content my-header">
+    <div class="my-info">
+        <img src="/public/image/noavatar_middle.gif">
+        <p class="nickname">{if IS_LOGIN}{$userinfo.name}{else}<a href="{link=user.public.login}" style="color:#fff">请登录/注册</a>{/if}</p>
+    </div>
+    <div class="my-menu">
+        <div class="ptm-col-xs-4">{$pt.config.user_exp_caption}：<span>{$userinfo.exp}</span></div>
+        <div class="ptm-col-xs-4">{$pt.config.user_point_caption}：<span>{$userinfo.point}</span></div>
+        <div class="ptm-col-xs-4">{if date('Ymd')>$userinfo.data.sign_day}<a class="btn btn-small btn-success" href="{link=user.sign.do}" style="color:#fff">今日签到</a>{else}已签到{/if}</div>
+    </div>
+</div>
+<div class="ptm-content ptm-card" style="margin-top:15px;">
+    <ul class="ptm-list-view" style="">
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right" href="{link=user.mark.index}">我的书架{if $userinfo.unreadnum}<span class="ptm-badge ptm-badge-danger">{$userinfo.unreadnum}</span>{/if}</a>
+        </li>
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right">我的书单</a>
+        </li>
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right">我的动态</a>
+        </li>
+    </ul>
+</div>
+{if IS_LOGIN}
+<div class="ptm-content ptm-card">
+    <ul class="ptm-list-view">
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right" href="{link=user.third.index}">账户绑定</a>
+        </li>
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right" href="{link=user.info.pwd}">修改密码</a>
+        </li>
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right">阅读设置</a>
+        </li>
+    </ul>
+</div>
+{else}
+
+<div class="ptm-content ptm-card" style="margin-top:15px;">
+    <ul class="ptm-list-view" style="">
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right" href="{link=user.public.login}">登陆账号</a>
+        </li>
+
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right" href="{link=user.public.register}">注册账号</a>
+        </li>
+    </ul>
+</div>
+{/if}
+<div class="ptm-content ptm-card">
+    <ul class="ptm-list-view">
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right" href="{link=novelsearch.page.detail key=disdaimer}">免责声明</a>
+        </li>
+        <li class="ptm-list-view-cell">
+            <a class="ptm-arrow-right" href="{link=novelsearch.page.detail key=about}">关于我们</a>
+        </li>
+    </ul>
+</div>
+{if IS_LOGIN}
+<div style="padding:0 10px;margin-bottom: 30px;">
+    <a class="ptm-btn ptm-btn-danger ptm-btn-block" style="padding:5px 0;" href="{link=user.public.logout}">退出登陆</a>
+</div>
+{/if}
+</body>
+</html>

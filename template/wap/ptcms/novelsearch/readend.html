@@ -1,0 +1,117 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>{$tkd.title|parseTpl}</title>
+	<meta name="keywords" content="{$tkd.keywords|parseTpl}">
+	<meta name="description" content="{$tkd.description|parseTpl}">
+	<meta name="applicable-device" content="mobile"/>
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+	<link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+	<a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+		<span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+	</a>
+	<div class="ptm-title">{$novel.name}</div>
+	<a class="ptm-pull-right" href="{link=user.index.index}">
+		<span class="ptm-iconfont  fa fa-user"></span>
+	</a>
+</header>
+<section class="ptm-content pt-infopage" style="margin-top:45px;background: #fff">
+	<div class="readend">
+		《<a href="{$url.info}" title="{$novel.name} ">{$novel.name}</a>》
+		{if $novel.isover}
+		这本书已经读完了！
+		{else}
+		所有更新您都读完了
+		{/if}
+	</div>
+</section>
+<section class="pt-infopage-more">
+	{if IS_LOGIN}
+	<div class="ptm-card" style="margin-top:15px;">
+		<div class="ptm-card-header ptm-clearfix">
+			<div class="ptm-pull-left">
+				书架未读
+			</div>
+		</div>
+		<div class="ptm-card-content">
+			<ul class="pt-card pt-card-3">
+				{if $userinfo.unreadnum}
+				{loop=marklist}
+				{if $loop.hasnew}
+				<li>
+					<div class="pt-cover">
+						<a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+					</div>
+					<div class="pt-novel" onclick="window.location.href='{$loop.url.next}'">
+						{if $loop.hasnew}<span class="ptm-badge ptm-badge-danger pt-mark-badge">{$loop.hasnew}未读</span>{/if}
+						<div class="pt-name" style="margin-bottom:8px;"><a title="{$loop.novel.name}">{$loop.novel.name}</a></div>
+						<div class="pt-author"><a>{$loop.author.name}</a></div>
+						<div class="pt-author ptm-text-cut">{$loop.last.name}</div>
+						<div class="pt-info">{$loop.last.time|cntime}</div>
+					</div>
+				</li>
+				{/if}
+				{/loop}
+				{else}
+				<li>您收藏的书都读完了,看看其他的吧!</li>
+				{/if}
+			</ul>
+		</div>
+	</div>
+	{/if}
+	<div class="ptm-card" style="margin-top:15px;">
+		<div class="ptm-card-header ptm-clearfix">
+			<div class="ptm-pull-left">
+				热门推荐
+			</div>
+		</div>
+		<div class="ptm-card-content" style="padding:0">
+			<ul class="ptm-list-view ptm-grid-view pt-card-1">
+				{block method="novellist" name="list" order="monthvisit" num=6}
+				{loop=list}
+				<li class="ptm-list-view-cell ptm-img ptm-col-xs-4">
+					<div class="imgarea">
+						<a href="{$loop.url.info}" title="{$loop.novel.name}"><img class="ptm-img-object" src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+					</div>
+					<div class="ptm-img-body">
+						<span class="ptm-block pt-name ptm-text-cut ptm-text-left"><A href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</A></span>
+						<span class="ptm-block pt-author ptm-text-cut ptm-text-left"><a href="{$loop.author.url}">{$loop.author.name}</a></span>
+					</div>
+				</li>
+				{/loop}
+			</ul>
+		</div>
+	</div>
+	<div class="ptm-card" style="margin-top:15px;">
+		<div class="ptm-card-header ptm-clearfix">
+			<div class="ptm-pull-left">
+				{$novel.name}其他来源
+			</div>
+		</div>
+		<div class="ptm-card-content">
+			<ul class="pt-card pt-card-6">
+				{block method=SiteLastChapter name=list novelid=$novel.id}
+				{section loop=list limit=10}
+				<li>
+					<div class="pt-novel">
+						<div class="pt-num ptm-pull-right"><a href="{$loop.url_dir}" class="ptm-text-grey">{$loop.site.name}</a></div>
+						<span class="pt-name"><a href="{$loop.url_dir}">{$loop.name}</a></span>
+					</div>
+				</li>
+				{/loop}
+			</ul>
+		</div>
+	</div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

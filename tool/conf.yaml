@@ -1,0 +1,1 @@
+- rewrite: if(!is_dir() && !is_file() && path~"^(.*)$") goto "index.php?s=$1"

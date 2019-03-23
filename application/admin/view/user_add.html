@@ -1,0 +1,51 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">添加用户</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>用户帐号：</b>
+                        <label><input name = "name" type = "text" value = "" class = "input-text w450" datatype = "s1-16" ajaxurl = "__URL__/ajax/id/0" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>用户组：</b>
+                        <label>
+                            <select class = "input-box w450" name = "groupid">
+                            {loop=grouplist}
+                            <option value = "{$loop.id}" {if isset($_GET['gid']) && $loop.id==$_GET['gid']}selected{/if}>{$loop.name}</option>
+                            {/loop}
+                        </select>
+                        </label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>用户备注：</b>
+                        <label><textarea name = "intro" class="input-box w450"></textarea></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line"><b>帐号状态：</b>
+                        <label>
+                            <input name = "status" type = "radio" value = "1" checked />正常
+                        </label>
+                        <label>
+                            <input name = "status" type = "radio" value = '0' />禁用
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input class = "btn btn-success" type = "submit" value = " 添加用户 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

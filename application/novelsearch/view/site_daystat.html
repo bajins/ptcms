@@ -1,0 +1,53 @@
+<div class = "pt-table-wrap" ng-app = "ptcms">
+    <h4 class = "pt-msg-title"><b class = "f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class = "pt-list" ng-controller = "showlist">
+        <form method = "post" action = "__SELF__" id="showtable">
+            <input type = "hidden" name = "method" />
+            <div class = "pt-list-header">
+                <div class = "f-fl">
+                    <select class="input-box w160" name="siteid">
+                        <option value="0">所有站点</option>
+                        {loop=sitelist}
+                        <option value="{$loop.id}"  {if $loop.id==$siteid}selected{/if}>{$loop.name}</option>
+                        {/loop}
+                    </select>
+                    <input class = "input-text w160" type = "text" value="{$date}" onclick="WdatePicker({skin: 'ext', dateFmt: 'yyyyMMdd', el: this})"/>
+                    <input type = "submit" class = "btn btn-default btn-sm" value = "搜索" />
+                </div>
+                <div class = "f-clear"></div>
+            </div>
+            <table class = "pt-list-table" style="width:600px">
+                <thead>
+                <tr>
+                    <th class = "f-tal" style = "width:150px">站点名称</th>
+                    <th class = "f-tal">站点地址</th>
+                    <th class = "w-word4">IP</th>
+                    <th class = "w-word4">PV</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop=$list}
+                <tr>
+                    <td class = "f-tal">{$loop.sitename}</td>
+                    <td class = "f-tal">{$loop.siteurl}</td>
+                    <td class = "f-tal">{$loop.ip}</td>
+                    <td>{$loop.pv}</td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+            <div class = "pt-list-footer">
+                <div class = "pt-list-operate f-fl"></div>
+                <div class = "f-clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type = "text/javascript" src = "__PUBLIC__/plugin/datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('input.date').on('click', function () {
+            WdatePicker({skin: 'ext', dateFmt: 'yyyyMMdd', el: this})
+        });
+    })
+</script>

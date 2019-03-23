@@ -1,0 +1,21 @@
+<form method="post" action="{link='install.index.base'}">
+    <h1 class="ptcms-install-title">欢迎使用 {$pt.proname} <span style="color:#333;font-size:18px;">第<script language="javascript" type="text/javascript" src="http://quote.51.la/?id=17312305&amp;mb=1"></script>位使用者！</span></h1>
+
+    <div class="ptcms-install-body">
+        <h2>安装说明</h2>
+        <p><strong>本安装程序将自动检测服务器环境是否符合最低配置需求. 如果不符合, 将在上方出现提示信息, 请按照提示信息检查您的主机配置. 如果服务器环境符合要求, 将在下方出现 "开始下一步" 的按钮, 点击此按钮即可一步完成安装.</strong></p>
+        <h2>许可及协议</h2>
+        <p>您可以在协议规定的约束和限制范围内修改PTCMS产品源代码(如果被提供的话)或界面风格以适应您的网站要求。</p>
+        <p>您拥有使用本软件构建的网站中全部会员资料、文章及相关信息的所有权，并独立承担与文章内容的相关法律义务。</p>
+        <p>获得商业授权之后，您可以将本软件应用于商业用途，同时依据所购买的授权类型中确定的技术支持期限、技术支持方式和技术支持内容，自购买时刻起，在技术支持期限内拥有通过指定的方式获得指定范围内的技术支持服务。商业授权用户享有反映和提出意见的权力，相关意见将被作为首要考虑，但没有一定被采纳的承诺或保证。</p>
+        <p><a href="http://www.ptcms.com/service/business">查看完整授权协议</a></p>
+        <h3>此版本贡献者(排名不分先后)</h3>
+        <ol>
+            {loop=$userlist}
+            <li>{$loop}</li>
+            {/loop}
+        </ol>
+        <p><a href="http://ptcms.com">查看所有贡献者</a></p>
+    </div>
+    <p class="submit"><button type="submit" class="primary">我准备好了, 开始下一步 &raquo;</button></p>
+</form>

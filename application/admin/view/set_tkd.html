@@ -1,0 +1,48 @@
+<div class = "pt-set-wrap">
+    <div class = "pt-set-box">
+        <div class = "pt-tab">
+            <div class = "pt-tab-nav">
+                {section loop=$list}
+                <a href = "#"{if $i.first} class = "current"{/if}><span>{$loop.intro}</span></a>
+                {/section}
+            </div>
+            <div class = "pt-tab-content">
+                <form action = "__SELF__" method = "post" enctype = "multipart/form-data" id = "form">
+                    {section loop=$list}
+                    <div class = "pt-tab-item">
+                        <div class = "pt-set-content">
+                            <div class = "pt-set-info">
+                                <div class = "line">
+                                    <b>{$loop.intro}标题设置：</b>
+                                    <input name = "{$loop.key}[title]" type = "text" value = "{$loop.value.title}" class = "input-text" style="width:700px"/>
+                                </div>
+                            </div>
+                            <div class = "pt-set-info">
+                                <div class = "line">
+                                    <b>{$loop.intro}关键词设置：</b>
+                                    <textarea name = "{$loop.key}[keywords]" class = "input-box" style = "width:700px;height:75px;">{$loop.value.keywords}</textarea>
+                                </div>
+                            </div>
+                            <div class = "pt-set-info">
+                                <div class = "line">
+                                    <b>{$loop.intro}描述信息：</b>
+                                    <textarea name = "{$loop.key}[description]" class = "input-box" style = "width:700px;height:75px;">{$loop.value.description}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/section}
+                    <div class = "pt-tab-button">
+                        <div class = "pt-set-info">
+                            <div class = "line">
+                                <b></b>
+                                <input class = "btn btn-success" type = "submit" value = " 提交修改 " />&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class = "f-clear"></div>
+    </div>
+</div>

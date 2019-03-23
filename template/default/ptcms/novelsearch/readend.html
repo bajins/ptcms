@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>{$tkd.title|parseTPL}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTPL}" />
+    <meta name="description" content="{$tkd.description|parsetpl}" />
+    {include file="../common/head"}
+</head>
+<body class="readpage">
+<div class="frame-header">
+    <div class="frame-header-content">
+        <div class="logo"><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}"><img src="__TMPL__/image/logo.png" alt="{$pt.config.sitename}" /></a></div>
+        <div class="searchbox">
+            <form action="{link='novelsearch.search.result'}" name="search-form" method="get">
+                <input type="text" class="text" name="searchkey" value="{$novel.name}" onfocus="(function(o){if(o.value=='{$novel.name}'){o.value='';o.className='focus'}})(this);" onblur="(function(o){if(o.value==''){o.value='{$novel.name}';o.className='';}})(this)" autocomplete="off" />
+                <button type="submit" class="searchbtn">搜书</button>
+            </form>
+        </div>
+        <div class="frame-operate">
+            <div class="frame-btn">
+                <a href="{$url.info}" class="btn btn-success" title="{$novel.name}"> 返回信息页</a>
+                <a href="{$url.chapterlist}" class="btn btn-info" title="{$novel.name}"><i class="pticon pticon-list"></i> 查看章节更新列表</a>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="readpage" >
+    <div class="readbox">
+        <article>
+            <div class="title">
+                <h1>
+                    《<a href="{$url.info}" title="{$novel.name} ">{$novel.name}</a>》
+                    {if $novel.isover}
+                    这本书已经读完了！
+                    {else}
+                    所有更新您都读完了
+                    {/if}
+                </h1>
+            </div>
+            <div class="content" id="chaptercontent">
+                <div class="readendlist clearfix">
+                    <ul>
+                        {block method="novellist" name="list" sort="weekvisit" num=8}
+                        {loop}
+                        <li class="readendlist-item">
+                            <a href="{$loop.url.info}" class="readendlist-item-cover"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+                            <p class="readendlist-item-name"><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></p>
+                            <p class="readendlist-item-info">作者：<a href="{$loop.author.url}">{$loop.author.name}</a></p>
+                            <p class="readendlist-item-info">分类：<a href="{$loop.category.url}">{$loop.category.name}</a></p>
+                            <p class="readendlist-item-desc"><a href="{$loop.url.info}" title="{$loop.novel.intro}">{$loop.novel.intro}</a></p>
+                        </li>
+                        {/loop}
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

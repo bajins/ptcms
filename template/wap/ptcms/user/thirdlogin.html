@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>第三方绑定 - {$pt.config.sitename}</title>
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+    </a>
+    <div class="ptm-title">第三方绑定</div>
+</header>
+<section class="ptm-content" style="margin-top:60px;">
+    <div class="ptm-tab ptm-tab-sm" style="padding:0 10px;">
+        <ul class="ptm-tab-nav ptm-tab-border loginnav">
+            <li class="active"><a href="{link=user.public.login}">第三方绑定</a></li>
+            <li><a href="{link=user.public.register}">注册</a></li>
+        </ul>
+    </div>
+    <div class="ptm-card" style="margin-top:15px;">
+        <div class="ptm-card-content">
+            <form action="__SELF__" class="ajaxform " method="post">
+                <div class="ptm-form">
+                    <div class="ptm-input-row">
+                        <label class="ptm-input-addon ptm-text-right" style="width:60px;">用户名</label>
+                        <input type="text" name="username" class="ptm-input" placeholder="请输入登陆用户名" value="{$info.name}">
+                    </div>
+                    <div class="ptm-input-row">
+                        <span class="ptm-input-addon ptm-text-right" style="width:60px;">密码</span>
+                        <input type="password" name="password" class="ptm-input" placeholder="请输入登陆密码">
+                    </div>
+                    <div class="ptm-btn-row">
+                        <button class="ptm-btn ptm-btn-primary ptm-btn-block" style="padding:5px 0">登陆</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div style="margin:50px 10px 0;">
+            <div class="ptm-line-text"><span style="background: #fff">操作提示</span></div>
+        </div>
+        <div class="thirdlogin" style="padding-bottom:30px;font-size:14px;line-height:1.5;color:#666;">
+            <p>如果注册过帐号，请填写您之前注册的帐号</p>
+            <p>如果没有注册过帐号，将自动为您创建帐号</p>
+        </div>
+    </div>
+</section>
+</body>
+</html>

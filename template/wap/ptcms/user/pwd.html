@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>修改密码  - {$pt.config.sitename}</title>
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="javascript:window.history.back()">
+        <span class="ptm-iconfont ptm-icon-left"></span>
+    </a>
+    <div class="ptm-title">修改密码</div>
+    <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+    </a>
+</header>
+<section class="ptm-content" style="margin-top:60px;">
+    <div class="ptm-card" style="margin-top:15px;">
+        <div class="ptm-card-content">
+            <form action="__SELF__" class="ajaxform " method="post">
+                <div class="ptm-form">
+                    <div class="ptm-input-row">
+                        <label class="ptm-input-addon ptm-text-right" style="width:60px;">原密码</label>
+                        <input type="text" class="ptm-input" name="password" placeholder="请输入原密码">
+                    </div>
+                    <div class="ptm-input-row">
+                        <span class="ptm-input-addon ptm-text-right" style="width:60px;">新密码</span>
+                        <input type="password" class="ptm-input" name="newpassword" placeholder="请输入新登陆密码">
+                    </div>
+                    <div class="ptm-input-row">
+                        <span class="ptm-input-addon ptm-text-right" style="width:60px;">重复密码</span>
+                        <input type="password" class="ptm-input" name="repassword" placeholder="请重复输入新登陆密码">
+                    </div>
+                    <div class="ptm-btn-row">
+                        <button class="ptm-btn ptm-btn-primary ptm-btn-block" style="padding:5px 0">修改</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

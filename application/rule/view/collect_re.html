@@ -1,0 +1,139 @@
+<div class="pt-set-wrap">
+    <div class="alert alert-warning alert-dismissable" style="margin-bottom:20px;">
+        <p>
+            暂时未对批量操作做优化,如果选择小说太多会造成程序崩溃,谨慎使用!
+        </p>
+    </div>
+    <form action="__SELF__" method="post" enctype="multipart/form-data" class="vform">
+        <h4 class="pt-msg-title"><b class="f-fl">内容重采</b></h4>
+        <div class="pt-set-box">
+            <div class="pt-set-content">
+                <div class="pt-set-info">
+                    <div class="line"><b>选择小说：</b>
+                        <label>
+                            <input name="type" type="radio" value="0" checked />单本书
+                        </label>
+                        <label>
+                            <input name="type" type="radio" value="1" />自由书号
+                        </label>
+                        <label>
+                            <input name="type" type="radio" value="2" />连续书号
+                        </label>
+                        <label>
+                            <input name="type" type="radio" value='3' />更新时间
+                        </label>
+                        <label>
+                            <input name="type" type="radio" value='4' />入库时间
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info type type0">
+                    <div class="line">
+                        <b>指定书号：</b>
+                        <label><input name="novelid" type="text" value="" class="input-text w450" placeholder="请输入起始书号，不填写为不限制" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info type type1">
+                    <div class="line">
+                        <b>书号列表：</b>
+                        <label>
+                            <textarea name="novelids" class="input-box w450"></textarea>
+                        </label>
+                        <span class="Validform_checktip">"|"分隔</span>
+                    </div>
+                </div>
+                <div class="pt-set-info type type2">
+                    <div class="line">
+                        <b>起始书号：</b>
+                        <label><input name="startid" type="text" value="" class="input-text w450" placeholder="请输入起始书号，不填写为不限制" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info type type2">
+                    <div class="line">
+                        <b>截止书号：</b>
+                        <label><input name="endid" type="text" value="" class="input-text w450" placeholder="请输入截止书号，不填写为不限制" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info type type3">
+                    <div class="line">
+                        <b>更新起始时间：</b>
+                        <label><input name="startupdatetime" type="text" value="" class="input-text w450 datetime" placeholder="不选为不限制，建议选择" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info type type3">
+                    <div class="line">
+                        <b>更新截止时间：</b>
+                        <label><input name="endupdatetime" type="text" value="" class="input-text w450 datetime" placeholder="不选为不限制，建议选择" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info type type4">
+                    <div class="line">
+                        <b>入库起始时间：</b>
+                        <label><input name="startposttime" type="text" value="" class="input-text w450 datetime" placeholder="不选为不限制，建议选择" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info type type4">
+                    <div class="line">
+                        <b>入库截止时间：</b>
+                        <label><input name="endposttime" type="text" value="" class="input-text w450 datetime" placeholder="不选为不限制，建议选择" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>使用规则：</b>
+                        <label>
+                            <select class="input-box w450" name="ruleid">
+                                {loop=rulelist}
+                                <option value="{$loop.id}">{$loop.name}</option>
+                                {/loop}
+                            </select>
+                        </label>
+                        <span class="Validform_checktip">仅可以使用勾选“更新其他站点采集到的小说信息”的规则</span>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line"><b>章节限制：</b>
+                        <label>
+                            <input name="chapter" type="radio" value="0" checked />所有章节
+                        </label>
+                        <label>
+                            <input name="chapter" type="radio" value='1' />指定时间
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info chapter chapter1">
+                    <div class="line">
+                        <b>起始时间：</b>
+                        <label><input name="chapterstarttime" type="text" value="" class="input-text w450 datetime" placeholder="不选为不限制，建议选择" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info chapter chapter1">
+                    <div class="line">
+                        <b>截止时间：</b>
+                        <label><input name="chapterendtime" type="text" value="" class="input-text w450 datetime" placeholder="不选为不限制，建议选择" /></label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-tab-button">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b></b>
+                        <input class="btn btn-success" type="submit" value=" 立即执行 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/plugin/datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.type,.chapter').hide();
+        $('.type0').show();
+        $('input[type=radio]').change(function () {
+            $('.' + $(this).attr('name')).hide();
+            $('.' + $(this).attr('name') + $(this).val()).show()
+        })
+    })
+</script>
+

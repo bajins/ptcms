@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8" />
+    <title>管理中心 - {$pt.PRONAME}</title>
+    <link rel = "stylesheet" href = "__ROOT__/application/admin/view/css/admin.css" />
+    <meta name = "keywords" content = "" />
+    <meta name = "description" content = "" />
+    <meta name = "viewport" content = "width=device-width" />
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <script type = "text/javascript" src = "__PUBLIC__/script/jquery.min.js"></script>
+    <script type = "text/javascript" src = "__ROOT__/application/admin/view/script/admin.js"></script>
+    <script type = "text/javascript" src = "__PUBLIC__/plugin/layer/layer.js"></script>
+    <script type = "text/javascript" src = "__PUBLIC__/script/jquery.validform.js"></script>
+    <script type = "text/javascript">
+        var URL = '__URL__', APP = '__APP__', MODULE = '__MODULE__', SELF = '__SELF__', MODULE_NAME = '{$pt.MODULE_NAME}', CONTROLLER_NAME = '{$pt.CONTROLLER_NAME}', ACTION_NAME = '{$pt.ACTION_NAME}';
+    </script>
+</head>
+<body>
+<div class = "pt-main-wrap">
+    <div class = "pt-path">
+        <span class = "pt-path-icon icon-home"></span>当前位置：
+        <a href="http://www.ptcms.com" target="_blank">{$pt.PRONAME}</a>
+        <span> &gt; </span><a href="{$menuinfo.menu.url}">{$menuinfo.menu.name}</a>
+        {if isset($menuinfo.submenu.name)}
+        <span> &gt; </span>{$menuinfo.submenu.name}
+        {/if}
+    </div>
+    __CONTENT__
+    <div class = "f-clear"></div>
+</div>
+<div class="footinfo">__RUNINFO__</div>
+<div style = "display: none">
+    <script language = "javascript" type = "text/javascript" src = "__ROOT__/application/admin/view/script/tongji.js"></script>
+</div>
+<script type = "text/javascript">
+    $(function(){
+        //设置高度
+        var h1=$(document).height(),h2=$('.pt-main-wrap').height();
+        if (h2+60<h1){
+            $('.pt-main-wrap').height(h1-60)
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>修改密码 - {$pt.config.sitename}</title>
+    {include file="../common/head"}
+    <link rel="stylesheet" href="{$pt.config.resurl}__TMPL__/css/user.css" />
+</head>
+<body>
+{include file="../common/header"}
+<section class="w-all user">
+    {include file="../common/userheader"}
+    <div class="body clearfix">
+        <div class="userleft">
+            <ul class="navbar">
+                {include file="../common/userleft"}
+            </ul>
+        </div>
+        <div class="userright">
+            <div class="hd">
+                <h3 class="title">修改密码<em></em></h3>
+            </div>
+            <div class="bd">
+                <form action="__SELF__" class="ajaxform " method="post">
+                    <div class="formText_wrap">
+                        <div class="formText_notice formText_notice_sm">原密码:</div>
+                        <div class="formText formText_sm"><input type="password" class="text" name="password" placeholder="请输入原密码" autocomplete="off"></div>
+                    </div>
+                    <div class="formText_wrap">
+                        <div class="formText_notice formText_notice_sm">新密码:</div>
+                        <div class="formText formText_sm"><input type="password" name="newpassword" class="text" placeholder="请输入新密码" autocomplete="off"></div>
+                    </div>
+                    <div class="formText_wrap">
+                        <div class="formText_notice formText_notice_sm">重复新密码:</div>
+                        <div class="formText formText_sm"><input type="password" name="repassword" class="text" placeholder="请重复输入新密码" autocomplete="off"></div>
+                    </div>
+                    <div class="formText_wrap">
+                        <button class="formBtn formBtn_sm">确认修改</button>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

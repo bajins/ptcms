@@ -1,0 +1,91 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">规则导入</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>规则文件：</b>
+                        <div style="display:inline-block">
+                            <input type = "file" class="uploadfile" name="file" accept="*/*"/>
+                        </div>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line"><b>导入站点：</b>
+                        <label>
+                            <input name = "site" type = "radio" value = "1" checked />新站点
+                        </label>
+                        <label>
+                            <input name = "site" type = "radio" value = '0' />导入老站点
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info site0">
+                    <div class="line">
+                        <b>站点选择：</b>
+                        <label>
+                            <select class="input-box w450" name="siteid">
+                                {loop=sitelist}
+                                <option value="{$loop.id}">{$loop.name}</option>
+                                {/loop}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line"><b>导入规则：</b>
+                        <label>
+                            <input name = "rule" type = "radio" value = "1" checked />新规则
+                        </label>
+                        <label>
+                            <input name = "rule" type = "radio" value = '0' />导入已有规则
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info rule rule0">
+                    <div class="line">
+                        <b>规则选择：</b>
+                        <label>
+                            <select class="input-box w450" name="ruleid">
+                                {loop=rulelist}
+                                <option value="{$loop.id}">{$loop.name}</option>
+                                {/loop}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class = "pt-set-info rule rule1">
+                <div class = "line"><b>规则配置：</b>
+                    <div class="pt-set-area">
+                        <label><input type="checkbox" name="addnew" value="1"/>添加新书</label>
+                        <label><input type="checkbox" name="newreplace" value="1"/>更新其他站点采集到的小说信息</label>
+                        <label><input type="checkbox" name="collectallchapter" value="1"/>老章节入库(不选之入库最新章节)</label>
+                        <label><input type="checkbox" name="dirsort" value="1"/>章节目录乱序处理</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input class = "btn btn-success" type = "submit" value = " 导入 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/simditor.html"}
+<script type="text/javascript">
+    $(function(){
+        $('.site0,.rule0').hide();
+        $('input[type=radio]').change(function(){
+            $('.'+$(this).attr('name')).hide();
+            $('.'+$(this).attr('name')+$(this).val()).show()
+        })
+    })
+</script>
+

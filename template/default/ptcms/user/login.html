@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>用户登陆 - {$pt.config.sitename}</title>
+    {include file="../common/head"}
+    <link rel="stylesheet" href="{$pt.config.resurl}__TMPL__/css/user.css" />
+</head>
+<body>
+<div class="user-header clearfix">
+    <div class="w-all">
+        <div class="logo fl"><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}"><img src="__TMPL__/image/logo.png" alt="{$pt.config.sitename}" /></a></div>
+        <span class="line fl"></span>
+        <span class="site-name">登陆{$pt.config.sitename}账号</span>
+        <div class="fr">
+            <span class="f2 tip">没有{$pt.config.sitename}账号？</span>
+            <a class="btn btn-pt btn-small" href="{link=user.public.register}">注册</a>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<section class="w-all clearfix">
+    <div class="user-position">
+        <a href="{link=user.public.register}">注册账户</a>
+        <a href="{link=user.public.login}" class="current">登陆账户</a>
+    </div>
+    <div class="userform fl">
+        <form action="__SELF__" class="ajaxform " method="post">
+            <div class="formText_wrap">
+                <div class="formText_notice">帐号:</div>
+                <div class="formText"><input type="text" class="text" name="username" placeholder="请输入帐号" autocomplete="off"></div>
+            </div>
+            <div class="formText_wrap">
+                <div class="formText_notice">密码:</div>
+                <div class="formText"><input type="password" name="password" class="text" placeholder="请输入密码" autocomplete="off"></div>
+            </div>
+            <div class="formText_wrap">
+                <button class="formBtn">确认登录</button>
+            </div>
+            <div class="formText_wrap">
+                <div class="formText_notice">&nbsp;</div>
+                <div class="formTextWord">
+                    <a href="{link=user.public.register}" title="">还没有账号？快速注册&gt;&gt;</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </form>
+    </div>
+    <div class="usernotice fr">
+        <div class="title">使用第三方账号登陆</div>
+        <div class="con">
+            <a href="{link=user.public.thirdlogin type=qq}" class="btn btn-danger"><i class="pticon pticon-qq pticon-lg" ></i> 使用腾讯QQ登陆</a>
+            <a href="{link=user.public.thirdlogin type=weibo}" class="btn btn-warning"><i class="pticon pticon-weibo pticon-lg"></i> 使用微博账号登陆</a>
+            <a href="javascript:alert('尚未开通微信登陆')" class="btn btn-success"><i class="pticon pticon-weixin pticon-lg"></i> 使用微信账号登陆</a>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

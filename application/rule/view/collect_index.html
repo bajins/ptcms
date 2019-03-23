@@ -1,0 +1,57 @@
+<div class = "pt-table-wrap" ng-app = "ptcms">
+    <h4 class = "pt-msg-title"><b class = "f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class = "pt-list" ng-controller = "showlist">
+        <form method = "post" action = "__URL__/multi" id="showtable">
+            <input type = "hidden" name = "method" />
+            <div class = "pt-list-header">
+                <div class = "pt-list-operate f-fl">
+                    <a class = "btn btn-success btn-sm" href = '__URL__/add'>添加</a>
+                    <input type = "submit" class = "btn btn-danger btn-sm btn-checkbox" value = "删除" name = "mdel">
+                </div>
+                <div class = "f-fr">
+                    <input ng-model = 'keyword' class = "input-text w160" type = "text" onkeypress="if(event.keyCode==13) {return false;}"/>
+                    <input type = "button" class = "btn btn-default btn-sm" value = "搜索" />
+                </div>
+                <div class = "f-clear"></div>
+            </div>
+            <table class = "pt-list-table">
+                <thead>
+                <tr>
+                    <th class = "w-checkbox"><input type = "checkbox" class = "checkall" data = "id[]" ></th>
+                    <th class = "f-tal" style="width:20px">ID</th>
+                    <th class = "f-tal">规则名称</th>
+                    <th class = "f-tal" style = "width:100px">所属站点</th>
+                    <th class = "w-word5">创建人</th>
+                    <th class = "w-time">创建时间</th>
+                    <th class = "w-word5">修改人</th>
+                    <th class = "w-time">修改时间</th>
+                    <th class = "operate w-operate4">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat = "loop in lists | filter:keyword">
+                    <td><input type = "checkbox" name = "id[]" value = "{{loop.id}}"></td>
+                    <td class = "f-tal">{{loop.id}}</td>
+                    <td class = "f-tal">{{loop.name}}</td>
+                    <td class = "f-tal">{{loop.sitename}}</td>
+                    <td>{{loop.create_username}}</td>
+                    <td>{{loop.create_time}}</td>
+                    <td>{{loop.update_username}}</td>
+                    <td>{{loop.update_time}}</td>
+                    <td class = "operate">
+                        <a ng-href = "{{loop.url_edit}}"><i class = "icon icon-edit"></i>编辑</a>
+                        <a ng-href = "{{loop.url_run}}"><i class = "icon icon-play"></i>采集</a>
+                        <a ng-href = "{{loop.url_test}}"><i class = "icon icon-search"></i>测试</a>
+                        <a href = "javascript:;" ng-click = "del(loop.id,$index)"><i class = "icon icon-trash"></i>删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class = "pt-list-footer">
+                <div class = "pt-list-operate f-fl"></div>
+                <div class = "f-clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/public_indexjs.html"}

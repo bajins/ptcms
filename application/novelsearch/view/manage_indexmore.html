@@ -1,0 +1,221 @@
+<div class="pt-table-wrap" style="min-width:1500px">
+    <h4 class="pt-msg-title"><b class="f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class="pt-list" ng-controller="showlist">
+        <form class="pt-list-header" action="__SELF__" method="get">
+            <input type="hidden" name="m" value="novelsearch">
+            <input type="hidden" name="c" value="manage">
+            <input type="hidden" name="a" value="indexmore">
+            <div class="f-fr">
+                &nbsp;书源&nbsp;
+                <select class="input-box " name="siteid">
+                    <option value="0">全部</option>
+                    {loop="sitelist"}
+                    <option value="{$loop.id}" {if (isset($pt.get.siteid) && $pt.get.siteid==$loop.id)}selected{/if}>{$loop.name}</option>
+                    {/loop}
+                </select>
+                &nbsp;显示状态&nbsp;
+                <select class="input-box " name="status">
+                    <option value="0" {if $status=='0'} selected{/if}>全部</option>
+                    <option value="2" {if $status=='2'} selected{/if}>正常</option>
+                    <option value="1" {if $status=='1'} selected{/if}>禁用</option>
+                </select>
+                &nbsp;全本状态&nbsp;
+                <select class="input-box " name="isover">
+                    <option value="0" {if $isover=='0'} selected{/if}>全部</option>
+                    <option value="2" {if $isover=='2'} selected{/if}>全本</option>
+                    <option value="1" {if $isover=='1'} selected{/if}>连载</option>
+                </select>
+                &nbsp;&nbsp;分类&nbsp;
+                <select class="input-box " name="categoryid">
+                    {block method="categorylist" name="clist" pid=0}
+                    {loop="clist"}
+                    <option value="{$loop.id}" {if (isset($pt.get.categoryid) && $pt.get.categoryid==$loop.id)}selected{/if}>{$loop.name}</option>
+                    {/loop}
+                </select>
+                &nbsp;&nbsp;排序&nbsp;
+                <select class="input-box " name="sort">
+                    <option value="id" {if $sort=='id'} selected{/if}>入库时间</option>
+                    <option value="lastupdate" {if $sort=='lastupdate'} selected{/if}>更新时间</option>
+                    <option value="allvisit" {if $sort=='allvisit'} selected{/if}>总点击</option>
+                    <option value="monthvisit" {if $sort=='monthvisit'} selected{/if}>月点击</option>
+                    <option value="weekvsit" {if $sort=='weekvsit'} selected{/if}>周点击</option>
+                    <option value="dayvisit" {if $sort=='dayvisit'} selected{/if}>日点击</option>
+                    <option value="marknum" {if $sort=='marknum'} selected{/if}>收藏数</option>
+                </select>&nbsp;
+                <select class="input-box " name="order">
+                    <option value="desc" {if $order=='desc'} selected{/if}>倒序</option>
+                    <option value="asc" {if $order=='asc'} selected{/if}>正序</option>
+                </select>
+                &nbsp;&nbsp;入库时间&nbsp;
+                <input class="input-text w80  date" name="starttime" type="text" value="{$starttime}" />
+                &nbsp;到&nbsp;
+                <input class="input-text w80  date" name="endtime" type="text" value="{$endtime}" />
+                &nbsp;&nbsp;关键词&nbsp;
+                <select class="input-box " name="searchtype">
+                    <option value="name" {if $searchtype=='name'} selected{/if}>小说名</option>
+                    <option value="id" {if $searchtype=='id'} selected{/if}>小说书号</option>
+                    <option value="author" {if $searchtype=='author'} selected{/if}>作者</option>
+                </select>
+                <input class="input-text w160 " name="searchkey" value="{$searchkey}" type="text" onkeypress="if(event.keyCode==13) {event.preventDefault();$(this).next().click();}" />
+                <input type="submit" class="btn btn-default btn-sm" value="搜索" ng-click="getlist()" />
+            </div>
+            <div class="f-clear"></div>
+        </form>
+        <form method="post" action="__URL__/multi" id="showtable">
+            <input type="hidden" name="method" />
+            <table class="pt-list-table">
+                <thead>
+                <tr>
+                    <th class="w-checkbox"><input type="checkbox" class="checkall" data="id[]"></th>
+                    <th class="w-word3">书号</th>
+                    <th>封面</th>
+                    <th style="width:150px">书名</th>
+                    <th class="w-word3">分类</th>
+                    <th style="width:100px">作者</th>
+                    <th>简介</th>
+                    <th>最新章节</th>
+                    <th class="w-word4">书源</th>
+                    <th class="w-time">入库时间/修改时间</th>
+                    <th class="w-word2">全本</th>
+                    <th class="w-word2">状态</th>
+                    <th class="operate w-operate2">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop=list}
+                <tr class="list-{$loop.id}">
+                    <td><input type="checkbox" name="id[]" value="{$loop.id}"></td>
+                    <td>{$loop.id}</td>
+                    <td><img src="{$loop.cover}" width="60" height="80"></td>
+                    <td class="f-tal"><a href="{$loop.url_info}" target="_blank">{$loop.name}</a></td>
+                    <td><a href="{$loop.url_category}" target="_blank">{$loop.category}</a></td>
+                    <td class="f-tal"><a href="{$loop.url_author}" target="_blank">{$loop.author}</a></td>
+                    <td class="f-tal" style="width:300px;white-space: inherit;" title="{$loop.intro}">{$loop.intro|truncate=80,'...'}</td>
+                    <td class="f-tal"><a href="{$loop.url_chapterlist}" target="_blank">{$loop.lastchaptername}</a></td>
+                    <td>{$loop.sitename}</td>
+                    <td>{$loop.postdate|date="Y-m-d H:i:s"}<br>{$loop.lastupdate|date="Y-m-d H:i:s"}</td>
+                    <td class="isover{$loop.id}">
+                        {if $loop.isover}
+                        <span class="label label-success" onclick="changeisover('{$loop.id}',0)">完结</span>
+                        {else}
+                        <span class="label label-warning" onclick="changeisover('{$loop.id}',1)">连载</span>
+                        {/if}
+                    </td>
+                    <td class="status{$loop.id}">
+                        {if $loop.status}
+                        <span class="label label-success" onclick="changestatus('{$loop.id}',0)">显示</span>
+                        {else}
+                        <span class="label label-warning" onclick="changestatus('{$loop.id}',1)">隐藏</span>
+                        {/if}
+                    </td>
+                    <td class="operate">
+                        <a href="{$loop.url_edit}"><i class="icon icon-edit"></i>编辑</a>
+                        <a href="javascript:;" onclick="del('{$loop.id}')"><i class="icon icon-trash"></i>删除</a>
+                    </td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+        </form>
+        <div class="pt-list-footer">
+            <div class="pt-list-operate f-fl">
+                <input type="submit" class="btn btn-success btn-sm check-allyes" value="全选">
+                <input type="submit" class="btn btn-success btn-sm check-allno" value="反选">
+                <input type="submit" class="btn btn-primary btn-sm btn-checkbox" value="禁用" name="forbidden">
+                <input type="submit" class="btn btn-primary btn-sm btn-checkbox" value="恢复" name="recover">
+                <input type="submit" class="btn btn-danger btn-sm btn-checkbox" value="删除" name="mdel">
+            </div>
+            <div class="pt-page f-fr">
+                <div class="f-fr">
+                    <input class="input-text pageinput" value="{$page}" type="text" style="width:40px;margin:0 5px;text-align: center" />
+                    <input type="button" class="btn btn-default btn-sm" value="跳转" onclick="gopage()" />
+                </div>
+                <div class="f-fr">
+                    {block method="page" name="pagelist" totalnum=$totalnum page=$page pagesize=$pagesize section=3}
+                    <i>共{$pagelist.totalnum}条 第{$pagelist.page}页 / 共{$pagelist.pagenum}页</i>
+                    <a href="{$pageurl|str_replace='__PAGE__',$pagelist.first.num,@}" class="first number">首页</a>
+                    <a href="{$pageurl|str_replace='__PAGE__',$pagelist.prev.num,@}" class="prev number">上一页</a>
+                    {loop=$pagelist.num}
+                    {if $loop.status}
+                    <a class="current" href="javascript:;">{$loop.num}</a>
+                    {else}
+                    <a href="{$pageurl|str_replace='__PAGE__',$loop.num,@}" class="number">{$loop.num}</a>
+                    {/if}
+                    {/loop}
+                    <a href="{$pageurl|str_replace='__PAGE__',$pagelist.next.num,@}" class="next number">下一页</a>
+                    <a href="{$pageurl|str_replace='__PAGE__',$pagelist.last.num,@}" class="last number">尾页</a>
+                </div>
+            </div>
+            <div class="f-clear"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/public/plugin/datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.check-allyes').on('click', function () {
+            $('input[name="id[]"]').prop('checked', true)
+        });
+        $('.check-allno').on('click', function () {
+            $('input[name="id[]"]').prop('checked', false)
+        });
+        $('.btn-checkbox').on('click', function (e) {
+            e.preventDefault();
+            $('input[name=method]').val($(this).attr('name'));
+            checkselt('id[]', '#showtable');
+        })
+    })
+    changestatus = function (id, value) {
+        var param = {
+            'changestatus': '修改状态',
+            'id[]': id,
+            'value[]': value
+        };
+        $.post('__URL__/multi', param, function (res) {
+            if (res.status == 1) {
+                if (value == 1) {
+                    $('.status' + id).html('<span class="label label-success" onclick="changestatus(' + id + ',0)">显示</span>')
+                } else {
+                    $('.status' + id).html('<span class="label label-warning" onclick="changestatus(' + id + ',1)">隐藏</span>')
+                }
+            } else {
+                alert(res.info);
+            }
+        }, 'json');
+    };
+    changeisover = function (id, value) {
+        var param = {
+            'changeisover': '修改全本状态',
+            'id[]': id,
+            'value[]': value
+        };
+        $.post('__URL__/multi', param, function (res) {
+            if (res.status == 1) {
+                if (value == 1) {
+                    $('.isover' + id).html('<span class="label label-success" onclick="changeisover(' + id + ',0)">完结</span>')
+                } else {
+                    $('.isover' + id).html('<span class="label label-warning" onclick="changeisover(' + id + ',1)">连载</span>')
+                }
+            } else {
+                alert(res.info);
+            }
+        }, 'json');
+    };
+    function gopage() {
+        var p = $('.pageinput').val(), url = '{$pageurl}';
+        url = url.replace('__PAGE__', p);
+        window.location.href = url;
+    }
+    function del(id){
+        if (confirm('确认删除么？')) {
+            var param={'id':id};
+            $.post('__URL__/del', param,function (res) {
+                if (res.status == 1) {
+                    $('.list-'+id).remove();
+                } else {
+                    alert(res.info);
+                }
+            },'json');
+        }
+    }
+</script>

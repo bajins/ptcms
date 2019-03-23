@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{$chapter.name}正在跳转</title>
+    <meta http-equiv="refresh" content="{$pt.config.go_waittime|intval};url={$chapter.url}" />
+    <meta name="applicable-device" content="mobile"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+</head>
+<body>
+<a href="{$chapter.url}" style="color:#666;text-underline: none">立即跳转......</a>
+<div style="display:none">{$pt.getad.tongji}</div>
+</body>

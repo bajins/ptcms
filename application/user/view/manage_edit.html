@@ -1,0 +1,46 @@
+<div class="pt-set-wrap">
+    <h4 class="pt-msg-title"><b class="f-fl">修改用户</b></h4>
+    <div class="pt-set-box">
+        <form action="__SELF__" method="post" enctype="multipart/form-data" class="vform">
+            <div class="pt-set-content">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>用户名：</b>
+                        <label><input name="name" type="text" value="{$info.name}" class="input-text w450" datatype="*" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>密码：</b>
+                        <label><input name="password" type="text" value="" class="input-text w450"/></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line"><b>小说状态：</b>
+                        <label>
+                            <input name="status" type="radio" value="1" />正常
+                        </label>
+                        <label>
+                            <input name="status" type="radio" value='0' />禁用
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-tab-button">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b></b>
+                        <input type="hidden" name="id" value="{$info.id}" />
+                        <input class="btn btn-success" type="submit" value=" 修改用户 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/plugin/datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('input[name=status][value={$info.status}]').attr('checked', 'checked');
+    });
+</script>

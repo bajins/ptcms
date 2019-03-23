@@ -1,0 +1,19 @@
+<footer>
+    <div class="copyright w-all tac">
+        {block method="pagelist" name=list}
+        {loop="list"}
+        <a href="{$loop.url}" title="{$loop.name}">{$loop.name}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        {/loop}
+        <a href="{link='sitemap.index.index'}" title="sitemap" target="_blank">Sitemap</a>
+        <br />
+        Copyright © 2009-2014 <a href="{$pt.config.siteurl}" target="_blank">{$pt.config.sitename}</a> All Rights Reserved .版权所有{$pt.config.sitename}。<br />
+        本站内容系{$pt.config.sitename}根据您的指令搜索各大小说站得到的链接列表，不代表{$pt.config.sitename}赞成被搜索网站的内容或立场<br />
+        如果版权人认为在本站放置您的作品有损您的利益，请发邮件至{$pt.config.email}，本站确认后将会立即删除。<br />{$pt.config.beian}
+    </div>
+</footer>
+<div class="gotop"><i class="pticon pticon-chevron-up"></i></div>
+<script type="text/javascript" src="{$pt.config.resurl}__PUBLIC__/script/jquery.min.js"></script>
+<script type="text/javascript" src="{$pt.config.resurl}__TMPL__/script/common.js"></script>
+<div style="display:none">
+    {$pt.getad.tongji}
+</div>

@@ -1,0 +1,81 @@
+<div class="pt-table-wrap" ng-app="ptcms">
+    <h4 class="pt-msg-title"><b class="f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class="pt-list" ng-controller="showlist">
+        <form method="post" action="{link=cron.manage.power}" id="showtable">
+            <input type="hidden" name="method" />
+            <div class="pt-list-header">
+                <div class="pt-list-operate f-fl">
+                    {if $pt.config.cron_power}
+                    <button type="submit" class="btn btn-danger btn-sm btn-checkbox" name="stop"><span class="icon icon-stop"></span> 停止总进程</button>
+                    {else}
+                    <button type="submit" class="btn btn-success btn-sm btn-checkbox" name="start"><span class="icon icon-play"></span> 启动总进程</button>
+                    {/if}
+                </div>
+                <div class="f-fr">主任务运行时间：{{ now }}</div>
+                <div class="f-clear"></div>
+            </div>
+            <table class="pt-list-table">
+                <thead>
+                <tr>
+                    <th class="w-checkbox"><input type="checkbox" class="checkall" data="id[]"></th>
+                    <th style="width:200px;">任务名</th>
+                    <th>运行状态</th>
+                    <th class="w-fulltime">运行时间</th>
+                    <th class="w-fulltime">启动时间</th>
+                    <th class="w-fulltime">检查时间</th>
+                    <th class="w-word4">状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="loop in lists">
+                    <td><input type="checkbox" name="id[]" value="{{loop.id}}"></td>
+                    <td class="f-tal">{{loop.name}}</td>
+                    <td class="f-tal">{{loop.info}}</td>
+                    <td>{{loop.last}}秒</td>
+                    <td>{{loop.starttime}}</td>
+                    <td>{{loop.lastruntime}}</td>
+                    <td>
+                        <span class="label label-warning" ng-if="loop.status==0" ng-click="changestatus($index,1)">已经停止</span>
+                        <span class="label label-success" ng-if="loop.status==1" ng-click="changestatus($index,0)">正常运行</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="pt-list-footer">
+                <div class="pt-list-operate f-fl">
+                </div>
+                <div class="f-clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/script/angular.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/script/angular.init.js"></script>
+<script type="text/javascript">
+    ptng.controller('showlist', function ($scope, $http) {
+        $scope.lists = {};
+        $scope.now = '';
+        $scope.changestatus = function (id, value) {
+            var param = {
+                'changestatus': '修改状态',
+                'id[]': $scope.lists[id].id,
+                'value[]': value
+            };
+            $http.post('__URL__/multi', param).success(function (res) {
+                if (res.status == 1) {
+                    $scope.lists[id].status = value;
+                } else {
+                    alert(res.info);
+                }
+            });
+        };
+        $scope.getlist = function () {
+            $http.post('__URL__/index').success(function (res) {
+                $scope.lists = res.data;
+                $scope.now = res.now;
+                setTimeout($scope.getlist, 1000);
+            });
+        };
+        $scope.getlist();
+    });
+</script>

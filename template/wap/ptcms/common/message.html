@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$msgname} 友情提示信息</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" href="__TMPL__/css/font-awesome.min.css">
+    <style>
+        .msginfo{min-height:40px;padding-left:40px;font-size:14px;line-height:25px;}
+        .success { background: url(/public/image/success.gif) no-repeat 0 center; }
+        .error { background: url(/public/image/error.gif) no-repeat 0 center; }
+    </style>
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="javascript:window.history.back()">
+        <span class="ptm-iconfont ptm-icon-left"></span>
+    </a>
+    <div class="ptm-title">提示信息</div>
+    <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+    </a>
+</header>
+<section class="ptm-content" style="position: absolute;top:50%;margin-top:-80px;width:100%;">
+    <div class="ptm-card">
+        <div class="ptm-card-header ptm-clearfix">
+            <div class="ptm-pull-left" style="font-size:15px;">
+                {$msgname}{$msgtitle}提示
+            </div>
+        </div>
+        <div class="ptm-card-content">
+            <p class="msginfo {$msgtype}">{$message}</p>
+        </div>
+        {if $waitsecond && $jumpurl!=''}
+        <div class="ptm-card-footer" style="font-size:13px;text-align:right">
+            <a href="{$jumpurl}" style="color:#999;">如果您浏览器没有自动跳转请点击这里！&nbsp;</a>
+        </div>
+        {/if}
+    </div>
+</section>
+{if $waitsecond}
+<script type="text/javascript">
+    var time = parseInt("{$waitsecond}");
+    function redirect() {
+        var url = "{$jumpurl}";
+        if (url == '#back#') {
+            window.history.back();
+        } else if (url == '#close#') {
+            window.close();
+        } else {
+            location.href = url;
+        }
+    }
+    function change() {
+        time--;
+        if (time == 0) {
+            clearInterval(t);
+            redirect();
+        }
+    }
+    t = setInterval('change()', 1000);
+</script>
+{/if}
+</body>
+</html>

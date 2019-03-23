@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>{$tkd.title|parseTPL}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTPL}" />
+    <meta name="description" content="{$tkd.description|parsetpl}" />
+    {include file="../common/head"}
+</head>
+<body class="readpage">
+<div class="frame-header">
+    <div class="frame-header-content">
+        <div class="logo"><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}"><img src="__TMPL__/image/logo.png" alt="{$pt.config.sitename}" /></a></div>
+        <div class="searchbox">
+            <form action="{link='novelsearch.search.result'}" name="search-form" method="get">
+                <input type="text" class="text" name="searchkey" value="{$novel.name}" onfocus="(function(o){if(o.value=='{$novel.name}'){o.value='';o.className='focus'}})(this);" onblur="(function(o){if(o.value==''){o.value='{$novel.name}';o.className='';}})(this)" autocomplete="off" />
+                <button type="submit" class="searchbtn">搜书</button>
+            </form>
+        </div>
+        <div class="frame-operate">
+            <div class="frame-btn">
+                <a href="{$chapter.preinfo.url}" class="btn btn-primary btn-sm" title="{$chapter.preinfo.name}"><i class="pticon pticon-chevron-left"></i> 上一章</a>
+                <a href="{$url.info}" class="btn btn-default" title="{$novel.name}"><i class="pticon pticon-list"></i> 目录</a>
+                <a href="{$chapter.nextinfo.url}" class="btn btn-primary" title="{$chapter.nextinfo.name}">下一章 <i class="pticon pticon-chevron-right"></i></a>
+                <a href="{$chapter.url_mark}" class="btn btn-danger" target="_blank"><i class="pticon pticon-bookmark"></i> 书签</a>
+                <a href="{$chapter.url_frame}" class="btn btn-success" title="{$chapter.sitename} {$chapter.name}"><i class="pticon pticon-globe"></i> 源网站</a>
+            </div>
+            <div class="frame-source">
+                <div class="dropmenu">
+                    <span class="tri"></span>
+                    <ul class="dropmenu-item">
+                        {loop=$chapter.samelist}
+                        <li><a href="{$loop.url}" style="{$loop.style}" title="{$novel.name} {$loop.name} {$chapter.name}">{$loop.name}</a></li>
+                        {/loop}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="readpage" >
+    <div class="readbox">
+        <article>
+            <div class="title">
+                <h1><a href="__SELF__" title="{$novel.name} {$chapter.name}">{$novel.name} {$chapter.name}</a></h1>
+                <div class="info">
+                    <span>小说：<a href="{$url.info}" title="{$novel.name}">{$novel.name}</a></span>
+                    <span>作者：<a href="{$author.url}" title="{$author.name} 作品大全">{$author.name}</a></span>
+                    <span>更新时间：{$chapter.time|date="Y-m-d H:i:s"}</span>
+                    <span>源网站：<a href="{$chapter.url_frame}" title="{$chapter.sitename} {$chapter.sitename}">{$chapter.sitename}</a></span>
+                 </div>
+            </div>
+            <div class="content" id="chaptercontent">
+                {if $chapter.content}{$chapter.content}{else}<div style="text-align:Center;padding:50px 0"><img src="__PUBLIC__/image/loading.gif"><br/>正在转码，请稍后......</div>{/if}
+            </div>
+            <div class="info bottominfo">
+                为更好的阅读体验，本站章节内容基于百度转码进行转码展示，如有问题请您到源站阅读, <a href="http://m.baidu.com/pub/help.php?pn=20&bd_page_type=1" rel="nofollow">转码声明</a>。<br />
+                <a href="{$pt.config.siteurl}">{$pt.config.sitename}</a>邀请您进入最专业的<a href="{$pt.config.siteurl}">小说搜索</a>网站阅读<a href="{$url.info}" title="{$novel.name}">{$novel.name}</a>,<a href="{$url.chapterlist}" title="{$novel.name}">{$novel.name}最新章节</a>,<a href="{$chapter.url_dir}" title="{$novel.name}">{$novel.name} {$chapter.sitename}</a>！
+            </div>
+        </article>
+        <div class="operate">
+            <ul>
+                <li><a href="{$chapter.preinfo.url}" title="{$chapter.preinfo.name}"><i class="pticon pticon-chevron-left"></i> 上一章</a></li>
+                <li><a href="{$url.info}" title="{$novel.name}"><i class="pticon pticon-list"></i> 目录</a></li>
+                <li class="last"><a href="{$chapter.nextinfo.url}" title="{$chapter.nextinfo.name}">下一章 <i class="pticon pticon-chevron-right"></i></a></li>
+            </ul>
+        </div>
+        <div class="readingTips">
+            可以使用回车、←→快捷键阅读
+            <div class="readingSwitch none"><span class="readingSwitch_Btn active"></span>开启瀑布流阅读
+            </div>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+<script type="text/javascript" src="__PUBLIC__/script/jquery.min.js"></script>
+<script type="text/javascript">
+    document.onkeydown = gopage;
+    var prevpage = "{$chapter.preinfo.url}";
+    var nextpage = "{$chapter.nextinfo.url}";
+    var gotobook = "{$url.info}";
+    function gopage() {
+        var event = event ? event : window.event;
+        if (event.keyCode == 37) location = prevpage;
+        if (event.keyCode == 39) location = nextpage;
+        if (event.keyCode == 13) location = gotobook;
+    }
+    window.onerror = function () {
+        return true;
+    };
+</script>
+{if $pt.config.ajaxgreen}
+<script type="text/javascript">
+    $(function () {
+        $.post('{link=novelsearch.chapter.transcode}',{siteid:'{$chapter.siteid}',url:'{$chapter.url}'},function(res){
+            $('#chaptercontent').html(res.info);
+        });
+        $('.readingSwitch_Btn').on('click',function(){
+            if($(this).is('.active')){
+                $(this).removeClass('active');
+            }else{
+                $(this).addClass('active');
+            }
+        })
+    })
+</script>
+{/if}
+</body>
+</html>

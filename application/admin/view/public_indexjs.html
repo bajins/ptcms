@@ -1,0 +1,93 @@
+<script type = "text/javascript" src = "__PUBLIC__/script/angular.min.js"></script>
+<script type = "text/javascript" src = "__PUBLIC__/script/angular.init.js"></script>
+<script type = "text/javascript">
+    ptng.controller('showlist',function($scope, $http) {
+        try{
+            $scope.lists = JSON.parse('{$list|json_encode=#JSON_UNESCAPED_UNICODE}');
+        }catch(e){
+            try{
+                $scope.lists = eval('{$list|json_encode=#JSON_UNESCAPED_UNICODE}');
+            }catch(ee){
+                $scope.lists = {};
+            }
+        }
+        $scope.keywords='';
+        $scope.changestatus = function (id, value) {
+            var param = {
+                'changestatus': '修改状态',
+                'id[]': $scope.lists[id].id,
+                'value[]': value
+            };
+            $http.post('__URL__/multi', param).success(function (res) {
+                if (res.status == 1) {
+                    $scope.lists[id].status = value;
+                } else {
+                    alert(res.info);
+                }
+            });
+        };
+        $scope.del = function (id,key) {
+            if (confirm('确认删除么？')) {
+                var param={'id':id};
+                $http.post('__URL__/del', param).success(function (res) {
+                    if (res.status == 1) {
+                        $scope.lists.splice(key, 1);
+                    } else {
+                        alert(res.info);
+                    }
+                });
+            }
+        };
+        $scope.getlist=function(){
+            var param = {
+                'searchtype': $('.searchtype option:selected').val(),
+                'searchkey': $('.searchkey').val(),
+                'page': $scope.page
+            };
+            $http.post('__URL__/index', param).success(function (res) {
+                $scope.lists=res.data;
+                $scope.totalnum=res.totalnum;
+                $scope.pagenum=res.pagenum;
+            });
+        };
+        {if !empty($page)}
+            $scope.page='{$page}';
+            $scope.totalnum='{$totalnum}';
+            $scope.pagenum='{$pagenum}';
+            $scope.gopage=function(n){
+                if (n=='+1'){
+                    if ($scope.page<$scope.pagenum) $scope.page++;
+                }else if (n=='-1'){
+                    if ($scope.page>1) $scope.page--;
+                }else if (n=='input'){
+                    n=parseInt($('.pageinput').val());
+                    if (n>$scope.pagenum){
+                        $scope.page=$scope.pagenum;
+                    }else if (n<1){
+                        $scope.page=1;
+                    }else if (n>0){
+                        $scope.page=n;
+                    }else{
+                        $scope.page=1;
+                    }
+                }else{
+                    $scope.page=n;
+                }
+            }
+            $scope.$watch('page',$scope.getlist);
+        {/if}
+    });
+    $(function(){
+        $('.pt-list-footer .pt-list-operate').html($('.pt-list-header .pt-list-operate').html());
+        $('.btn-checkbox').on('click',function(e){
+            e.preventDefault();
+            $('input[name=method]').val($(this).attr('name'));
+            checkselt('id[]','#showtable');
+        })
+        $('.btn-all').on('click',function(e){
+            e.preventDefault();
+            $('input[name=method]').val($(this).attr('name'));
+            $('#showtable').submit();
+        })
+    })
+</script>

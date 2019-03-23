@@ -1,0 +1,60 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-tab">
+                <div class = "pt-tab-nav">
+                    {section loop=$list}
+                    <a href = "javascript:;" {if $i.first}class = "current"{/if}><span>{$loop.name}</span></a>
+                    {/section}
+                </div>
+                <div class = "pt-tab-content">
+                    {section loop=$list item=l}
+                    <div class = "pt-tab-item">
+                        <div class = "pt-set-content">
+                            {loop=$l.list}
+                            <div class = "pt-set-info">
+                                <div class = "line">
+                                    <b>{$loop.title}：</b>
+                                    {if $loop.type=='num' || $loop.type=='text'}
+                                    <label><input name = "{$loop.key}" type = "text" value = "{$loop.value}" class = "input-text w450"/></label>
+                                    {elseif $loop.type=='textarea'}
+                                    <label><textarea name = "{$loop.key}" class="input-box w450">{$loop.value}</textarea></label>
+                                    {elseif $loop.type=='radio' || $loop.type=='checkbox'}
+                                    {section loop=$loop.list item=ll}
+                                    <label>
+                                        <input name = "{$loop.key}" type = "{$loop.type}" value = "{$ll.value}" {$ll.status} />{$ll.title}
+                                    </label>
+                                    {/section}
+                                    {elseif $loop.type=='select'}
+                                    <label>
+                                        <select name = "{$loop.key}" class="input-box w450">
+                                            {section loop=$loop.list item=ll}
+                                            <option value = "{$ll.value}" {$ll.status}>{$ll.title}</option>
+                                            {/section}
+                                        </select>
+                                    </label>
+
+                                    {else}
+                                    该项为数组参数，无法直接设置
+                                    {/if}
+                                    <span class="Validform_checktip">{$loop.intro}</span>
+                                </div>
+                            </div>
+                            {/loop}
+                        </div>
+                    </div>
+                    {/section}
+                    <div class = "pt-tab-button">
+                        <div class = "pt-set-info">
+                            <div class = "line">
+                                <b></b>
+                                <input class = "btn btn-success" type = "submit" value = " 确定提交 " />&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

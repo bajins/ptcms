@@ -1,0 +1,112 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>{$tkd.title|parseTpl}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTpl}">
+    <meta name="description" content="{$tkd.description|parseTpl}">
+    <meta name="applicable-device" content="mobile"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+    </a>
+    <div class="ptm-title"> {$category.name}小说</div>
+    <a class="ptm-pull-right" href="{link=user.index.index}">
+        <span class="ptm-iconfont  fa fa-user"></span>
+    </a>
+</header>
+<section class="ptm-content" style="margin-top:45px;">
+    <div class="ptm-tab">
+        <ul class="ptm-tab-nav">
+            <li><a href="{$pt.config.wapurl}">首页</a></li>
+            <li><a href="{link=novelsearch.index.top}">排行</a></li>
+            <li class="active"><a href="{link=novelsearch.index.category}">分类</a></li>
+            <li><a href="{link=novelsearch.list.over}">全本</a></li>
+            <li><a href="{link=novelsearch.search.index}">搜书</a></li>
+        </ul>
+    </div>
+    <div class="ptm-card" style="margin-top:15px;">
+        <div class="ptm-card-header">
+            <div class="ptm-pull-left">
+                {$category.name}小说
+            </div>
+            <div class="ptm-pull-right">
+                第{$page}页
+            </div>
+        </div>
+        <div class="ptm-card-content">
+            <ul class="pt-card pt-card-2">
+                {loop="categorylist"}
+                <li>
+                    <div class="pt-cover">
+                        <a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+                    </div>
+                    <div class="pt-novel">
+                        <div class="pt-name"><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></div>
+                        <div class="pt-info"><a href="{$loop.author.url}">{$loop.author.name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{$loop.category.url}">{$loop.category.name}</a></div>
+                        <div class="pt-desc ptm-text-cut2">{$loop.novel.intro}</div>
+                    </div>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+        <div class="ptm-card-footer " style="padding:0 10px;height:50px;">
+            {block method="page" name="pagelist" totalnum=$totalnum page=$page pagesize=$pagesize maxpage=50 section=3}
+            <div class="pt-dir-page ptm-clearfix">
+                <div class="ptm-col-xs-3">
+                    <a class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined" href="{$pageurl|str_replace='__PAGE__',$pagelist.prev.num,@}">上一页</a>
+                </div>
+                <div class="ptm-col-xs-6" style="padding:0 10px;">
+                    <button class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined showdir"><span>第{$pagelist.page}页 </span><i class="fa fa-angle-down pt-dir-icon"></i></button>
+                </div>
+                <div class="ptm-col-xs-3">
+                    <a class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined" href="{$pageurl|str_replace='__PAGE__',$pagelist.next.num,@}">下一页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="sel ptm-hide">
+    <div class="ptm-alert-shade"></div>
+    <div class="pt-dir-sel" style="background-position: left 50px;">
+        <p class="title">请选择页码</p>
+        <ul>
+            {if !$pagelist.first.status && $pagelist.num.0.num>1}
+            <li><a href="{$pageurl|str_replace='__PAGE__',$pagelist.first.num,@}">第{$pagelist.first.num}页</a></li>
+            {/if}
+            {loop=$pagelist.num}
+            {if $loop.status}
+            <li class="active"><a href="__SELF__">第{$pagelist.page}页</a></li>
+            {else}
+            <li><a href="{$pageurl|str_replace='__PAGE__',$loop.num,@}">第{$loop.num}页</a></li>
+            {/if}
+            {/loop}
+            {if !$pagelist.last.status && $pagelist.last.num>$loop.num}
+            <li><a href="{$pageurl|str_replace='__PAGE__',$pagelist.last.num,@}">第{$pagelist.last.num}页</a></li>
+            {/if}
+        </ul>
+    </div>
+</div>
+{include file="../common/footer"}
+<script type="text/javascript">
+    $(function () {
+        $('.showdir').on('click',function(){
+            $('.sel').removeClass('ptm-hide')
+        })
+        $('.ptm-alert-shade').on('click',function(){
+            $('.sel').addClass('ptm-hide')
+        })
+    })
+</script>
+</body>
+</html>

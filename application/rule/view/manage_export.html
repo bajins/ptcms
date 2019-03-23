@@ -1,0 +1,31 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">规则导出</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                <div class="pt-set-info rule">
+                    <div class="line">
+                        <b>规则选择：</b>
+                        <label>
+                            <select class="input-box w450" name="ruleid">
+                                {loop=rulelist}
+                                <option value="{$loop.id}">{$loop.name}</option>
+                                {/loop}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input class = "btn btn-success" type = "submit" value = " 导出 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/simditor.html"}
+

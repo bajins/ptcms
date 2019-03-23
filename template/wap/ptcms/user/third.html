@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>账户绑定 - {$pt.config.sitename}</title>
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="javascript:window.history.back()">
+        <span class="ptm-iconfont ptm-icon-left"></span>
+    </a>
+    <div class="ptm-title">账户绑定</div>
+    <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+    </a>
+</header>
+<section class="ptm-content ptm-card" style="margin-top:60px;">
+    <ul class="ptm-user-view">
+        <li class="ptm-user-view-cell ptm-img">
+            <div class="bind-icon"><i class="fa fa-qq" style="color:#d9534f"></i></div>
+            <div class="ptm-img-body ptm-arrow-right">
+                <span>QQ登陆</span>
+                {if ($userinfo.weiboid)}
+                <p class="ptm-badge ptm-badge-success" style="display: block;width: 50px;text-align: center;">已绑定</p>
+                {else}
+                <p class="ptm-badge ptm-badge-warning" style="display: block;width: 50px;text-align: center;">未绑定</p>
+                {/if}
+            </div>
+        </li>
+        <li class="ptm-user-view-cell ptm-img">
+            <div class="bind-icon"><i class="fa fa-wechat" style="color:#5cb85c"></i></div>
+            <div class="ptm-img-body ptm-arrow-right">
+                <span>微信登陆</span>
+                {if ($userinfo.weiboid)}
+                <p class="ptm-badge ptm-badge-success" style="display: block;width: 50px;text-align: center;">已绑定</p>
+                {else}
+                <p class="ptm-badge ptm-badge-warning" style="display: block;width: 50px;text-align: center;">未绑定</p>
+                {/if}
+            </div>
+        </li>
+        <!--<li class="ptm-user-view-cell ptm-img">-->
+        <!--<div class="bind-icon"><i class="fa fa-weibo" style="color:#f0ad4e"></i></div>-->
+        <!--<div class="ptm-img-body ptm-arrow-right">-->
+        <!--<span>微博登陆</span>-->
+        <!--{if ($userinfo.weixin)}-->
+        <!--<p class="ptm-ellipsis-1 ptm-text-success">已绑定</p>-->
+        <!--{else}-->
+        <!--<p class="ptm-ellipsis-1">未绑定</p>-->
+        <!--{/if}-->
+        <!--</div>-->
+        <!--</li>-->
+    </ul>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

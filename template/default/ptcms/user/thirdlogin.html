@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>用户登陆 - {$pt.config.sitename}</title>
+    {include file="../common/head"}
+    <link rel="stylesheet" href="{$pt.config.resurl}__TMPL__/css/user.css" />
+</head>
+<body>
+<div class="user-header clearfix">
+    <div class="w-all">
+        <div class="logo fl"><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}"><img src="__TMPL__/image/logo.png" alt="{$pt.config.sitename}" /></a></div>
+        <span class="line fl"></span>
+        <span class="site-name">登陆{$pt.config.sitename}账号</span>
+        <div class="fr">
+            <span class="f2 tip">没有{$pt.config.sitename}账号？</span>
+            <a class="btn btn-pt btn-small" href="{link=user.public.register}">注册</a>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<section class="w-all clearfix">
+    <div class="user-position">
+        <a href="{link=user.public.login}" class="current">账户绑定</a>
+    </div>
+    <div class="userform fl">
+        <form action="__SELF__" class="ajaxform " method="post">
+            <input type="hidden" name="openid" value="{$openid}" />
+            <input type="hidden" name="thirdtype" value="{$thirdtype}" />
+            <div class="formText_wrap">
+                <div class="formText_notice">帐号:</div>
+                <div class="formText"><input type="text" class="text" name="username" placeholder="请输入帐号" autocomplete="off" value="{$info.name}"></div>
+            </div>
+            <div class="formText_wrap">
+                <div class="formText_notice">密码:</div>
+                <div class="formText"><input type="password" name="password" class="text" placeholder="请输入昵称" autocomplete="off"></div>
+            </div>
+            <div class="formText_wrap">
+                <button class="formBtn">确认绑定</button>
+            </div>
+            <div class="clear"></div>
+        </form>
+    </div>
+    <div class="usernotice fr">
+        <div class="title">第三方账户绑定说明</div>
+        <div class="con">
+            <p>如果注册过帐号，请填写您之前注册的帐号</p>
+            <p>如果没有注册过帐号，将自动为您创建帐号</p>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

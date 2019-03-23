@@ -1,0 +1,95 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">修改单页</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>单页名称：</b>
+                        <label><input name = "name" type = "text" value = "{$info.name}" class = "input-text w450" datatype = "*" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>单页Key：</b>
+                        <label><input name = "key" type = "text" value = "{$info.key}" class = "input-text w450"  datatype="/^\w+$/" placeholder="只可以输入英文和数字" errormsg="只可以输入英文和数字" ajaxurl = "__URL__/ajax/id/{$info.id}"/></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>单页缩略图：</b>
+                        <div style="display:inline-block">
+                            <input name = "litpic" type = "text" value = "{$info.litpic}" class = "input-text w450 uploadfile" />
+                            <input type = "file" name = "uploadfile" class="uploadfile f-dn" accept="image/*" multiple/>
+                            <button class = "btn btn-primary btn-sm uploadfile" type="button" data-type="image">上传图片</button>
+                        </div>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>排序序号：</b>
+                        <label><input name = "ordernum" type = "text" value = "{$info.ordernum}" class = "input-text w450" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line"><b>单页类型：</b>
+                        <label>
+                            <input name = "type" type = "radio" value = "1" />内容填充
+                        </label>
+                        <label>
+                            <input name = "type" type = "radio" value = '2' />HTML代码
+                        </label>
+                    </div>
+                </div>
+                <div class = "pt-set-info type-area type-1">
+                    <div class = "line"><b>单页内容：</b>
+                        <div class="pt-set-editor">
+                            <textarea name="content" class="simditoreditor">{if $info.type=='1'}{$info.content}{/if}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class = "pt-set-info type-area type-2">
+                    <div class = "line"><b>单页内容：</b>
+                        <div class="pt-set-editor">
+                            <textarea name="htmlcontent" class="input-box pt-set-editor" id="codeeditor">{if $info.type=='2'}{$info.content}{/if}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line"><b>单页状态：</b>
+                        <label>
+                            <input name = "status" type = "radio" value = "1" />正常
+                        </label>
+                        <label>
+                            <input name = "status" type = "radio" value = '0' />禁用
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input type="hidden" name="id" value="{$info.id}"/>
+                        <input class = "btn btn-success" type = "submit" value = " 修改单页 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/simditor.html"}
+{include file="/application/admin/view/codeeditor.html"}
+<script type="text/javascript">
+    $(function(){
+        $('input[name=type]').on('change',function(){
+            $('.type-area').hide();
+            $('.type-'+$(this).val()).show();
+        });
+        $('input[name=type][value="{$info.type}"]').attr('checked','checked');
+        $('input[name=status][value="{$info.status}"]').attr('checked','checked');
+        $('.type-area').hide();
+        $('.type-{$info.type}').show();
+    })
+</script>
+

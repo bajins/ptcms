@@ -1,0 +1,74 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">添加链接</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>链接名称：</b>
+                        <label><input name = "name" type = "text" value = "" class = "input-text w450" datatype = "*" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>链接地址：</b>
+                        <label><input name = "url" type = "text" value = "" class = "input-text w450" datatype = "url" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>链接描述：</b>
+                        <label><textarea name = "description" class="input-box w450"></textarea></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>链接logo：</b>
+                        <label><input name = "logo" type = "text" value = "" class = "input-text w450" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>排序序号：</b>
+                        <label><input name = "ordernum" type = "text" value = "50" class = "input-text w450" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>链接颜色：</b>
+                        <label><input name = "color" type = "text" value = "" class = "input-text w450" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line"><b>链接字体：</b>
+                        <label>
+                            <input name = "isbold" type = "radio" value = "0" checked/>正常显示
+                        </label>
+                        <label>
+                            <input name = "isbold" type = "radio" value = "1"  />加粗显示
+                        </label>
+                    </div>
+                </div>
+
+                <div class = "pt-set-info">
+                    <div class = "line"><b>链接状态：</b>
+                        <label>
+                            <input name = "status" type = "radio" value = "1" checked />正常
+                        </label>
+                        <label>
+                            <input name = "status" type = "radio" value = '0' />禁用
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input class = "btn btn-success" type = "submit" value = " 添加链接 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

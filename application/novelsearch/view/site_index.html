@@ -1,0 +1,65 @@
+<div class = "pt-table-wrap" ng-app = "ptcms">
+    <h4 class = "pt-msg-title"><b class = "f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class = "pt-list" ng-controller = "showlist">
+        <form method = "post" action = "__URL__/multi" id="showtable">
+            <input type = "hidden" name = "method" />
+            <div class = "pt-list-header">
+                <div class = "pt-list-operate f-fl">
+                    <a class = "btn btn-success btn-sm" href = '__URL__/add'>添加</a>
+                    <input type = "submit" class = "btn btn-primary btn-sm btn-checkbox" value = "禁用" name = "forbidden">
+                    <input type = "submit" class = "btn btn-primary btn-sm btn-checkbox" value = "恢复" name = "recover">
+                    <input type = "submit" class = "btn btn-danger btn-sm btn-checkbox" value = "删除" name = "mdel">
+                </div>
+                <div class = "f-fr">
+                    <input ng-model = 'keyword' class = "input-text w160" type = "text" onkeypress="if(event.keyCode==13) {return false;}"/>
+                    <input type = "button" class = "btn btn-default btn-sm" value = "搜索" />
+                </div>
+                <div class = "f-clear"></div>
+            </div>
+            <table class = "pt-list-table">
+                <thead>
+                <tr>
+                    <th class = "w-checkbox"><input type = "checkbox" class = "checkall" data = "id[]" ></th>
+                    <th class = "f-tal" style = "width:20px">ID</th>
+                    <th class = "f-tal" style = "width:150px">站点名称</th>
+                    <th class = "f-tal">站点地址</th>
+                    <th style="width:120px">站点key</th>
+                    <th class = "w-word3">权重</th>
+                    <th class = "w-word4">IP控制</th>
+                    <th class = "w-word5">站点类型</th>
+                    <th class = "w-word5">状态</th>
+                    <th class = "operate w-operate2">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat = "loop in lists | filter:keyword">
+                    <td><input type = "checkbox" name = "id[]" value = "{{loop.id}}"></td>
+                    <td class = "f-tal">{{loop.id}}</td>
+                    <td class = "f-tal">{{loop.name}}</td>
+                    <td class = "f-tal">{{loop.url}}</td>
+                    <td>{{loop.key}}</td>
+                    <td>{{loop.weight}}</td>
+                    <td>{{loop.ip}}</td>
+                    <td>
+                        <span class = "c-orange" ng-if = "loop.isoriginal==0">转载</span>
+                        <span class = "c-green" ng-if = "loop.isoriginal==1">原创</span>
+                    </td>
+                    <td>
+                        <span class = "label label-warning" ng-if = "loop.status==0" ng-click = "changestatus($index,1)">禁用</span>
+                        <span class = "label label-success" ng-if = "loop.status==1" ng-click = "changestatus($index,0)">正常</span>
+                    </td>
+                    <td class = "operate">
+                        <a ng-href = "{{loop.url_edit}}"><i class = "icon icon-edit"></i>编辑</a>
+                        <a href = "javascript:;" ng-click = "del(loop.id,$index)"><i class = "icon icon-trash"></i>删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class = "pt-list-footer">
+                <div class = "pt-list-operate f-fl"></div>
+                <div class = "f-clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/public_indexjs.html"}

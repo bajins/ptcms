@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>浏览历史 - {$pt.config.sitename}</title>
+    {include file="../common/head"}
+    <link rel="stylesheet" href="{$pt.config.resurl}__TMPL__/css/user.css" />
+</head>
+<body>
+{include file="../common/header"}
+<section class="w-all user">
+    {include file="../common/userheader"}
+    <div class="body clearfix">
+        <div class="userleft">
+            <ul class="navbar">
+                {include file="../common/userleft"}
+            </ul>
+        </div>
+        <div class="userright">
+            <div class="hd">
+                <h3 class="title">浏览历史<em>({$marklist|count}本)</em></h3>
+            </div>
+            <div class="bd">
+                <ul class="marklist">
+                    {loop=marklist}
+                    <li>
+                        <div class="pt-ll-l">
+                            <a href="{$loop.url.info}" title="{$loop.novel.name}" target="_blank"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}" /></a>
+                        </div>
+                        <div class="pt-ll-r">
+                            <p class="title">
+                                <span><a href="{$loop.url.info}" class="novelname" title="{$loop.novel.name}" target="_blank">{$loop.novel.name}</a></span>
+                                <a class="btn btn-warning btn-small fr" href="{link=user.history.del novelid=$loop.novel.id}">移出书架</a>
+                                {if $loop.hasnew}<span class="btn btn-danger btn-small fr">有更新</span>{/if}
+                            </p>
+                            <p class="info"><a href="{$loop.author.url}" title="{$loop.author.name} 作品列表" target="_blank">{$loop.author.name}</a> 著 </p>
+                            <p class="info">
+                                最新：<a href="{$loop.last.url}" title="{$loop.novel.name} {$loop.last.name}" target="_blank">{$loop.last.name}</a> ({$loop.last.time|cntime})
+                            </p>
+                            <p class="info">{if $loop.hasnew}<a href="{$loop.nexturl}" target="_blank"><span class="num"> {$loop.hasnew} </span>章未读</a>{else}全部读完{/if}</p>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                    {/loop}
+                </ul>
+                <a class="btn btn-primary" href="{link=user.history.clear}">清空浏览历史</a>
+            </div>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

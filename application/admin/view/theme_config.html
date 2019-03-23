@@ -1,0 +1,53 @@
+<div class = "pt-table-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">模版参数设置</b></h4>
+    <div class="alert alert-info alert-dismissable ">
+        <p>
+            设置的参数您可以在程序中通过 C('tplconfig.参数KEY') 调用，在模版中通过 {$pt.config.tplconfig.参数KEY} 调用;<br />
+        </p>
+    </div>
+    <div class = "pt-set-box">
+        <div class = "pt-list">
+            <div class = "pt-list-title">
+                <p class = "f-fl tips">
+                    当前共有<b class = "c-red"> {$config|count} </b>个参数
+                </p>
+            </div>
+            <div class = "f-clear"></div>
+            <form method = "post" action = "__SELF__" id = "showtable">
+                <table class = "pt-list-table">
+                    <thead>
+                    <tr>
+                        <th class = "operate w-operate1">操作</th>
+                        <th class = "f-tal" style = "width:120px">参数名称</th>
+                        <th class = "f-tal" style = "width:100px">参数key</th>
+                        <th class = "f-tal">参数值</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {loop="config"}
+                    <tr>
+                        <td class = "operate"><a href = "{link=admin.theme.del id=$key tpl=$tpl}"><i class = "icon icon-trash"></i>删除</a></td>
+                        <td class = "f-tal"><input type = "text" value = "{$loop.name}" class = "input-text" style = "width:120px;" name = "{$key}[name]" /></td>
+                        <td class = "f-tal"><input type = "text" value = "{$key}" class = "input-text" style = "width:100px;" name = "{$key}[key]" readonly /></td>
+                        <td class = "f-tal"><input type = "text" value = "{$loop.value|htmlspecialchars}" class = "input-text" style = "width:99%;" name = "{$key}[value]"></td>
+                    </tr>
+                    {/loop}
+                    <tr>
+                        <td class = "operate">新参数</td>
+                        <td class = "f-tal"><input type = "text" value = "" class = "input-text" style = "width:120px;" name = "_new[name]" /></td>
+                        <td class = "f-tal"><input type = "text" value = "" class = "input-text" style = "width:100px;" name = "_new[key]" /></td>
+                        <td class = "f-tal"><input type = "text" value = "" class = "input-box" style = "width:99%;" name = "_new[value]"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class = "pt-list-footer">
+                    <div class = "f-fl">
+                        <input type = "submit" class = "btn btn-primary btn-sm" value = "提交操作">
+                    </div>
+                    <div class = "f-clear"></div>
+                </div>
+            </form>
+            <div class = "clear"></div>
+        </div>
+    </div>
+</div>

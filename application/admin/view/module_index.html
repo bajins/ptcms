@@ -1,0 +1,61 @@
+<div class = "pt-table-wrap" ng-app = "ptcms">
+    <h4 class = "pt-msg-title"><b class = "f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class = "pt-list" ng-controller = "showlist">
+        <form method = "post" action = "__URL__/multi" id = "showtable">
+            <input type = "hidden" name = "method" />
+            <div class = "pt-list-header">
+                <div class = "pt-list-operate f-fl">
+                </div>
+                <div class = "f-clear"></div>
+            </div>
+            <table class = "pt-list-table">
+                <thead>
+                <tr>
+                    <th class = "f-tal" style = "width:150px">模块名称</th>
+                    <th class = "f-tal">模块信息</th>
+                    <th class = "w-word5">模块作者</th>
+                    <th class = "w-word5">模块版本</th>
+                    <th class = "w-word3">状态</th>
+                    <th class = "operate w-operate1">配置</th>
+                    <th class = "w-word3">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat = "loop in lists ">
+                    <td class = "f-tal">{{loop.name}}</td>
+                    <td class = "f-tal">{{loop.desc}}</td>
+                    <td>{{loop.author}}</td>
+                    <td>{{loop.version}}</td>
+                    <td>
+                        <span class = "label label-warning" ng-if = "loop.status==0" ng-click = "changestatus(loop.key,1)"> 禁用</span>
+                        <span class = "label label-success" ng-if = "loop.status==1" ng-click = "changestatus(loop.key,0)">正常</span>
+                        <span class = "label label-default" ng-if = "loop.status==-1">未安装</span>
+                    </td>
+                    <td class = "operate">
+                        <a ng-href = "{{loop.url_config}}"><i class = "icon icon-edit"></i>设置</a>
+                    </td>
+                    <td>
+                        <a class = "label label-success" ng-if = "loop.issetup==0" ng-href = "{{loop.url_install}}">安装</a>
+                        <a class = "label label-warning" ng-if = "loop.issetup==1" onclick = "uninstall(this)" data-url = "{{loop.url_uninstall}}">卸载</a>
+                        <span class = "label label-info" ng-if = "loop.issetup==2">内置</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class = "pt-list-footer">
+                <div class = "pt-list-operate f-fl"></div>
+                <div class = "f-clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="/application/admin/view/public_indexjs.html"}
+<script type = "text/javascript">
+    function uninstall(o) {
+        var deldb = 0, url = $(o).data('url');
+        if (confirm('您是否要删除该模块的数据库记录')) {
+            deldb = 1;
+        }
+        window.location.href = url + '&deldb=' + deldb;
+    }
+</script>

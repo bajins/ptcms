@@ -1,0 +1,45 @@
+<div class = "pt-set-wrap">
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                {loop=list}
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>{$loop.title}：</b>
+                        {if $loop.type=='num' || $loop.type=='text'}
+                        <label><input name = "{$loop.key}" type = "text" value = "{$loop.value}" class = "input-text w450"/></label>
+                        {elseif $loop.type=='textarea'}
+                        <label><textarea name = "{$loop.key}" class="input-box w450" {if $loop.key=='collect_category_rule'}style="height:350px;width:640px !important;"{/if}{if in_array($loop.key,['collect_skip_novel','content_replace'])}style="height:300px;"{/if}>{$loop.value}</textarea></label>
+                        {elseif $loop.type=='radio' || $loop.type=='checkbox'}
+                        {section loop=$loop.list item=ll}
+                        <label>
+                            <input name = "{$loop.key}" type = "{$loop.type}" value = "{$ll.value}" {$ll.status} />{$ll.title}
+                        </label>
+                        {/section}
+                        {elseif $loop.type=='select'}
+                        <label>
+                            <select name = "{$loop.key}" class="input-box w450">
+                                {section loop=$loop.list item=ll}
+                                <option value = "{$ll.value}" {$ll.status}>{$ll.title}</option>
+                                {/section}
+                            </select>
+                        </label>
+                        {else}
+                        该项为数组参数，无法直接设置
+                        {/if}
+                        <span class="Validform_checktip" style="margin-left:140px;"><br/>{$loop.intro}</span>
+                    </div>
+                </div>
+                {/loop}
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input class = "btn btn-success" type = "submit" value = " 提交修改 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

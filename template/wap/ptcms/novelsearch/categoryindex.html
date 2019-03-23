@@ -1,0 +1,59 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>{$tkd.title|parseTpl}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTpl}">
+    <meta name="description" content="{$tkd.description|parseTpl}">
+    <meta name="applicable-device" content="mobile"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+    </a>
+    <div class="ptm-title">小说分类</div>
+    <a class="ptm-pull-right" href="{link=user.index.index}">
+        <span class="ptm-iconfont  fa fa-user"></span>
+    </a>
+</header>
+<section class="ptm-content" style="margin-top:45px;">
+    <div class="ptm-tab">
+        <ul class="ptm-tab-nav">
+            <li><a href="{$pt.config.wapurl}">首页</a></li>
+            <li><a href="{link=novelsearch.index.top}">排行</a></li>
+            <li class="active"><a href="{link=novelsearch.index.category}">分类</a></li>
+            <li><a href="{link=novelsearch.list.over}">全本</a></li>
+            <li><a href="{link=novelsearch.search.index}">搜书</a></li>
+        </ul>
+    </div>
+    <div class="categorylist" style="margin-top:5px;">
+        <ul>
+            {block method=categorylist name=list pid=0}
+            {loop=list}
+            <li {if $loop.id==0} class="full"{/if}>
+                <a class="item" href="{$loop.url}">
+                    <div class="name">{$loop.name}</div>
+                    <div class="num">{$loop.num}本</div>
+                </a>
+            </li>
+            {/loop}
+        </ul>
+    </div>
+    <div class="ptm-clear" style="margin-bottom:10px;"></div>
+</section>
+{include file="../common/footer"}
+<script type="text/javascript">
+    $(function () {
+        $ptm.tab($('.ptm-tab-nav.ptm-tab-border li'), $('.ptm-tab-content-item'));
+    })
+</script>
+</body>
+</html>

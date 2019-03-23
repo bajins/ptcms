@@ -1,0 +1,59 @@
+<form method="post" action="{link='install.index.success'}" name="config" onsubmit="return check();">
+    <h1 class="ptcms-install-title">确认您的配置</h1>
+    <div class="ptcms-install-body">
+        <h2>Mysql数据库配置</h2>
+        <ul class="ptcms-option">
+            <li>
+                <label class="ptcms-label">数据库引擎
+                <select name="mysql_driver"  style="width:100%">
+                    <option value="pdo">PDO驱动</option>
+                </select>
+                </label>
+                <p class="description">请根据系统环境选择使用的数据库驱动引擎</p>
+            </li>
+            <li>
+                <label class="ptcms-label">数据库地址
+                    <input type="text" class="text" name="mysql_master_host" value="{$pt.config.mysql_master_host}">
+                </label>
+            </li>
+            <li>
+                <label class="ptcms-label">数据库端口
+                    <input type="text" class="text" name="mysql_master_port" value="{$pt.config.mysql_master_port}">
+                </label>
+            </li>
+            <li>
+                <label class="ptcms-label">数据库名称
+                    <input type="text" class="text" name="mysql_master_name" value="{if $_SERVER['SERVER_ADDR']=='127.0.0.1'}novelsearch_test{else}ptnovelsearch{/if}">
+                </label>
+            </li>
+            <li>
+                <label class="ptcms-label">数据库用户
+                <input type="text" class="text" name="mysql_master_user" value="{$pt.config.mysql_master_user}">
+                </label>
+            </li>
+            <li>
+                <label class="ptcms-label">数据库密码
+                    <input type="text" class="text" name="mysql_master_pwd" value="{$pt.config.mysql_master_pwd}">
+                </label>
+            </li>
+            <li>
+                <label class="ptcms-label">数据表前缀
+                    <input type="text" class="text" name="mysql_prefix" value="{$pt.config.mysql_prefix}">
+                </label>
+            </li>
+        </ul>
+    </div>
+    <p class="submit">
+        <button type="submit" class="primary">确认, 开始安装 »</button>
+    </p>
+</form>
+<script type="text/javascript" src="__PUBLIC__/script/jquery.min.js"></script>
+<script type="text/javascript">
+    function check() {
+        if ($('input[name=novelid]:checked').val() == undefined) {
+            $('body,html').animate({scrollTop: $('#checknovel').offset().top}, 500);
+            alert('请选择小说');
+            return false;
+        }
+    }
+</script>

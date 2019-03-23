@@ -1,0 +1,57 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">添加分类</b></h4>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>分类名称：</b>
+                        <label><input name = "name" type = "text" value = "" class = "input-text w450" datatype = "*"/></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>分类Key：</b>
+                        <label><input name = "key" type = "text" value = "" class = "input-text w450"  datatype="/^\w+$/" placeholder="只可以输入英文和数字" errormsg="只可以输入英文和数字" ajaxurl = "__URL__/ajax/id/0"/></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>上级分类：</b>
+                        <label><select class = "input-box w450" name = "pid">
+                            <option value = "0">根分类</option>
+                            {loop=parentlist}
+                            <option value = "{$loop.id}" {if isset($_GET['pid']) && $loop.id==$_GET['pid']}selected{/if}>{$loop.showname}</option>
+                            {/loop}
+                        </select></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>排序序号：</b>
+                        <label><input name = "ordernum" type = "text" value = "50" class = "input-text w450" /></label>
+                    </div>
+                </div>
+                <div class = "pt-set-info">
+                    <div class = "line"><b>是否显示：</b>
+                        <label>
+                            <input name = "status" type = "radio" value = "1" checked />显示
+                        </label>
+                        <label>
+                            <input name = "status" type = "radio" value = '0' />隐藏
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input class = "btn btn-success" type = "submit" value = " 添加分类 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type = "text/javascript" src = "__PUBLIC__/plugin/datepicker/WdatePicker.js"></script>

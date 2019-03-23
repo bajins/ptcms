@@ -1,0 +1,50 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>{$tkd.title|parseTpl}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTpl}">
+    <meta name="description" content="{$tkd.description|parseTpl}">
+    <meta name="applicable-device" content="mobile"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <div class="pt-search">
+        <div class="ptm-col-xs-10">
+            <input type="search" name="searchkey" placeholder="请输入您要搜索的小说" autocomplete="off">
+            <div class="input-left fa fa-search"></div>
+        </div>
+        <div class="ptm-col-xs-2 pt-search-textbtn">搜 索</div>
+    </div>
+    <ul class="searchsuggest" style="display: none">
+    </ul>
+</header>
+<section class="ptm-content ptm-card" style="margin-top:60px;">
+    <dl class="pt-search-list ptm-clearfix searchhistory">
+        <dt>搜索历史</dt>
+    </dl>
+    <dl class="pt-search-list ptm-clearfix">
+        <dt>大家都在搜</dt>
+        {block method="novellist" name="list" order="allvisit" num=10}
+        {section loop=$list}
+        <dd><a href="{$loop.url.info}" class="ptm-text-cut"><span class="pt-icon"><i {if $i.order<4}class="start"{/if}>{$i.order}</i></span>{$loop.novel.name}</a></dd>
+        {/section}
+    </dl>
+</section>
+{include file="../common/footer"}
+<script type="text/javascript" src="__TMPL__/script/search.min.js"></script>
+<script type="text/javascript">
+    var basesearchurl='{link=novelsearch.search.result}?searchkey=';
+    $(function(){
+        $ptm.search.init($('[name=searchkey]'));
+    })
+</script>
+</body>
+</html>

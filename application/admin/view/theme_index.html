@@ -1,0 +1,50 @@
+<div class = "pt-set-wrap">
+    <h4 class = "pt-msg-title"><b class = "f-fl">模版列表</b></h4>
+    <div class = "pt-set-box">
+        <div class = "pt-list">
+            <div class = "pt-list-title">
+                <p class = "f-fl tips">
+                    当前共有<b class = "c-red"> {$list|count} </b>个模版
+                </p>
+            </div>
+            <div class = "f-clear"></div>
+            <table class = "pt-list-table">
+                <thead>
+                <tr>
+                    <th style = "width:160px">模版预览</th>
+                    <th class = "f-tal">模版信息</th>
+                    <th class = "w-word3">版本</th>
+                    <th class = "w-word4">类型</th>
+                    <th class = "w-word4">PC风格</th>
+                    <th class = "w-word4">手机风格</th>
+                    <th class = "operate w-operate3">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop="list"}
+                <tr>
+                    <td><img src = "{$loop.demo}" width = "160" height = "120"></td>
+                    <td class = "f-tal" style = "vertical-align: top">
+                        <b>{$loop.name}</b><br />
+                        作者：{$loop.author}<br />
+                        邮箱：{$loop.email}<br />
+                        网址：{$loop.url}<br />
+                        简介：{$loop.description}<br />
+                    </td>
+                    <td>{$loop.version}</td>
+                    <td>{$loop.typename}</td>
+                    <td>{if $config.tpl_theme==$key}<span class = "label label-success"><i class = "icon icon-ok-circle"></i> 默认</span>{/if}</td>
+                    <td>{if $config.wap_theme==$key}<span class = "label label-success"><i class = "icon icon-ok-circle"></i> 默认</span>{/if}</td>
+                    <td class = "operate">
+                        <a href = "{=U($urlkey,array( 't'=>$key, '_force'=>1))}" target = "_blank"><i class = "icon icon-search"></i>预览</a>
+                        <a href = "{link='admin.theme.set' tpl=$key}"><i class = "icon icon-floppy-saved"></i>使用</a>
+                        <a href = "{link='admin.theme.config' tpl=$key}"><i class = "icon icon-edit"></i>参数</a>
+                    </td>
+                </tr>
+                {/loop}
+                </tbody>
+            </table>
+            <div class = "clear"></div>
+        </div>
+    </div>
+</div>

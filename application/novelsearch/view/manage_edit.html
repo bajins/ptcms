@@ -1,0 +1,152 @@
+<div class="pt-set-wrap">
+    <h4 class="pt-msg-title"><b class="f-fl">{$menuinfo.menu.name}</b></h4>
+    <div class="pt-set-box">
+        <form action="__SELF__" method="post" enctype="multipart/form-data" class="vform">
+            <div class="pt-set-content">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>小说书名：</b>
+                        <label><input name="name" type="text" value="{$info.name}" class="input-text w450" datatype="*" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>小说拼音：</b>
+                        <label><input name="pinyin" type="text" value="{$info.pinyin}" class="input-text w450" datatype="/^\w+$/" placeholder="只可以输入英文和数字" errormsg="只可以输入英文和数字" ajaxurl="__URL__/ajax/id/{$info.id}" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>小说作者：</b>
+                        <label><input name="author" type="text" value="{$info.author}" class="input-text w450" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>小说分类：</b>
+                        <label><select class="input-box w450" name="categoryid">
+                            {loop=categorylist}
+                            <option value="{$loop.id}"
+                            {if $loop.id==$info.categoryid}selected{/if}>{$loop.name}</option>
+                            {/loop}
+                        </select></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>小说封面：</b>
+                        <label><input name="cover" type="text" value="{$info.cover}" class="input-text w450" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>简短描述：</b>
+                        <label><input name="caption" type="text" value="{$info.caption}" class="input-text w450" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>小说简介：</b>
+                        <label>
+                            <textarea name="intro" class="input-box w450 h100">{$info.intro}</textarea>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>入库时间：</b>
+                        <label>
+                            <label><input name="postdate" type="text" value="{$info.postdate|date='Y-m-d H:i:s'}" class="input-text w450 datetime" /></label>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>更新时间：</b>
+                        <label>
+                            <label><input name="lastupdate" type="text" value="{$info.lastupdate|date='Y-m-d H:i:s'}" class="input-text w450 datetime" /></label>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>总点击数：</b>
+                        <label>
+                            <label><input name="allvisit" type="text" value="{$info.allvisit}" class="input-text w450" /></label>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>月点击数：</b>
+                        <label>
+                            <label><input name="monthvisit" type="text" value="{$info.monthvisit}" class="input-text w450" /></label>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>周点击数：</b>
+                        <label>
+                            <label><input name="weekvisit" type="text" value="{$info.weekvisit}" class="input-text w450" /></label>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>日点击数：</b>
+                        <label>
+                            <label><input name="dayvisit" type="text" value="{$info.dayvisit}" class="input-text w450" /></label>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>收藏数：</b>
+                        <label>
+                            <label><input name="marknum" type="text" value="{$info.marknum}" class="input-text w450" /></label>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>推荐级别：</b>
+                        <label><select class="input-box w450" name="isgood">
+                            {loop=goodlist}
+                            <option value="{$key}"
+                            {if $key==$info.isgood}selected{/if}>{$loop}</option>
+                            {/loop}
+                        </select></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line"><b>小说状态：</b>
+                        <label>
+                            <input name="status" type="radio" value="1" />正常
+                        </label>
+                        <label>
+                            <input name="status" type="radio" value='0' />禁用
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-tab-button">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b></b>
+                        <input type="hidden" name="id" value="{$info.id}" />
+                        <input class="btn btn-success" type="submit" value=" 修改小说 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/plugin/datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('input[name=status][value={$info.status}]').attr('checked', 'checked');
+    });
+</script>

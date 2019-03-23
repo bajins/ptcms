@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>{$tkd.title|parseTPL}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTPL}" />
+    <meta name="description" content="{$tkd.description|parsetpl}" />
+    {include file="../common/head"}
+</head>
+<body>
+<div class="frame-header">
+    <div class="frame-header-content">
+        <div class="logo"><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}"><img src="__TMPL__/image/logo.png" alt="{$pt.config.sitename}" /></a></div>
+        <div class="searchbox">
+            <form action="{link='novelsearch.search.result'}" name="search-form" method="get">
+                <input type="text" class="text" name="searchkey" value="{$novel.name}" onfocus="(function(o){if(o.value=='{$novel.name}'){o.value='';o.className='focus'}})(this);" onblur="(function(o){if(o.value==''){o.value='{$novel.name}';o.className='';}})(this)" autocomplete="off" />
+                <button type="submit" class="searchbtn">搜书</button>
+            </form>
+        </div>
+        <div class="frame-operate">
+            <div class="frame-btn">
+                <a href="{$chapter.preinfo.url}" class="btn btn-primary btn-sm" title="{$chapter.preinfo.name}"><i class="pticon pticon-chevron-left"></i> 上一章</a>
+                <a href="{$url.info}" class="btn btn-default" title="{$novel.name}"><i class="pticon pticon-list"></i> 目录</a>
+                <a href="{$chapter.nextinfo.url}" class="btn btn-primary" title="{$chapter.nextinfo.name}">下一章 <i class="pticon pticon-chevron-right"></i></a>
+                <a href="{$chapter.url_mark}" class="btn btn-danger" target="_blank"><i class="pticon pticon-bookmark"></i> 书签</a>
+                <a href="{$chapter.url_green}" class="btn btn-success"><i class="pticon pticon-camera"></i> 转码阅读</a>
+            </div>
+            <div class="frame-source">
+                <div class="dropmenu">
+                    <span class="tri"></span>
+                    <ul class="dropmenu-item">
+                        {loop=$chapter.samelist}
+                        <li><a href="{$loop.url}" style="{$loop.style}" title="{$novel.name} {$loop.name} {$chapter.name}">{$loop.name}</a></li>
+                        {/loop}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display:none">
+    {$pt.getad.tongji}
+</div>
+<script type="text/javascript" src="__PUBLIC__/script/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/plugin/layer/layer.js"></script>
+<script type="text/javascript">
+    document.onkeydown = gopage;
+    var prevpage = "{$chapter.preinfo.url}";
+    var nextpage = "{$chapter.nextinfo.url}";
+    var gotobook = "{$url.info}";
+    function gopage() {
+        var event = event ? event : window.event;
+        if (event.keyCode == 37) location = prevpage;
+        if (event.keyCode == 39) location = nextpage;
+        if (event.keyCode == 13) location = gotobook;
+    }
+    window.onerror = function () {
+        return true;
+    };
+    $(function () {
+        layer.open({
+            type: 2,   //0-4的选择,
+            title: false,
+            offset: ['73px', '0px'],
+            shade: false,
+            border:0,
+            zIndex:10,
+            closeBtn: false,
+            area: [$(window).width() + 'px', (parseInt($(window).height()) - 73) + 'px'],
+            content:['{$chapter.url}']
+        });
+        $(window).on('resize',function(){
+            console.log($(window).height());
+            var h=parseInt($(window).height()) - 73;
+            $('.layui-layer').css({width:$(window).width() + 'px',height:h + 'px'});
+            $('.layui-layer iframe').css({height:h + 'px'})
+        });
+    })
+</script>
+</body>
+</html>
+<!--{__RUNINFO__}-->

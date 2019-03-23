@@ -1,0 +1,48 @@
+<link media="all" rel="stylesheet" type="text/css" href="/public/plugin/simditor/styles/font-awesome.css" />
+<link media="all" rel="stylesheet" type="text/css" href="/public/plugin/simditor/styles/simditor.css" />
+<link media="all" rel="stylesheet" type="text/css" href="/public/plugin/simditor/styles/simditor-emoji.css" />
+<script type="text/javascript" src="/public/plugin/simditor/scripts/module.min.js"></script>
+<script type="text/javascript" src="/public/plugin/simditor/scripts/simditor.min.js"></script>
+<script type="text/javascript" src="/public/plugin/simditor/scripts/uploader.min.js"></script>
+<script type="text/javascript" src="/public/plugin/simditor/scripts/simditor-emoji.js"></script>
+<script type="text/javascript" src="/public/plugin/simditor/scripts/simditor-markdown.js"></script>
+<script type="text/javascript">
+    var editor;
+    $(function () {
+        if($('.simditoreditor').length>0){
+            editor = new Simditor({
+                textarea: $('.simditoreditor'),
+                toolbar: ['emoji', 'title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image'],
+                pasteImage: true,
+                defaultImage: '/public/image/144.png',
+                emoji: {imagePath: '/public/image/emoji/'},
+                markdown: true,
+                upload: {
+                    url: '__URL__/uploadone'
+                }
+            });
+        }
+        $('button.uploadfile').on('click',function(){
+            $(this).siblings('input[type=file]').val('').trigger('click');
+        });
+        $('input[type=file].uploadfile').on('change', function(e) {
+            var t=$(this).siblings('input[type=text]');
+            var uploader = simple.uploader({
+                url: '__URL__/uploadone'
+            });
+            uploader.upload($(this));
+            uploader.on('uploadsuccess', function(e, file, res) {
+                if (res.success==true){
+                    $(t).val(res.file_path);
+                }else{
+                    alert(res.msg);
+                }
+                uploader.destroy()
+            });
+        });
+    });
+</script>
+<style rel="stylesheet" type="text/css">
+    .simditor .simditor-body b { width: auto !important; }
+    .simditor .simditor-body{padding:10px 10px 40px !important;}
+</style>

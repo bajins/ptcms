@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>账户绑定 - {$pt.config.sitename}</title>
+    {include file="../common/head"}
+    <link rel="stylesheet" href="{$pt.config.resurl}__TMPL__/css/user.css" />
+</head>
+<body>
+{include file="../common/header"}
+<section class="w-all user">
+    {include file="../common/userheader"}
+    <div class="body clearfix">
+        <div class="userleft">
+            <ul class="navbar">
+                {include file="../common/userleft"}
+            </ul>
+        </div>
+        <div class="userright">
+            <div class="hd">
+                <h3 class="title">账户绑定<em></em></h3>
+            </div>
+            <div class="bd">
+                <ul class="thirdlogin">
+                    <li class="clearfix">
+                        <div class="icon"><img src="__PUBLIC__/image/qq.png" height="50"></div>
+                        <div class="intro"><b>腾讯QQ</b><br/>绑定腾讯QQ帐号后，您便可使用腾讯QQ帐号登录网站</div>
+                        {if ($userinfo.qqid)}
+                        <div class="button"><a href="{link=user.third.unbind type=qq}"  class="btn btn-default">取消绑定</a></div>
+                        {else}
+                        <div class="button"><a href="{link=user.third.bind type=qq}"  class="btn btn-success">立即绑定</a></div>
+                        {/if}
+                    </li>
+                    <li class="clearfix">
+                        <div class="icon"><img src="__PUBLIC__/image/weibo.png" height="50"></div>
+                        <div class="intro"><b>新浪微博</b><br/>绑定新浪微博帐号后，您便可使用新浪微博帐号登录网站</div>
+                        {if ($userinfo.weiboid)}
+                        <div class="button"><a href="{link=user.third.unbind type=weibo}"  class="btn btn-default">取消绑定</a></div>
+                        {else}
+                        <div class="button"><a href="{link=user.third.bind type=weibo}"  class="btn btn-success">立即绑定</a></div>
+                        {/if}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

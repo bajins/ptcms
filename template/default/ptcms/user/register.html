@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>用户注册 - {$pt.config.sitename}</title>
+    {include file="../common/head"}
+    <link rel="stylesheet" href="{$pt.config.resurl}__TMPL__/css/user.css" />
+</head>
+<body>
+<div class="user-header clearfix">
+    <div class="w-all">
+        <div class="logo fl"><a href="{$pt.config.siteurl}" title="{$pt.config.sitename}"><img src="__TMPL__/image/logo.png" alt="{$pt.config.sitename}" /></a></div>
+        <span class="line fl"></span>
+        <span class="site-name">注册{$pt.config.sitename}账号</span>
+        <div class="fr">
+            <span class="f2 tip">已有{$pt.config.sitename}账号？</span>
+            <a class="btn btn-pt btn-small" href="{link=user.public.login}">登录</a>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<section class="w-all clearfix">
+    <div class="user-position">
+        <a href="{link=user.public.register}" class="current">注册账户</a>
+        <a href="{link=user.public.login}">登陆账户</a>
+    </div>
+    <div class="userform fl">
+        <form action="__SELF__" class="ajaxform " method="post">
+            <div class="formText_wrap">
+                <div class="formText_notice">帐号:</div>
+                <div class="formText"><input type="text" class="text" name="username" placeholder="请输入帐号" autocomplete="off"></div>
+            </div>
+            <div class="formText_wrap">
+                <div class="formText_notice">密码:</div>
+                <div class="formText"><input type="password" name="password" class="text" placeholder="请输入昵称" autocomplete="off"></div>
+            </div>
+            <div class="formText_wrap">
+                <div class="formText_notice">重复密码:</div>
+                <div class="formText"><input type="password" name="password1" class="text" placeholder="请输入密码" autocomplete="off"></div>
+            </div>
+            <div class="formText_wrap">
+                <button class="formBtn">确认注册</button>
+            </div>
+            <div class="formText_wrap">
+                <div class="formText_notice">&nbsp;</div>
+                <div class="formTextWord">
+                    <a href="{link=user.public.login}" title="">已有帐号，立即登录&gt;&gt;</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </form>
+    </div>
+    <div class="usernotice fr">
+        <div class="title">使用第三方账号注册</div>
+        <div class="con">
+            <a href="{link=user.public.thirdlogin type=qq}" class="btn btn-danger"><i class="pticon pticon-qq pticon-lg" ></i> 使用腾讯QQ登陆</a>
+            <a href="{link=user.public.thirdlogin type=weibo}" class="btn btn-warning"><i class="pticon pticon-weibo pticon-lg"></i> 使用微博账号登陆</a>
+            <a href="javascript:alert('尚未开通微信登陆')" class="btn btn-success"><i class="pticon pticon-weixin pticon-lg"></i> 使用微信账号登陆</a>
+        </div>
+    </div>
+    <!--<div class="card mt20 usernotice fr">-->
+        <!--<div class="header line">-->
+            <!--<h3>登陆账号有什么好处？</h3>-->
+        <!--</div>-->
+        <!--<div class="body">-->
+            <!--<p>1、云端书架，多设备阅读进度完全统一-->
+            <!--<p>2、定制阅读习惯，选择喜欢的阅读方式和站点-->
+            <!--<p>3、赚取积分，积分可用来兑换奖品-->
+            <!--<p>4、发布评论，与万千书友一起交流-->
+        <!--</div>-->
+    <!--</div>-->
+</section>
+{include file="../common/footer"}
+</body>
+</html>

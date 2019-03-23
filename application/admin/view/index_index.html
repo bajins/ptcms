@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8" />
+    <title>管理中心 - {$pt.PRONAME}</title>
+    <link rel = "stylesheet" href = "__ROOT__/application/admin/view/css/admin.css" />
+    <meta name = "viewport" content = "width=device-width" />
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+</head>
+<body style = "overflow: scroll; overflow-y: hidden; overflow-x: hidden">
+<div id = "pt-wrapper">
+    <div id = "pt-header">
+        <div class = "logo"></div>
+        <div class = "menu">
+            {section loop=menu}
+            <a href = "#" class = "link">{$loop.name}</a>
+            {/section}
+        </div>
+        <div class = "login-info">
+            <span>欢迎回来：<font color = "red">{$username}</font></span>
+            <a class = "box" title = "刷新主页面" href = "javascript:mainframe.location.reload();">刷新页面</a>
+            <a class = "box" title = "查看站点页面" href = "{$pt.config.siteurl}" target = "_blank">查看站点</a>
+            <a class = "box" title = "退出{$pt.PRONAME}" href = "{link='admin.public.logout'}">退出登陆</a>
+        </div>
+    </div>
+    <div id = "container">
+        <div class = "pt-sidebar">
+            {section loop=menu}
+            <ul class = 'pt-sidebar-menu'>
+                {section loop=loop.sons item=submenu}
+                <li>
+                    <h3><i></i>{$submenu.name}</h3>
+                    <div class = "pt-sidebar-menu-info">
+                        {section loop=submenu.sons item=submenulist}
+                        <a href = "{$submenulist.url}" target = "mainframe">{$submenulist.name}</a>
+                        {/section}
+                    </div>
+                </li>
+                {/section}
+            </ul>
+            {/section}
+        </div>
+        <div class = "pt-main">
+            <iframe id = "pt-mainframe" width = "100%" name = "mainframe" frameborder = "0" src = "" scrolling = "yes"></iframe>
+        </div>
+    </div>
+</div>
+<script type = "text/javascript" src = "__PUBLIC__/script/jquery.min.js"></script>
+<script type = "text/javascript" src = "__ROOT__/application/admin/view/script/admin.js"></script>
+<script type = "text/javascript">
+    $(function () {
+        $.admin.init();
+    });
+</script>
+<div style = "display: none">
+    <script language = "javascript" type = "text/javascript" src = "__ROOT__/application/admin/view/script/tongji.js"></script>
+</div>
+</body>
+</html>

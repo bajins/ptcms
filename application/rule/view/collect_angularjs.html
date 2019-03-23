@@ -1,0 +1,138 @@
+<script type="text/javascript">
+    ptng.controller('rule', function ($scope, $http,$window) {
+        $scope.replaceinfo = {};
+        $scope.replace = [];
+        $scope.rule = getrule();
+        var p='';
+        //显示错误修改框
+        $scope.showerror = function (k) {
+            p=k;
+            $scope.errorsign = $scope.rule[p].error;
+            $.admin.tool.tipbox('.errorbox', '页面错误标识');
+        };
+        // 提交错误修改
+        $scope.doerror = function () {
+            $scope.rule[p].error=$scope.errorsign;
+            layer.closeAll();
+        };
+        $scope.showreplace = function (k) {
+            p=k;
+            $scope.replace[k]=1;
+        };
+        $scope.hidereplace = function (k) {
+            p=k;
+            $scope.replace[k]=0
+        };
+        $scope.editreplace=function(t,k){
+            p=t;
+            $scope.replaceinfo=[];
+            $scope.replaceinfo=angular.copy($scope.rule[p].replace[k]);
+            $scope.replaceid=k;
+            $.admin.tool.tipbox('.replacebox', '修改替换规则');
+        };
+        //添加内容
+        $scope.addreplace=function(k){
+            p=k;
+            $scope.replaceinfo={};
+            $scope.replaceid='';
+            $.admin.tool.tipbox('.replacebox', '添加替换规则');
+        };
+        $scope.doreplace=function(replaceinfo){
+            //替换前的必填
+            if (!replaceinfo.search){
+                alert('请输入要替换的内容');
+                return false;
+            }
+            if ($scope.replaceid===''){
+                $scope.rule[p].replace.push(replaceinfo);
+            }else{
+                $scope.rule[p].replace[$scope.replaceid]=replaceinfo;
+            }
+            layer.closeAll();
+        };
+        $scope.delreplace=function(t,k){
+            $scope.rule[t].replace.splice(k, 1);
+        };
+        //提交表单
+        $scope.submitform = function () {
+            if (!$scope.rule.name){
+                alert('请输入规则名称');
+                return false;
+            }
+            if (!$scope.rule.siteid){
+                alert('请选择站点');
+                return false;
+            }
+            if (!$scope.rule.url_list.rule){
+                alert('请输入列表页url');
+                return false;
+            }
+            if (!$scope.rule.url_info.rule){
+                alert('请输入信息页url');
+                return false;
+            }
+            if (!$scope.rule.url_dir.rule){
+                alert('请输入目录页url');
+                return false;
+            }
+            if (!$scope.rule.list_novelid.rule){
+                alert('请输入列表页小说书号规则');
+                return false;
+            }
+            if (!$scope.rule.list_novelname.rule){
+                alert('请输入列表页小说书名规则');
+                return false;
+            }
+            if (!$scope.rule.list_lastid.rule){
+                alert('请输入列表页更新标识规则');
+                return false;
+            }
+            if (!$scope.rule.info_novelname.rule){
+                alert('请输入信息页书名规则');
+                return false;
+            }
+            if (!$scope.rule.info_author.rule){
+                alert('请输入信息页作者规则');
+                return false;
+            }
+            if (!$scope.rule.info_cover.rule){
+                alert('请输入信息页封面规则');
+                return false;
+            }
+            if (!$scope.rule.info_intro.rule){
+                alert('请输入信息页简介规则');
+                return false;
+            }
+            if (!$scope.rule.info_category.rule){
+                alert('请输入信息页分类规则');
+                return false;
+            }
+
+            if (!$scope.rule.dir_chaptername.rule){
+                alert('请输入章节名称规则');
+                return false;
+            }
+            if (!$scope.rule.dir_chapterurl.rule){
+                alert('请输入章节地址规则');
+                return false;
+            }
+            if (!$scope.rule.dir_chapterid.rule){
+                alert('请输入章节ID规则');
+                return false;
+            }
+            if (!$scope.rule.chapter_content.rule){
+                alert('请输入章节内容规则');
+                return false;
+            }
+            //console.log($scope.rule);return false;
+            $http.post($('form').attr('action'),$scope.rule).success(function(res){
+                if (res.status){
+                    alert(res.info);
+                    window.location.href=res.url;
+                }else{
+                    alert(res.info);
+                }
+            });
+        };
+    });
+</script>

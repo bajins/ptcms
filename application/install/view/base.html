@@ -1,0 +1,47 @@
+{if $error}
+{loop=$error}
+<p class = "message error">{$loop}</p>
+{/loop}
+<form method = "post" action = "{link='install.index.base'}" style = "display: inline-block;">
+    <p>
+        <button type = "submit" class = "primary">我已解决, 继续安装 »</button>
+        <button type = "button" class = "btn-warn">忽视错误, 继续安装 »</button>
+    </p>
+</form>
+{else}
+{if $warning}
+{loop=$warning}
+<p class = "message notice">{$loop}</p>
+{/loop}
+{/if}
+<form method = "post" action = "{link='install.index.setting'}" name = "config">
+    <div class = "ptcms-install-body">
+        <h2>系统配置</h2>
+        <ul class = "ptcms-option">
+            <li>
+                <label class = "ptcms-label" for = "sitename">网站名称</label>
+                <input type = "text" name = "sitename" id = "sitename" class = "text" value = "{$pt.proname}">
+                <p class = "description">请填写您的网站名称</p>
+            </li>
+            <li>
+                <label class = "ptcms-label" for = "siteurl">网站地址</label>
+                <input type = "text" name = "siteurl" id = "siteurl" class = "text" value = "{$pt.pt_url}">
+                <p class = "description">这是程序自动匹配的网站路径, 如果不正确请修改它</p>
+            </li>
+            <li>
+                <label class = "ptcms-label" for = "adminuser">管理员帐号</label>
+                <input type = "text" name = "adminuser" id = "adminuser" class = "text" value = "admin">
+                <p class = "description">请填写您的用户名</p>
+            </li>
+            <li>
+                <label class = "ptcms-label" for = "adminpwd">管理员密码</label>
+                <input type = "text" name = "adminpwd" id = "adminpwd" class = "text" value = "admin">
+                <p class = "description">请填写您的登录密码, 如果留空系统将设置为admin</p>
+            </li>
+        </ul>
+    </div>
+    <p class = "submit">
+        <button type = "submit" class = "primary">确认, 进行下一步 »</button>
+    </p>
+</form>
+{/if}

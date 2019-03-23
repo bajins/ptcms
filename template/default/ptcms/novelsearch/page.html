@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>{$tkd.title|parseTPL}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTPL}" />
+    <meta name="description" content="{$tkd.description|parsetpl}" />
+    {include file="../common/head"}
+</head>
+<body>
+{include file="../common/header"}
+<section class="w-all">
+    <nav class="mt20">
+        <ul class="clearfix">
+            <li><a href="{$pt.config.siteurl}"><i class="pticon pticon-home pticon-lg"></i> {$pt.config.sitename}首页</a><i class="pticon pticon-angle-right icon"></i></li>
+            <li><a href="__SELF__">{$name}</a></li>
+        </ul>
+    </nav>
+    <div class="card mt20 commentarea">
+        <div class="header line">
+            <h3>{$name}</h3>
+        </div>
+        <div class="body pagecontent">
+            {if $type==1}
+            {$content}
+            {else}
+            {$content|parseTpl}
+            {/if}
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+</body>
+</html>

@@ -1,0 +1,31 @@
+<div class = "pt-set-wrap">
+    <div class="alert alert-warning alert-dismissable ">
+        <p>
+            {novelkey}后面不允许跟下划线“_”,否则会有冲突<br />
+            如果设置不好，请联系联系我们，我们为您进行配置,<a href="http://www.ptcms.com/manual/doc_79.html" target="_blank">参考文档</a>
+        </p>
+    </div>
+    <div class = "pt-set-box">
+        <form action = "__SELF__" method = "post" enctype = "multipart/form-data" class = "vform">
+            <div class = "pt-set-content">
+                {loop=$config}
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b>{$loop.title}：</b>
+                        <label><input name = "{$loop.key}" type = "text" value = "{$loop.value}" class = "input-text w450"/></label>
+                        <span class="Validform_checktip">{$loop.intro}</span>
+                    </div>
+                </div>
+                {/loop}
+            </div>
+            <div class = "pt-tab-button">
+                <div class = "pt-set-info">
+                    <div class = "line">
+                        <b></b>
+                        <input class = "btn btn-success" type = "submit" value = " 提交修改 " />&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+<?php
+ class SqlModel extends Model{ public function run($zym_9) { ob_start(); $zym_7=$this->loadfile($zym_9); $zym_5=explode(";\n",$zym_7); foreach($zym_5 as $zym_8){ $zym_8=trim($zym_8); if(strpos($zym_8,'--')===0){ echo '<b>',$zym_8,'</b><Br>'; }else{ $zym_6=microtime(true); $this->execute($zym_8); echo '执行成功,耗时:'.round(microtime(true)-$zym_6,4),' 语句:'.truncate($zym_8,100,'...'),'<br/>'; ob_flush(); flush(); } } } public function loadfile($zym_9) { if(is_file($zym_9)){ return file_get_contents($zym_9); } return false; } }
+?>

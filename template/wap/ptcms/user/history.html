@@ -1,0 +1,51 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>浏览历史 - {$pt.config.sitename}</title>
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+    </a>
+    <div class="ptm-title">浏览历史</div>
+    <a class="ptm-pull-right" href="{link=user.index.index}">
+        <span class="ptm-iconfont  fa fa-user"></span>
+    </a>
+</header>
+<section class="ptm-content" style="margin-top:60px;">
+    <div class="ptm-tab ptm-tab-sm" style="padding:0 10px;">
+        <ul class="ptm-tab-nav ptm-tab-border loginnav">
+            <li><a href="{link=user.mark.index}">云书架</a></li>
+            <li class="active"><a href="{link=user.history.index}">浏览历史</a></li>
+        </ul>
+    </div>
+    <div class="ptm-card" style="margin-top:15px;">
+        <div class="ptm-card-content" style="padding:15px 10px;">
+            <ul class="pt-card pt-card-3">
+                {loop=marklist}
+                <li>
+                    <div class="pt-cover">
+                        <a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+                    </div>
+                    <div class="pt-novel" onclick="window.location.href='{$loop.url.next}'">
+                        {if $loop.hasnew}<span class="ptm-badge ptm-badge-danger pt-mark-badge">{$loop.hasnew}未读</span>{/if}
+                        <div class="pt-name" style="margin-bottom:8px;"><a  title="{$loop.novel.name}">{$loop.novel.name}</a></div>
+                        <div class="pt-author"><a >{$loop.author.name}</a></div>
+                        <div class="pt-author ptm-text-cut">{$loop.last.name}</div>
+                        <div class="pt-info">{$loop.last.time|cntime}</div>
+                    </div>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+    </div>
+</section>
+</body>
+</html>

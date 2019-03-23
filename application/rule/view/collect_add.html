@@ -1,0 +1,177 @@
+<div class="pt-set-wrap" ng-app="ptcms">
+    <form action="__SELF__" method="post" enctype="multipart/form-data" class="vform" ng-controller="rule" onsubmit="return false;">
+        <h4 class="pt-msg-title"><b class="f-fl">规则信息</b></h4>
+        <div class="pt-set-box">
+            <div class="pt-set-content">
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>规则名称：</b>
+                        <label><input ng-model="rule.name" type="text" value="" class="input-text w640" datatype="*" /></label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>跳过始章：</b>
+                        <label><input ng-model="rule.discardstartnum" type="text" value="" class="input-text w150" datatype="*" /></label>
+                        <span class="Validform_checktip">在目录页跳过最初的几个章节</span>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>跳过尾章：</b>
+                        <label><input ng-model="rule.discardendnum" type="text" value="" class="input-text w150" datatype="*" /></label>
+                        <span class="Validform_checktip">在目录页跳过末尾的几个章节</span>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>所属站点：</b>
+                        <label>
+                            <select class="input-box w640" ng-model="rule.siteid">
+                                <option value="">请选择站点</option>
+                                {loop=sitelist}
+                                <option value="{$loop.id}">{$loop.name}</option>
+                                {/loop}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="pt-set-info">
+                    <div class="line">
+                        <b>选项设置：</b>
+                        <div class="pt-set-area">
+                            <label><input type="checkbox" ng-model="rule.addnew" ng-true-value="'1'" ng-false-value="'0'" />添加新书</label>
+                            <label><input type="checkbox" ng-model="rule.newreplace" ng-true-value="'1'" ng-false-value="'0'" />更新其他站点采集到的小说信息</label>
+                            <label><input type="checkbox" ng-model="rule.collectallchapter" ng-true-value="'1'" ng-false-value="'0'" />老章节入库(不选之入库最新章节)</label>
+                            <label><input type="checkbox" ng-model="rule.dirsort" ng-true-value="'1'" ng-false-value="'0'" />章节目录乱序处理</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="pt-msg-title"><b class="f-fl">更新列表规则</b></h4>
+        <div class="pt-set-box">
+            <div class="pt-set-content">
+                {block template="block_ruleurl" rulename="列表页地址" rulekey="url_list" ruletype=0}
+                {block template="block_ruleurl" rulename="信息页地址" rulekey="url_info" ruletype=0}
+                {block template="block_ruleurl" rulename="目录页地址" rulekey="url_dir" ruletype=0}
+            </div>
+        </div>
+        <h4 class="pt-msg-title"><b class="f-fl">采集地址</b></h4>
+        <div class="pt-set-box">
+            <div class="pt-set-content">
+                {block template="block_ruleitem" rulename="小说名称" rulekey="list_novelname"}
+                {block template="block_ruleitem" rulename="小说书号" rulekey="list_novelid"}
+                {block template="block_ruleitem" rulename="更新标识" rulekey="list_lastid"}
+            </div>
+        </div>
+        <h4 class="pt-msg-title"><b class="f-fl">信息页规则</b></h4>
+        <div class="pt-set-box">
+            <div class="pt-set-content">
+                {block template="block_ruleitem" rulename="小说名称" rulekey="info_novelname"}
+                {block template="block_ruleitem" rulename="小说作者" rulekey="info_author"}
+                {block template="block_ruleitem" rulename="小说简介" rulekey="info_intro"}
+                {block template="block_ruleitem" rulename="小说封面" rulekey="info_cover"}
+                {block template="block_ruleitem" rulename="小说分类" rulekey="info_category"}
+                {block template="block_ruleitem" rulename="小说进度" rulekey="info_isover"}
+            </div>
+        </div>
+        <h4 class="pt-msg-title"><b class="f-fl">目录页规则</b></h4>
+        <div class="pt-set-box">
+            <div class="pt-set-content">
+                {block template="block_ruleitem" rulename="章节ID" rulekey="dir_chapterid"}
+                {block template="block_ruleitem" rulename="章节名称" rulekey="dir_chaptername"}
+                {block template="block_ruleurl" rulename="章节地址" rulekey="dir_chapterurl" ruletype=1}
+            </div>
+        </div>
+        <h4 class="pt-msg-title"><b class="f-fl">章节页规则</b></h4>
+        <div class="pt-set-box">
+            <div class="pt-set-content">
+                {block template="block_ruleurl" rulename="接口URL" rulekey="chapter_api" ruletype=0}
+                {block template="block_ruleitem" rulename="内容规则" rulekey="chapter_content"}
+            </div>
+        </div>
+        <div class="pt-tab-button">
+            <div class="pt-set-info">
+                <div class="line">
+                    <b></b>
+                    <input class="btn btn-success" type="button" value=" 添加规则 " ng-click="submitform()" />&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+        <div class="pt-pop f-dn errorbox">
+            <div class="pt-set-content">
+                <div class="pt-set-info">
+                    <label>
+                        <label><textarea class="input-box w450" ng-model="errorsign"></textarea></label>
+                    </label>
+                </div>
+                <div class="pt-set-info f-tac">
+                    <span class="btn btn-primary" ng-click="doerror()">确定</span>
+                    <span class="btn btn-default" onclick="layer.closeAll()">取消</span>
+                </div>
+            </div>
+        </div>
+        <div class="pt-pop f-dn replacebox">
+            <div class="pt-set-content">
+                <div class="pt-set-info">
+                    <b>要替换的内容：</b>
+                    <label>
+                        <label><textarea class="input-box w450" ng-model="replaceinfo.search"></textarea></label>
+                    </label>
+                </div>
+                <div class="pt-set-info">
+                    <b>替换后：</b>
+                    <label>
+                        <label><textarea class="input-box w450" ng-model="replaceinfo.replace"></textarea></label>
+                    </label>
+                </div>
+                <div class="pt-set-info">
+                    <b>替换参数：</b>
+                    <label>
+                        <label><input type="checkbox" ng-model="replaceinfo.type" ng-true-value="'1'" />正则模式</label>
+                        <label><input type="checkbox" ng-model="replaceinfo.ignorecase" ng-true-value="'1'" />不区分大小写</label>
+                        <label><input type="checkbox" ng-model="replaceinfo.singleline" ng-true-value="'1'" />单行模式</label>
+                    </label>
+                </div>
+                <div class="pt-set-info f-tac">
+                    <span class="btn btn-primary" ng-click="doreplace(replaceinfo)">确定</span>
+                    <span class="btn btn-default" onclick="layer.closeAll()">取消</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{include file="/application/admin/view/public_indexjs.html"}
+<script type="text/javascript">
+    function getrule() {
+        var rule = [];
+        rule.name = '';
+        rule.addnew=0;
+        rule.discardstartnum=0;
+        rule.discardendnum=0;
+        rule.newreplace=0;
+        rule.collectallchapter=0;
+        rule.dirsort=0;
+        rule.url_list = {charset: 'auto', error: '', rule: '', replace: []};
+        rule.url_info = {charset: 'auto', error: '', rule: '', replace: []};
+        rule.url_dir = {charset: 'auto', error: '', rule: '', replace: []};
+        rule.dir_chapterurl = {charset: 'auto', error: '', rule: '', replace: []};
+        rule.chapter_api = {charset: 'auto', error: '', rule: '', replace: []};
+        rule.list_novelname = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.list_novelid = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.list_lastid = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.info_novelname = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.info_author = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.info_category = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.info_cover = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.info_intro = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.info_isover = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.dir_chapterid = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.dir_chaptername = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.dir_chaptername = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        rule.chapter_content = {singleline: 0, ignorecase: '', rule: '', replace: []};
+        return rule;
+    }
+</script>
+{include file="collect_angularjs"}

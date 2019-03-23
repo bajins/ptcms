@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>{$tkd.title|parseTpl}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTpl}">
+    <meta name="description" content="{$tkd.description|parseTpl}">
+    <meta name="applicable-device" content="mobile"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="{link=user.index.index}">
+        <span class="ptm-iconfont fa fa-user"></span>
+    </a>
+    <div class="ptm-title">{$pt.config.sitename}</div>
+    <a class="ptm-pull-right" href="{link=novelsearch.search.index}">
+        <span class="ptm-iconfont  fa fa-search"></span>
+    </a>
+</header>
+<section class="ptm-content" style="margin-top:45px;">
+    <div class="ptm-tab">
+        <ul class="ptm-tab-nav">
+            <li class="active"><a href="{$pt.config.wapurl}">首页</a></li>
+            <li><a href="{link=novelsearch.index.top}">排行</a></li>
+            <li><a href="{link=novelsearch.index.category}">分类</a></li>
+            <li><a href="{link=novelsearch.list.over}">全本</a></li>
+            <li><a href="{link=novelsearch.search.index}">书单</a></li>
+        </ul>
+    </div>
+    {if $marklist}
+    <div class="ptm-card" style="margin-top:10px;">
+        <div class="ptm-card-header ptm-clearfix">
+            <div class="ptm-pull-left">
+                书架有更新的书
+            </div>
+        </div>
+        <div class="ptm-card-content">
+            <ul class="pt-card pt-card-3">
+                {loop=marklist}
+                {if $loop.hasnew}
+                <li>
+                    <div class="pt-cover">
+                        <a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+                    </div>
+                    <div class="pt-novel" onclick="window.location.href='{$loop.url.next}'">
+                        {if $loop.hasnew}<span class="ptm-badge ptm-badge-danger pt-mark-badge">{$loop.hasnew}未读</span>{/if}
+                        <div class="pt-name" style="margin-bottom:8px;"><a title="{$loop.novel.name}">{$loop.novel.name}</a></div>
+                        <div class="pt-author"><a>{$loop.author.name}</a></div>
+                        <div class="pt-author ptm-text-cut">{$loop.last.name}</div>
+                        <div class="pt-info">{$loop.last.time|cntime}</div>
+                    </div>
+                </li>
+                {/if}
+                {/loop}
+            </ul>
+        </div>
+    </div>
+    {/if}
+    <div class="ptm-card" style="margin-top:10px;">
+        <div class="ptm-card-header ptm-clearfix">
+            <div class="ptm-pull-left">
+                站长推荐
+            </div>
+        </div>
+        <div class="ptm-card-content" style="padding:0">
+            <ul class="ptm-list-view ptm-grid-view pt-card-1">
+                {block name=list method=novellist novelid=$pt.config.tplconfig.zztj}
+                {loop=$list}
+                <li class="ptm-list-view-cell ptm-img ptm-col-xs-4">
+                    <div class="imgarea">
+                        <a href="{$loop.url.info}" title="{$loop.novel.name}"><img class="ptm-img-object" src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+                    </div>
+                    <div class="ptm-img-body">
+                        <span class="ptm-block pt-name ptm-text-cut"><a href="{$loop.url.info}" title="{$loop.novel.name}">{$loop.novel.name}</a></span>
+                    </div>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+    </div>
+    <div class="ptm-card" style="margin-top:10px;">
+        <div class="ptm-card-header ptm-clearfix">
+            热门推荐
+        </div>
+        <div class="ptm-card-content">
+            <ul class="pt-card pt-card-7">
+                {block name=list method=novellist novelid=$pt.config.tplconfig.rmtj}
+                {loop=$list}
+                <li>
+                    <div class="pt-cover">
+                        <a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+                    </div>
+                    <div class="pt-novel">
+                        <div class="pt-num ptm-pull-right"><span style="color:orange">{$loop.data.allvisit|wan}</span>人看过</div>
+                        <div class="pt-name"><a href="{$loop.url.info}">{$loop.novel.name}</a></div>
+                        <div class="pt-author"><a href="{$loop.author.url}">{$loop.author.name}</a></div>
+                        <div class="pt-desc ptm-text-cut">{$loop.novel.intro}</div>
+                    </div>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+    </div>
+    <div class="ptm-card" style="margin-top:10px;">
+        <div class="ptm-card-header ptm-clearfix">
+            本周排行
+        </div>
+        <div class="ptm-card-content">
+            <ul class="pt-card pt-card-3">
+                {block method="novellist" name="list" order="monthvisit" num=5}
+                {section loop=$list}
+                <li>
+                    <div class="pt-cover">
+                        <a href="{$loop.url.info}" title="{$loop.novel.name}"><img src="{$loop.novel.cover}" alt="{$loop.novel.name}"></a>
+                    </div>
+                    <div class="pt-novel">
+
+                        <div class="pt-num ptm-pull-right"><span style="color:orange">{$loop.data.weekvisit|wan}</span>人关注</div>
+                        <div class="pt-name" style="margin-bottom:8px;"><a href="{$loop.url.info}">{$loop.novel.name}</a></div>
+                        <div class="pt-author"><a href="{$loop.author.url}">{$loop.author.name}</a> | <a href="{$loop.category.url}">{$loop.category.name}</a> | {$loop.novel.isover|default="连载中","已完结"}</div>
+                        <div class="pt-author ptm-text-cut"><a href="{$loop.url.info}">{$loop.last.name}</a></div>
+                        <div class="pt-info">{$loop.last.time|cntime}更新</div>
+                    </div>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+    </div>
+    <div class="ptm-card" style="margin-top:10px;">
+        <div class="ptm-card-header ptm-clearfix">
+            最新更新
+        </div>
+        <div class="ptm-card-content">
+            <ul class="pt-card pt-card-6">
+                {block method="novellist" name="list" sort="lastupdate" num=10 cachetime=120}
+                {loop=$list}
+                <li>
+                    <div class="pt-novel">
+                        <div class="pt-one">
+                            <span class="pt-author">[{$loop.last.time|date="H:i"}] </span>
+                            <span class="pt-name"><a href="{$loop.url.info}">{$loop.novel.name}</a></span>
+                            <span class="pt-author"><a href="{$loop.author.url}">{$loop.author.name}</a></span>
+                        </div>
+                        <div class="pt-desc ptm-text-cut ">{$loop.last.name}</div>
+                    </div>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+
+<footer class="ptm-nav">
+    <ul class="ptm-bar-tab">
+        <li onclick="window.location.href='{if IS_LOGIN}{link=user.mark.index}{else}{link=user.history.index}{/if}'">
+            <span class="ptm-iconfont fa fa-book"></span>
+            <p>书架</p>
+        </li>
+        <li class="active">
+            <span class="ptm-iconfont fa fa-home"></span>
+            <p>书城</p>
+        </li>
+        <li onclick="window.location.href='{link=user.index.index}'">
+            <span class="ptm-iconfont fa fa-user"></span>
+            <p>我的</p>
+        </li>
+    </ul>
+</footer>
+</body>
+</html>

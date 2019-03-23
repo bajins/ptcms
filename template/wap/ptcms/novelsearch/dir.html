@@ -1,0 +1,105 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>{$tkd.title|parseTpl}</title>
+    <meta name="keywords" content="{$tkd.keywords|parseTpl}">
+    <meta name="description" content="{$tkd.description|parseTpl}">
+    <meta name="applicable-device" content="mobile"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/ptm.min.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__/css/skin.min.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body class="pt-dir-page">
+<header class="ptm-bar ptm-bar-nav  ptm-fix">
+    <a class="ptm-pull-left" href="{link=novelsearch.index.index}">
+        <span class="ptm-iconfont fa fa-home" style="font-size:22px;"></span>
+    </a>
+    <div class="ptm-title">{$novel.name}</div>
+    <a class="ptm-pull-right" href="{link=user.index.index}">
+        <span class="ptm-iconfont  fa fa-user"></span>
+    </a>
+</header>
+{block method="page" name="pagelist" totalnum=$totalnum page=$page pagesize=$pagesize section=3}
+<section class="pt-infopage-more" style="margin-top:60px;">
+    <div class="ptm-card pt-dir-list">
+        <div class="ptm-card-header" style="background: #eee">
+            <div class="ptm-col-xs-9" style="padding-right:10px">
+                <button class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined showdir"><span>{=($pagelist.page-1)*$pagesize+1}-{=$pagelist.page*$pagesize}章</span><i class="fa fa-angle-down pt-dir-icon"></i></button>
+            </div>
+            {if $sort=='asc'}
+            <div class="ptm-col-xs-3">
+                <a class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined" href="{$sorturl}">正序 <i class="fa fa-sort-amount-asc"></i></a>
+            </div>
+            {else}
+            <div class="ptm-col-xs-3">
+                <a class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined" href="{$sorturl}">倒序 <i class="fa fa-sort-amount-desc"></i></a>
+            </div>
+            {/if}
+        </div>
+        <div class="ptm-card-content pt-dir">
+            <ul class="ptm-list-view">
+                {if $siteid}
+                {loop=dirlist}
+                <li class="ptm-list-view-cell">
+                    <a href="{$loop.url_green}">{$loop.name}</a>
+                </li>
+                {/loop}
+                {else}
+                {loop=dirlist}
+                <li class="ptm-list-view-cell">
+                    <a href="{$loop.url_read}">{$loop.name}</a>
+                </li>
+                {/loop}
+                {/if}
+            </ul>
+        </div>
+        <div class="ptm-card-footer " style="background: #eee">
+            <div class="ptm-col-xs-3">
+                <a class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined" href="{$pageurl|str_replace='__PAGE__',$pagelist.prev.num,@}">上一页</a>
+            </div>
+            <div class="ptm-col-xs-6" style="padding:0 10px;">
+                <button class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined showdir"><span>{=($pagelist.page-1)*$pagesize+1}-{=$pagelist.page*$pagesize}章</span><i class="fa fa-angle-down pt-dir-icon"></i></button>
+            </div>
+            <div class="ptm-col-xs-3">
+                <a class="ptm-btn ptm-btn-primary ptm-btn-block ptm-btn-outlined" href="{$pageurl|str_replace='__PAGE__',$pagelist.next.num,@}">下一页</a>
+            </div>
+        </div>
+    </div>
+</section>
+{include file="../common/footer"}
+<div class="sel ptm-hide">
+    <div class="ptm-alert-shade"></div>
+    <div class="pt-dir-sel" style="background-position: left 50px;">
+        <p class="title">请选择章节</p>
+        <ul>
+            {if !$pagelist.first.status && $pagelist.num.0.num>1}
+            <li><a href="{$pageurl|str_replace='__PAGE__',$pagelist.first.num,@}">1-第{$pagesize}章</a></li>
+            {/if}
+            {loop=$pagelist.num}
+            {if $loop.status}
+            <li class="active"><a href="__SELF__">{=($pagelist.page-1)*$pagesize+1}-{=$pagelist.page*$pagesize}章</a></li>
+            {else}
+            <li><a href="{$pageurl|str_replace='__PAGE__',$loop.num,@}">{=($loop.num-1)*$pagesize+1}-{=$loop.num*$pagesize}章</a></li>
+            {/if}
+            {/loop}
+            {if !$pagelist.last.status && $pagelist.last.num>$loop.num}
+            <li><a href="{$pageurl|str_replace='__PAGE__',$pagelist.last.num,@}">{=($pagelist.last.num-1)*$pagesize+1}-{$totalnum}章</a></li>
+            {/if}
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.showdir').on('click',function(){
+        $('.sel').removeClass('ptm-hide')
+    })
+    $('.ptm-alert-shade').on('click',function(){
+        $('.sel').addClass('ptm-hide')
+    })
+</script>
+</body>
+</html>
