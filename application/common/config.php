@@ -1,8 +1,8 @@
 <?php
 return array (
   'sitename' => '小说聚合程序234',
-  'siteurl' => 'http://www.ptcms123.com',
-  'beian' => '京ICP备111111号',
+  'siteurl' => 'http://www.bajins.com',
+  'beian' => '',
   'email' => 'admin#ptcms.com',
   'qq' => '10000',
   'admin_pagesie' => '20',
@@ -27,7 +27,7 @@ return array (
   'mysql_prefix' => 'ptcms_',
   'mysql_master_host' => 'localhost',
   'mysql_master_port' => '3306',
-  'mysql_master_name' => 'www_ptso_com',
+  'mysql_master_name' => 'www_bajins_com',
   'mysql_master_user' => 'root',
   'mysql_master_pwd' => 'root',
   'app_status' => '1',

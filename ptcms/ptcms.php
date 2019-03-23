@@ -37,7 +37,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'GET' &&
 // 框架版本号
 define('PTCMS_VERSION', '3.2.5 20150410');
 // debug信息 是否开启当前项目debug模式 默认 不开启
-defined('APP_DEBUG') || define('APP_DEBUG', false);
+defined('APP_DEBUG') || define('APP_DEBUG', true);
 
 
 // 获取目录地址

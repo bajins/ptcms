@@ -72,7 +72,7 @@ return '
     </div>
 </div>
 <div class = "copyright">
-    <p><a title = "PTCMS" href = "http://www.ptcms.com">PTcms FrameWork</a><sup><?php echo PTCMS_VERSION?></sup> { Fast & Simple & Light MVC PHP Framework }</p>
+    <p><a title = "bajins" href = "http://www.bajins.com">PTcms FrameWork</a><sup><?php echo PTCMS_VERSION?></sup> { Fast & Simple & Light MVC PHP Framework }</p>
 </div>
 </body>
 </html>
