@@ -52,7 +52,7 @@ class PT_Dispatcher extends PT_Base {
         $var['m'] = isset($param['0']) ? array_shift($param) : $this->config->get('default_module', 'index');
         $var['c'] = isset($param['0']) ? array_shift($param) : $this->config->get('default_controller', 'index');
         $var['a'] = isset($param['0']) ? array_shift($param) : $this->config->get('default_action', 'index');
-        while ($k = each($param)) {
+        foreach ($param as $k) {
             $var[$k['value']] = current($param);
             next($param);
         };
